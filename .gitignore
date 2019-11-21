@@ -11,5 +11,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 resources/key.js
-public/mix-manifest.json
-public/js/*
+/public/mix-manifest.json
+/public/js/*
+/public/css/*
