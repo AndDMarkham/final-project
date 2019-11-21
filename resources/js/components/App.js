@@ -6,6 +6,7 @@ import {Router, Route, Switch, Redirect} from "react-router-dom";
 import history from "../history.js";
 import Nav from "./Nav/Nav";
 
+
 const App = () =>  {
         return (
            <>
@@ -15,7 +16,7 @@ const App = () =>  {
                         <div> 
                             <Switch>
                                     <Route path = '/' component={Home} />
-                                    {/* <Route path = '/restaurants' component={RestaurantCard} /> */}
+                                    {/* <Route path = '/restaurantform' component={RestaurantForm} /> */}
                             </Switch>
                         </div>
                     </div>

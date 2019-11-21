@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import MapContainer from './MapContainer';
+import RestaurantForm from './Restaurant/RestaurantForm';
 
 const homeStyle = {
     display: 'flex',
@@ -14,7 +15,8 @@ const Home = props => {
                 <Sidebar />
             </div>
             <div>
-                <MapContainer />
+                {/* <MapContainer /> */}
+                <RestaurantForm />
             </div>
         </div>
     )

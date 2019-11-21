@@ -74,6 +74,7 @@ const RestaurantCard = props => {
                ))
            
             }
+            
         </div>
     )
 }

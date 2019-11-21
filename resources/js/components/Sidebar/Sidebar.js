@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, Switch, Redirect} from "react-router-dom";
+import {Router, Route, Switch, Link, Redirect} from "react-router-dom";
 import history from "../../history";
 import RestaurantCard from '../Restaurant/RestaurantCard';
 
@@ -19,6 +19,7 @@ const Sidebar = props => {
             <h3>Dishes near you!</h3>
             <div style={{margin: '1rem 0 1rem 0'}}>
                 <h5>some info here</h5>
+                <Link to ='/restaurantform'><h6>Add New Restaurant</h6></Link>
             </div>
             <Router history={history}>
                 <Switch>
