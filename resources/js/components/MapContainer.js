@@ -11,7 +11,7 @@ const mapStyles = {
       
       constructor(props) {
         super(props);
-        
+        console.log('this.props', this.props)
         this.state = {
         showingInfoWindow: false,
         activeMarker: {},
