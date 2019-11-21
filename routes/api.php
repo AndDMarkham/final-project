@@ -19,3 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //PrimaryApi:
 Route::get('/restaurants', 'Api\PrimaryController@index');
+
+//RestaurantApis:
+Route::get('/restaurant/{id}', 'Api\RestaurantsController@show');
+Route::post('/restaurant/new', 'Api\RestaurantsController@store');
+
+//DishApis:
+Route::get('/dish/{id}', 'Api\DishesController@show');
+Route::post('/dish/new', 'Api\DishesController@store');

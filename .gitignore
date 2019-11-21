@@ -11,6 +11,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 resources/key.js
-public/js/app.js
-public/js/app.js
-/webpack.mix.js
+public/mix-manifest.json
+public/js/*
