@@ -5,6 +5,8 @@ import Home from './Home';
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import history from "../history.js";
 import Nav from "./Nav/Nav";
+import DishForm from "./Dish/DishForm.js";
+import ReviewForm from "./Review/ReviewForm.js";
 
 
 const App = () =>  {
