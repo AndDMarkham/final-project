@@ -3,6 +3,7 @@ import Sidebar from './Sidebar/Sidebar';
 import MapContainer from './MapContainer';
 import DishForm from "./Dish/DishForm.js";
 import ReviewForm from "./Review/ReviewForm.js";
+import NewMap from "./NewMap.js"
 
 const homeStyle = {
     display: 'flex',
@@ -16,7 +17,7 @@ const Home = props => {
                 <Sidebar />
             </div>
             <div>
-                <MapContainer />
+                <NewMap />
             </div>
         </div>
     )
