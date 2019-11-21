@@ -17,6 +17,8 @@ class NewMap extends Component {
         activeMarker: {},
         selectedPlace: {}
         }
+        this.onMarkerClick = this.onMarkerClick.bind(this)
+        this.onClose = this.onClose.bind(this)
     };
       
 
@@ -26,7 +28,7 @@ class NewMap extends Component {
       activeMarker: marker,
       showingInfoWindow: true
       });
-      this.onMarkerClick = this.onMarkerClick.bind(this)
+      
     }
 
     onClose (props) {
