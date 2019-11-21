@@ -1,6 +1,12 @@
 {
+<<<<<<< HEAD
     "/js/app.js": "/js/app.js?id=90dcf09d29aa86890178",
     "/css/app.css": "/css/app.css?id=8fd315fb185b1dbc91c9",
     "/js/app.js.map": "/js/app.js.map?id=220eaff12403af7cb27e",
+=======
+    "/js/app.js": "/js/app.js?id=9828d31121a0511948f9",
+    "/css/app.css": "/css/app.css?id=8fd315fb185b1dbc91c9",
+    "/js/app.js.map": "/js/app.js.map?id=2b24d571288117d1a0d8",
+>>>>>>> geolocation
     "/css/app.css.map": "/css/app.css.map?id=e317a448876e0f19bbf2"
 }
