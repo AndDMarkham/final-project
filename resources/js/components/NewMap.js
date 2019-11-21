@@ -1,86 +1,72 @@
-import React, { useState, useEffect } from "react";
-import {
-  withGoogleMap,
-  withScriptjs,
-  GoogleMap,
-  Marker,
-  InfoWindow
-} from "google-maps-react";
-// import mapStyles from "./mapStyles";
-import { googleKey } from "../../key.js";
+import React,  {Component} from 'react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { googleKey } from '../../key.js';
 
-function Map() {
-  const [selectedPark, setSelectedPark] = useState(null);
+const mapStyles = {
+    width: '54vw',
+    height: '80vh'
+  };
 
-  useEffect(() => {
-    const listener = e => {
-      if (e.key === "Escape") {
-        setSelectedPark(null);
+class NewMap extends Component {
+      
+    constructor(props) {
+        super(props);
+        console.log('this.props', this.props)
+        this.state = {
+        showingInfoWindow: false,
+        activeMarker: {},
+        selectedPlace: {}
+        }
+    };
+      
+
+    onMarkerClick (props, marker, e) {
+      this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+      });
+      this.onMarkerClick = this.onMarkerClick.bind(this)
+    }
+
+    onClose (props) {
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        });
       }
     };
-    window.addEventListener("keydown", listener);
-
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
-
-  return (
-    <GoogleMap
-      defaultZoom={10}
-      defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
-      defaultOptions={{ styles: mapStyles }}
-    >
-      {parkData.features.map(park => (
-        <Marker
-          key={park.properties.PARK_ID}
-          position={{
-            lat: park.geometry.coordinates[1],
-            lng: park.geometry.coordinates[0]
-          }}
-          onClick={() => {
-            setSelectedPark(park);
-          }}
-          icon={{
-            url: `/skateboarding.svg`,
-            scaledSize: new window.google.maps.Size(25, 25)
-          }}
+  
+  render() {
+    return (
+      <Map
+        google={this.props.google}
+        zoom={14}
+        style={mapStyles}
+        initialCenter={{
+         lat: 50.065,
+         lng: 14.46
+        }}
+      >
+      <Marker
+          onClick={this.onMarkerClick}
+          name={'Kenyatta International Convention Centre'}
         />
-      ))}
-
-      {selectedPark && (
         <InfoWindow
-          onCloseClick={() => {
-            setSelectedPark(null);
-          }}
-          position={{
-            lat: selectedPark.geometry.coordinates[1],
-            lng: selectedPark.geometry.coordinates[0]
-          }}
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
         >
           <div>
-            <h2>{selectedPark.properties.NAME}</h2>
-            <p>{selectedPark.properties.DESCRIPTIO}</p>
+            <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
-      )}
-    </GoogleMap>
-  );
+      </Map>
+    );
+  }
 }
-
-const MapWrapped = withScriptjs(withGoogleMap(Map));
-
-export default function App() {
-  return (
-    <div style={{ width: "54vw", height: "80vh" }}>
-      <MapWrapped
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-          googleKey
-        }`}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
-    </div>
-  );
-}
+  
+  export default GoogleApiWrapper({
+    apiKey: googleKey
+  })(NewMap);
