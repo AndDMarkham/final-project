@@ -3,6 +3,8 @@ import React, { useState } from "react"
 const DishForm = props => {
     const [formInputValues, setFormInputValues] = useState({name: '', description: ''});
     const [formSubmitSuccess, setFormSubmitSuccess] = useState()
+    const formStyle = { borderRadius: '10px', margin: '2rem' }
+
 
     const handleNameInputChange = e => {
         setFormInputValues({
@@ -24,7 +26,7 @@ const DishForm = props => {
        })
    } 
    return (
-       <form style={{display: 'flex', flexDirection: 'column'}}>
+       <form style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '15rem', paddingTop: '5rem'}}>
            <h2>Add a new dish!</h2>
            <input
             id="name"
@@ -32,6 +34,7 @@ const DishForm = props => {
             placeholder = "name"
             value = {formInputValues.name}
             onChange = {handleNameInputChange}
+            style={formStyle}
            />
            <input
             id="description"
@@ -39,6 +42,7 @@ const DishForm = props => {
             placeholder = "description"
             value={formInputValues.description}
             onChange = {handleNameInputChange}
+            style={formStyle}
            />
            <button onClick = {handleSubmitButtonClick} style={{border: '1px solid blue', margin:'5px'}}>Submit</button>
            {formSubmitSuccess === true && <h3>Congrats!</h3>}

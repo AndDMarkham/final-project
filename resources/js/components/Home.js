@@ -4,6 +4,7 @@ import MapContainer from './MapContainer';
 import RestaurantForm from './Restaurant/RestaurantForm';
 import DishForm from "./Dish/DishForm.js";
 import ReviewForm from "./Review/ReviewForm.js";
+import RestaurantDetail from "./Restaurant/RestaurantDetail";
 
 const homeStyle = {
     display: 'flex',
@@ -18,7 +19,8 @@ const Home = props => {
             </div>
             <div>
                 {/* <MapContainer /> */}
-                <RestaurantForm />
+                {/* <RestaurantForm /> */}
+                <RestaurantDetail/>
             </div>
         </div>
     )
