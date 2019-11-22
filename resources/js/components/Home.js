@@ -18,7 +18,7 @@ const Home = props => {
                 <Sidebar />
             </div>
             <div>
-                <NewMap />
+                <DishForm />
             </div>
         </div>
     )
