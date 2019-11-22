@@ -8,6 +8,7 @@ import Nav from "./Nav/Nav";
 import DishForm from "./Dish/DishForm.js";
 import ReviewForm from "./Review/ReviewForm.js";
 
+
 const App = () =>  {
         return (
            <>
@@ -17,7 +18,7 @@ const App = () =>  {
                         <div> 
                             <Switch>
                                     <Route path = '/' component={Home} />
-                                    {/* <Route path = '/restaurants' component={RestaurantCard} /> */}
+                                    {/* <Route path = '/restaurantform' component={RestaurantForm} /> */}
                             </Switch>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import MapContainer from './MapContainer';
+import RestaurantForm from './Restaurant/RestaurantForm';
 import DishForm from "./Dish/DishForm.js";
 import ReviewForm from "./Review/ReviewForm.js";
 import NewMap from "./NewMap.js"
@@ -17,7 +18,7 @@ const Home = props => {
                 <Sidebar />
             </div>
             <div>
-                <NewMap />
+                <DishForm />
             </div>
         </div>
     )

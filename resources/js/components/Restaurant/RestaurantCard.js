@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import DishCard from '../Dish/DishCard';
 import Dishes from '../Dish/Dishes';
+
 // import { windowWhen } from 'rxjs/operator/windowWhen';
 
 const restaurantStyle = {
@@ -74,6 +75,7 @@ const RestaurantCard = props => {
                ))
            
             }
+            
         </div>
     )
 }

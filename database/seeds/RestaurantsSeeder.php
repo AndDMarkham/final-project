@@ -21,8 +21,8 @@ class RestaurantsSeeder extends Seeder
             $restaurant->insert([
                 'name' => $faker->company(),
                 'address' => $faker->streetAddress(),
-                'latitude' => $faker->latitude($min = 50.02, $max = 50.12),
-                'longitude' => $faker->longitude($min = 14.28, $max = 14.54),
+                'latitude' => $faker->latitude($min = 50.020001, $max = 50.119999),
+                'longitude' => $faker->longitude($min = 14.280001, $max = 14.539999),
                 'phone' => $faker->phoneNumber(),
                 'website_url' => $faker->domainName()
             ]);

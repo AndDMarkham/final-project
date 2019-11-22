@@ -8,9 +8,13 @@ use App\Restaurant;
 
 class PrimaryController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        $restaurant = Restaurant::with('dishes')->with('dishes.reviews')->with('dishes.reviews.image')->limit(5)->get();
+        $restaurant = Restaurant::with('dishes')
+            ->with('dishes.reviews')
+            ->with('dishes.reviews.image')
+            ->limit(5)
+            ->get();
 
         return $restaurant;
     }
