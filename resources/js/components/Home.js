@@ -16,7 +16,7 @@ const Home = props => {
     return (
         <div style={homeStyle}>
             <div>
-                <DishForm />
+                <Register/>
             </div>
             <div>
                 <NewMap />

@@ -43,7 +43,7 @@ const Register = props => {
     const handleSubmitButtonClick = (e) => {
         e.preventDefault()
         const diets = getDietIds(formInputValues.diets)
-        console.log(formatInputValues)
+        console.log("diets", diets)
     //    axios.post('http://www.eatanywhere.test:8080/api/dish/new',{
     //        name: "name",
     //        description: "description",
