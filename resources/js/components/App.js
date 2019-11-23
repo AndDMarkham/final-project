@@ -13,7 +13,7 @@ const App = () =>  {
         return (
            <>
                <Router history={history}>
-                    <div>
+                    <div style={{width:'100vw', height: '100vh'}}>
                         <Nav/>
                         <div> 
                             <Switch>

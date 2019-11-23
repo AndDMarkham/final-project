@@ -26,4 +26,4 @@ Route::post('/restaurant/new', 'Api\RestaurantsController@store');
 
 //DishApis:
 Route::get('/dish/{id}', 'Api\DishesController@show');
-Route::post('/dish/new', 'Api\DishesController@store');
+Route::post('/dish/new/{id}', 'Api\DishesController@store');
