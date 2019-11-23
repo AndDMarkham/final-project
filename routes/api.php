@@ -17,13 +17,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//PrimaryApi:
-Route::get('/restaurants', 'Api\PrimaryController@index');
+Route::group(['middleware' => ['json.response']], function () {
 
-//RestaurantApis:
-Route::get('/restaurant/{id}', 'Api\RestaurantsController@show');
-Route::post('/restaurant/new', 'Api\RestaurantsController@store');
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-//DishApis:
-Route::get('/dish/{id}', 'Api\DishesController@show');
-Route::post('/dish/new', 'Api\DishesController@store');
+    // public routes
+    Route::post('/login', 'Api\AuthController@login')->name('login.api');
+    Route::post('/register', 'Api\AuthController@register')->name('register.api');
+
+    // private routes
+    Route::middleware('auth:api')->group(function () {
+        
+        //LogoutApi:
+        Route::get('/logout', 'Api\AuthController@logout')->name('logout');
+
+        //PrimaryApi:
+        Route::get('/restaurants', 'Api\PrimaryController@index');
+
+        //RestaurantApis:
+        Route::get('/restaurant/{id}', 'Api\RestaurantsController@show');
+        Route::post('/restaurant/new', 'Api\RestaurantsController@store');
+
+        //DishApis:
+        Route::get('/dish/{id}', 'Api\DishesController@show');
+        Route::post('/dish/new', 'Api\DishesController@store');
+
+    });
+
+});
+        
