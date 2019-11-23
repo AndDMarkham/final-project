@@ -11,14 +11,13 @@ const getDietIds = (diets) => Object.keys(diets).reduce((acc, dietName) => {
         return acc
     }, [])
 
-const DishForm = props => {
-    const [formInputValues, setFormInputValues] = useState({name: '', description: '', diets:{
+const Register = props => {
+    const [formInputValues, setFormInputValues] = useState({firstName: '', lastName: '', userName: '', email: '', dateofBirth: '', diets:{
         vegan: false,
         vegetarian: false
     }});
     const [formSubmitSuccess, setFormSubmitSuccess] = useState()
-    const formStyle = { borderRadius: '10px', margin: '2rem' }
-
+    const formStyle = { borderRadius: '10px', margin: '.3rem' }
 
     const handleNameInputChange = e => {
         setFormInputValues({
@@ -41,17 +40,16 @@ const DishForm = props => {
         }))
     }
 
-
-   const handleSubmitButtonClick = (e) => {
+    const handleSubmitButtonClick = (e) => {
         e.preventDefault()
         const diets = getDietIds(formInputValues.diets)
-        console.log("diets", diets)
+        console.log(formatInputValues)
     //    axios.post('http://www.eatanywhere.test:8080/api/dish/new',{
     //        name: "name",
     //        description: "description",
     //        diets: getDietIds(formInputValues.diets)
     //    })
-       
+        
     //    .then ((response) => {
     //        console.log(response)
     //        setFormSubmitSuccess(true)
@@ -60,25 +58,52 @@ const DishForm = props => {
     //        console.log(e)
     //        setFormSubmitSuccess(false)
     //    })
-   } 
+    } 
 
-   return (
-       <form style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '15rem', paddingTop: '5rem'}}>
-           <h2>Add a new dish!</h2>
+    return (
+        <form style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '15rem', paddingTop: '5rem'}}>
+           <h2>Register</h2>
            <input
-            id="name"
+            id="firstName"
             type="text"
-            placeholder = "name"
-            value = {formInputValues.name}
+            placeholder = "First name"
+            value = {formInputValues.firstName}
             onChange = {handleNameInputChange}
             style={formStyle}
            />
            <br/>
            <input
-            id="description"
+            id="lastName"
             type="text"
-            placeholder = "description"
-            value={formInputValues.description}
+            placeholder = "Last name"
+            value={formInputValues.lastName}
+            onChange = {handleNameInputChange}
+            style={formStyle}
+           />
+           <br/>
+           <input
+            id="userName"
+            type="text"
+            placeholder = "User name"
+            value={formInputValues.userName}
+            onChange = {handleNameInputChange}
+            style={formStyle}
+           />
+           <br/>
+           <input
+            id="email"
+            type="text"
+            placeholder = "email"
+            value={formInputValues.email}
+            onChange = {handleNameInputChange}
+            style={formStyle}
+           />
+           <br/>
+           <input
+            id="dateofBirth"
+            type="text"
+            placeholder = "Date of birth"
+            value={formInputValues.dateOfBirth}
             onChange = {handleNameInputChange}
             style={formStyle}
            />
@@ -111,4 +136,4 @@ const DishForm = props => {
    )
 };
 
-export default DishForm;
+export default Register;
