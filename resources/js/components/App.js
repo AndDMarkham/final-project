@@ -8,17 +8,6 @@ import Navv from "./Nav/Nav";
 
 const App = () =>  {
         return (
-<<<<<<< HEAD
-           <>
-               <Router history={history}>
-                    <div style={{width:'100vw', height: '100vh'}}>
-                        <Nav/>
-                        <div> 
-                            <Switch>
-                                    <Route path = '/' component={Home} />
-                                    {/* <Route path = '/restaurantform' component={RestaurantForm} /> */}
-                            </Switch>
-=======
            <div className="bgWhite"> 
                    <Router history={history}>
                         <div>
@@ -29,7 +18,6 @@ const App = () =>  {
                                         {/* <Route path = '/restaurantform' component={RestaurantForm} /> */}
                                 </Switch>
                             </div>
->>>>>>> hel
                         </div>
                     </Router>
                {/* </div> */}

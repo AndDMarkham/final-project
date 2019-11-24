@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcomeexample');
-})->name('welcome-example');
+    return view('welcome');
+})->name('welcome');
 
 Auth::routes();
 
