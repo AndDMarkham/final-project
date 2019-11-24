@@ -23,7 +23,7 @@ const Home = props => {
 <<<<<<< HEAD
         <div style={homeStyle}>
             <div>
-                <DishForm />
+                <Register/>
             </div>
             <div>
                 <NewMap />
