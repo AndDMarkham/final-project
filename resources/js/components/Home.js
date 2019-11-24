@@ -1,27 +1,28 @@
 import React from 'react';
 import Sidebar from './Sidebar/Sidebar';
-import MapContainer from './MapContainer';
-import RestaurantForm from './Restaurant/RestaurantForm';
-import DishForm from "./Dish/DishForm.js";
-import ReviewForm from "./Review/ReviewForm.js";
-import NewMap from "./NewMap.js"
-import Register from "./Register.js"
+// import MapContainer from './MapContainer';
+// import RestaurantForm from './Restaurant/RestaurantForm';
+// import DishForm from "./Dish/DishForm.js";
+// import ReviewForm from "./Review/ReviewForm.js";
+import NewMap from "./NewMap.js";
+import Profile from "./Profile/Profile";
+import { Row, Col } from 'reactstrap';
 
-const homeStyle = {
-    display: 'flex',
-
-}
 
 const Home = props => {
     return (
-        <div style={homeStyle}>
-            <div>
-                <Register/>
-            </div>
-            <div>
-                <NewMap />
-            </div>
-        </div>
+        
+            <Row className="home">
+                <Col sm="12" md="6">
+                    
+                    <Profile />
+                    <Sidebar />
+                </Col>
+                <Col >
+                    <NewMap />
+                </Col>
+            </Row>
+        
     )
 }
 
