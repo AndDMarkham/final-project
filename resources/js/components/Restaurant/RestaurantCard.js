@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
-
-import DishCard from '../Dish/DishCard';
 import Dishes from '../Dish/Dishes';
-
-// import { windowWhen } from 'rxjs/operator/windowWhen';
-
-// const restaurantStyle = {
-//     // border: '1px solid black',
-//     backgroundColor: 'lightgrey',
-//     margin: '0 auto 1rem',
-//     width: '88%',
-//     height: '85%',
-//     paddingTop: '1rem',
-//     paddingBottom: '2rem',
-//     fontSize: '12px',
-// }
 
 const restaurants1 = [
     {
@@ -23,21 +8,81 @@ const restaurants1 = [
         name: 'Burger Queen',
         address: '1236 1300th Street',
         phone: '+1 712 579 5715',
-        website_url: 'www.restaurant.com/'
+        website_url: 'www.restaurant.com',
+        dishes: [
+            {
+                name: 'abc',
+                description: '12dr',
+                diet_id: '4',
+                reviews: [
+                    {
+                        image_path: '/images/fois_gras.jpg',
+                        ratings: 4,
+                        text: 'blah'
+                    },
+                    {
+                        image_path: '/images/fois_gras.jpg',
+                        ratings: 3,
+                        text: 'blahhhh'
+                    },
+                    {
+                        image_path: '/images/pickled_camembert.jpg',
+                        ratings: 1,
+                        text: 'blakhkhgh'
+                    },
+                ]
+            }, 
+            {
+                name: 'abc',
+                description: '12dr',
+                diet_id: '4',
+                reviews: [
+                    {
+                        image: '/images/salmon_fillet.jpg',
+                        ratings: 4,
+                        text: 'blah'
+                    },
+                    {
+                        image: '/images/shio_ramen_no_noodles.jpg',
+                        ratings: 3,
+                        text: 'blahhhh'
+                    },
+                    {
+                        image: '/images/veal_and_ribs.jpg',
+                        ratings: 1,
+                        text: 'blakhkhgh'
+                    },
+                ]
+            },
+        ]
     },
     {
         id: 2,
         name: 'Burger man',
         address: '1236 1300th Street',
         phone: '+1 712 579 5715',
-        website_url: 'www.restaurant.cz/'
+        website_url: 'www.restaurant.cz',
+        dishes: [
+            {
+                name: 'aytc',
+                description: '124dr',
+                diet_id: '5'
+            }
+        ]
     },
     {
         id: 3,
         name: 'Salad man',
         address: '1236 1300th Street',
         phone: '+1 712 579 5715',
-        website_url: 'www.restaurant.cz/'
+        website_url: 'www.restaurant.cz',
+        dishes: [
+            {
+                name: 'abwedc',
+                description: '12aswdr',
+                diet_id: '23'
+            }
+        ]
     },
 ]
 
@@ -73,14 +118,12 @@ const RestaurantCard = props => {
                                     <Col sm="12" md="4">{restaurant.website_url}</Col>
                                 </Row>
                             </CardText>
-                            <Button>Button</Button>
-                            <Dishes dishes={restaurant.dishes} />
+                            <Dishes 
+                            dishes={restaurant.dishes} 
+                            />
                         </Card>
-                    
                 ))
-
             }
-
         </div>
     )
 }
