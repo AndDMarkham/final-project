@@ -93,7 +93,9 @@ const RestaurantCard = props => {
     //     async function fetchRestaurants(){
     //         const response = await fetch('http://www.eatanywhere.test:8080/api/restaurants', {
     //             headers: {
-    //                 'Accept': 'application/json'
+    //                 'Authorization': 'Bearer ' + this.props.token,
+    //                 'X-Requested-With': 'XMLHttpRequest',
+    //                 'Content-Type': 'application/json'
     //             }
     //         })
     //         const data = await response.json();
