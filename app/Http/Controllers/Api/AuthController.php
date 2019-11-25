@@ -48,6 +48,7 @@ class AuthController extends Controller
     {
         $email = $request->email;
         $user = User::where('email', $email)
+            ->except(['last_name', 'date_of_birth', 'email', 'email_verified'])
             ->with('diets')
             ->first();
 
@@ -55,7 +56,7 @@ class AuthController extends Controller
 
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-                $response = ['token' => $token, 'user' => $user->except(['last_name', 'date_of_birth', 'email', 'email_verified_at'])];
+                $response = ['token' => $token, 'user' => $user];
                 return response($response, 200);
 
             } else {

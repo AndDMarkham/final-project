@@ -9,10 +9,6 @@ import Profile from "./Profile/Profile";
 import { Row, Col } from 'reactstrap';
 import Register from './Auth/Register.js';
 
-const homeStyle = {
-    display: 'flex',
-}
-
 const Home = props => {
     return (
         <Row className="home">
