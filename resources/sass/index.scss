@@ -92,30 +92,26 @@ body {
     background-color: grey;
     margin:  0 2.5rem 0 2rem;
 }
-// .reviewCard {
-    
-
-// }
+.reviewPic {
+    justify-content: center;
+    padding: 0.5rem;
+}
 
 .slick-arrow.slick-prev:before {
     color: black;
     font-size: 25px;
-    
 }
+
 .slick-arrow.slick-prev {
     left: -10px;
-    z-index: 500;
 }
 
 .slick-arrow.slick-next:before {
     color: black;
     font-size: 25px;
-    
-
 }
 
 .slick-arrow.slick-next {
-    right: 0px;
+    right: 0;
 }
-
 
