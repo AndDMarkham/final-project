@@ -9,23 +9,22 @@ import Profile from "./Profile/Profile";
 import { Row, Col } from 'reactstrap';
 import Register from './Register.js';
 
+const homeStyle = {
+    display: 'flex',
+}
 
 const Home = props => {
     return (
-        
-            <Row className="home">
-                <Col sm="12" md="6">
-                    
-                    {/* <Profile />
-                    <Sidebar /> */}
-                    <Register />
-                </Col>
-                <Col >
-                    <NewMap />
-                </Col>
-            </Row>
-        
+        <Row className="home">
+            <Col sm="12" md="6">
+                
+                <Profile />
+                <Sidebar />
+            </Col>
+            <Col >
+                <NewMap />
+            </Col>
+        </Row>
     )
 }
-
 export default Home;
