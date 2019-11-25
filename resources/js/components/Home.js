@@ -14,8 +14,8 @@ const Home = props => {
         <Row className="home">
             <Col sm="12" md="6">
                 
-                <Profile />
-                <Sidebar />
+                {/* <Profile /> */}
+                <Register />
             </Col>
             <Col >
                 <NewMap />
