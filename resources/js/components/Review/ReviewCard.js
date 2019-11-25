@@ -1,26 +1,17 @@
 import React from 'react';
-
-const reviewsStyle = {
-    // border: '1px solid black',
-    borderRadius: '10px',
-    backgroundColor: 'lightgrey',
-    width: '85%',
-    height: '65%',
-    padding: '1rem',
-    margin: '0 auto 1rem'
-
-}
+import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 
 const ReviewCard = props => {
     return (
-        <>
-            <div style={reviewsStyle} key={ props.key } >
-                <img src={ props.review.image.path } alt="" style={{width: '150px'}}/> 
-                Rating: { props.review.rating } <br/>
-                Review: <br/>
-                { props.review.text }
-            </div>
-        </>
+        <Card className="reviewCard shadow-sm p-3 mb-5 bg-white rounded">
+            <Row key={ props.key } >
+                <Col sm="12" md="6"><img src={ props.review.image } alt="" style={{width: '150px'}}/> </Col>
+                <Col sm="12" md="6">
+                    Rating: { props.review.ratings }  
+                    Review: { props.review.text }
+                </Col>
+            </Row>
+        </Card>
     )
 }
 
