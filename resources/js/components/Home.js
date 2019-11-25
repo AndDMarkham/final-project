@@ -7,7 +7,7 @@ import MapContainer from './MapContainer';
 import NewMap from "./NewMap.js";
 import Profile from "./Profile/Profile";
 import { Row, Col } from 'reactstrap';
-import Register from './Register.js';
+import Register from './Auth/Register.js';
 
 const homeStyle = {
     display: 'flex',
