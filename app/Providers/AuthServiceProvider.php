@@ -27,5 +27,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+        Passport::personalAccessClientId('1');
+
+        Gate::define('logged-in', function($user) {
+            return auth();
+        });
     }
 }
