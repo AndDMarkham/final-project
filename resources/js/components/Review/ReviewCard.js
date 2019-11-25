@@ -7,7 +7,7 @@ const ReviewCard = props => {
             <Row key={ props.key } >
                 <Col sm="12" md="6"><img src={ props.review.image } alt="" style={{width: '150px'}}/> </Col>
                 <Col sm="12" md="6">
-                    Rating: { props.review.ratings }  
+                    Rating: { props.review.ratings }  <br/>
                     Review: { props.review.text }
                 </Col>
             </Row>

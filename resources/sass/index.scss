@@ -102,19 +102,20 @@ body {
     font-size: 25px;
     
 }
-.slick-prev {
-    left: -25px;
+.slick-arrow.slick-prev {
+    left: -10px;
+    z-index: 500;
 }
 
 .slick-arrow.slick-next:before {
     color: black;
     font-size: 25px;
-    border: 1px red solid;
     
-    .slick-next {
-    
-    right: 25px;
+
 }
+
+.slick-arrow.slick-next {
+    right: 0px;
 }
 
 
