@@ -100,10 +100,21 @@ body {
 .slick-arrow.slick-prev:before {
     color: black;
     font-size: 25px;
+    
+}
+.slick-prev {
+    left: -25px;
 }
 
 .slick-arrow.slick-next:before {
     color: black;
     font-size: 25px;
+    border: 1px red solid;
+    
+    .slick-next {
+    
+    right: 25px;
 }
+}
+
 
