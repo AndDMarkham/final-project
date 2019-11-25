@@ -11,7 +11,7 @@ const mapStyles = {
       
       constructor(props) {
         super(props);
-        console.log('this.props', this.props)
+        // console.log('this.props', this.props)
         this.state = {
         showingInfoWindow: false,
         activeMarker: {},
@@ -38,6 +38,7 @@ const mapStyles = {
     };
   
   render() {
+    // console.log('marker', this.state.activeMarker)
     return (
         <CurrentLocation
           centerAroundCurrentLocation
@@ -62,3 +63,5 @@ const mapStyles = {
   export default GoogleApiWrapper({
     apiKey: googleKey
   })(MapContainer);
+
+  
