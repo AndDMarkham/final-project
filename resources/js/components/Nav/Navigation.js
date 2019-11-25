@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 
-const Navv = props => {
+const Navigation = props => {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -26,10 +26,13 @@ const Navv = props => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="/home">Components</NavLink>
+              <NavLink href="/">Components</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/restaurants">Restaurants</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/logout">Logout</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -38,4 +41,4 @@ const Navv = props => {
     );
 }
 
-export default Navv;
+export default Navigation;

@@ -7,25 +7,20 @@ import MapContainer from './MapContainer';
 import NewMap from "./NewMap.js";
 import Profile from "./Profile/Profile";
 import { Row, Col } from 'reactstrap';
-import Register from './Register.js';
-
+import Register from './Auth/Register.js';
 
 const Home = props => {
     return (
-        
-            <Row className="home">
-                <Col sm="12" md="6">
-                    
-                    {/* <Profile />
-                    <Sidebar /> */}
-                    <Sidebar />
-                </Col>
-                <Col >
-                    <MapContainer />
-                </Col>
-            </Row>
-        
+        <Row className="home">
+            <Col sm="12" md="6">
+                
+                {/* <Profile /> */}
+                <Register />
+            </Col>
+            <Col >
+                <NewMap />
+            </Col>
+        </Row>
     )
 }
-
 export default Home;

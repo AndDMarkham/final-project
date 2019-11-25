@@ -147,9 +147,9 @@ const Register = props => {
            <br/>
            <h4>Diet & Allergies Restrictions</h4>
            {/* <div style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'flex-start', padding: '0rem', paddingTop: '0rem', margin:'0rem'}}> */}
-               <Row style={{alignItems:'center', justifyContent: 'center', marginBottom:'1rem', paddingBottom:'0'}}>
+               <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'0',marginBottom:'1rem', paddingBottom:'0', width:'60%'}}>
                 {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
-                <Col sm='6' md='2' style={{margin:'2rem', marginBottom:'0'}}>
+                <Col md='12' style={{margin:'2rem', marginBottom:'0', textAlign:'center'}}>
                 <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
@@ -221,8 +221,8 @@ const Register = props => {
                             /> Gluten
                     </label>
                     {/* </div> */}
-                    </Col>
-                    <Col sm='4' md='2' style={{margin:'2rem', marginBottom:'0'}}>
+                    {/* </Col> */}
+                    {/* <Col sm='4' md='2' style={{margin:'2rem', marginBottom:'0'}}> */}
                     {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
                     <label style={{width:'150px'}}>
                         <input 
@@ -294,9 +294,9 @@ const Register = props => {
                             checked={formInputValues.diets.molluscs}
                             /> Molluscs
                     </label>
-                    </Col>
+                    {/* </Col>
                     {/* </div> */}
-                    <Col sm='4' md='2' style={{margin:'2rem' ,marginTop:'0rem', marginBottom:'0'}}>
+                    {/* <Col sm='4' md='2' style={{margin:'2rem' ,marginTop:'0rem', marginBottom:'0'}}> */} 
                     {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
                     <label style={{width:'150px'}}>
                         <input 

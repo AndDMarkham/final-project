@@ -1,28 +1,70 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import '../../sass/index.scss';
 import Home from './Home';
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import history from "../history.js";
-import Navv from "./Nav/Nav";
+import Navigation from "./Nav/Navigation";
+import Login from './Auth/Login';
+import Register from './Auth/Register';
 
 const App = () =>  {
+    const [ user, setUser ] = useState({
+        loggedIn: false,
+        token: '',
+        user: {}
+    });
+
+    const [ geoLoc, setGeoLoc ] = useState({
+        lat: '',
+        long: ''
+    })
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('token');
+        if (token) {
+            setUser({
+                loggedIn: true,
+                token: token
+            })
+        }
+    }, []);
+
+
+    if (user.loggedIn && user.token) {
         return (
-           <div className="bgWhite"> 
-                   <Router history={history}>
-                        <div>
-                            <Navv/>
-                            <div> 
-                                <Switch>
-                                        <Route path = '/' component={Home} />
-                                        {/* <Route path = '/restaurantform' component={RestaurantForm} /> */}
-                                </Switch>
-                            </div>
-                        </div>
-                    </Router>
-               {/* </div> */}
-            </div>
+            <>
+            <Router history={history}>
+                <div style={{width:'100vw', height: '100vh'}}>
+                    <Navigation/>
+                    <div> 
+                        <Switch>
+                                <Route 
+                                    path = '/' 
+                                    render={
+                                        (props) => <Home {...props} 
+                                            setUser={setUser} 
+                                            user={user}
+                                        />
+                                    }
+                                />
+                                {/* <Route path = '/restaurantform' component={RestaurantForm} /> */}
+                        </Switch>
+                    </div>
+                </div>
+            </Router>
+            </>
         )
+    } return (
+        <>
+            <div style={{width:'100vw', height: '100vh'}}>
+                <Login 
+                setUser={setUser} 
+                user={user}
+                />
+            </div>
+        </>
+    )
 }
 
 export default App;

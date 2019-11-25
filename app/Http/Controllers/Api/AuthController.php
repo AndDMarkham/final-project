@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 
@@ -46,28 +47,27 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $email = $request->email;
-        $username = $request->username;
         $user = User::where('email', $email)
-            ->orWhere('username', $username)
+            // ->except(['last_name', 'date_of_birth', 'email', 'email_verified'])
+            ->with('diets')
             ->first();
 
         if ($user) {
 
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-                $response = ['token' => $token];
+                $response = ['token' => $token, 'user' => $user];
                 return response($response, 200);
 
             } else {
-                $response = "Password does not match";
-                return response($response, 422);
+                $error = ['error' => 'Password does not match'];
+                return response($error, 422);
             }
     
         } else {
-            $response = 'User does not exist';
-            return response($response, 422);
+            $error = ['error' => 'User does not exist'];
+            return response($error, 422);
         }
-        
 
     }
 

@@ -1,33 +1,22 @@
 import React from 'react';
 import Reviews from '../Review/Reviews';
-
-const dishesStyle = {
-    // border: '1px solid black',
-    backgroundColor: 'lightblue',
-    padding: '1rem 2rem 1rem 2rem',
-    height: '70%',
-    width: '79%',
-    margin: '0 auto 1rem',
-    borderRadius: '10px',
-}
-
-const dishInfoStyle = {
-    marginBottom: '2rem',
-}
+import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 
 const DishCard = props => {
     return (
-        <>
-            <div key={props.key} style={dishesStyle}>
-                <div style={dishInfoStyle}>
-                    <h3 style={{margin: '0'}}>{props.dish.name}</h3>
-                    {/* {props.dish.description} */}
+        <Card key={props.key} className="dishCard shadow-sm p-3 mb-5 bg-white rounded">
+            
+                <div>
+                    <CardTitle>{props.dish.name}</CardTitle>
+                    <CardText>{props.dish.description}
+                    <p>{props.dish.diet_id}</p>
+                    </CardText>
                 </div>
                 <Reviews 
                     reviews={props.dish.reviews} 
                 />
-            </div>
-        </>
+        </Card>
+        
     )
 }
 
