@@ -7,6 +7,7 @@ import Sidebar from './Sidebar/Sidebar';
 import NewMap from "./NewMap.js";
 import Profile from "./Profile/Profile";
 import { Row, Col } from 'reactstrap';
+import Register from './Register.js';
 
 
 const Home = props => {
@@ -15,8 +16,9 @@ const Home = props => {
             <Row className="home">
                 <Col sm="12" md="6">
                     
-                    <Profile />
-                    <Sidebar />
+                    {/* <Profile />
+                    <Sidebar /> */}
+                    <Register />
                 </Col>
                 <Col >
                     <NewMap />
