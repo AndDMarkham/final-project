@@ -55,7 +55,7 @@ class AuthController extends Controller
 
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-                $response = ['token' => $token, 'user' => $user];
+                $response = ['token' => $token, 'user' => $user->except(['last_name', 'date_of_birth', 'email', 'email_verified_at'])];
                 return response($response, 200);
 
             } else {
@@ -67,7 +67,6 @@ class AuthController extends Controller
             $error = ['error' => 'User does not exist'];
             return response($error, 422);
         }
-        
 
     }
 

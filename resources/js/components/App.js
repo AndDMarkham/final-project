@@ -4,11 +4,9 @@ import '../../sass/index.scss';
 import Home from './Home';
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import history from "../history.js";
-import Nav from "./Nav/Nav";
-import Login from './Login'
-import DishForm from "./Dish/DishForm.js";
-import ReviewForm from "./Review/ReviewForm.js";
-
+import Navigation from "./Nav/Navigation";
+import Login from './Auth/Login';
+import Register from './Auth/Register';
 
 const App = () =>  {
     const [ user, setUser ] = useState({
@@ -24,11 +22,13 @@ const App = () =>  {
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
-        setUser({
-            loggedIn: true,
-            token: token
-        })
-    }, [user.loggedIn]);
+        if (token) {
+            setUser({
+                loggedIn: true,
+                token: token
+            })
+        }
+    }, []);
 
 
     if (user.loggedIn && user.token) {
@@ -36,7 +36,7 @@ const App = () =>  {
             <>
             <Router history={history}>
                 <div style={{width:'100vw', height: '100vh'}}>
-                    <Nav/>
+                    <Navigation/>
                     <div> 
                         <Switch>
                                 <Route 

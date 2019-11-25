@@ -60,6 +60,7 @@ const Login = props => {
                     style: {color: 'green'}
                 })
                 window.localStorage.setItem('token', data.token);
+                window.localStorage.setItem('user', )
             }
         }
 
