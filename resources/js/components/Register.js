@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios";
+import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 
 const dietMap = {
     vegan: 1,
@@ -144,10 +145,12 @@ const Register = props => {
             style={formStyle}
            />
            <br/>
-           <h4>Diet & Allergy Restrictions</h4>
-           <div style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'flex-start', padding: '0rem', paddingTop: '0rem', margin:'0rem'}}>
-                <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}>
-                <label style={{width:'100px'}}>
+           <h4>Diet & Allergies Restrictions</h4>
+           {/* <div style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'flex-start', padding: '0rem', paddingTop: '0rem', margin:'0rem'}}> */}
+               <Row style={{alignItems:'center', justifyContent: 'center', marginBottom:'1rem', paddingBottom:'0'}}>
+                {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
+                <Col sm='6' md='2' style={{margin:'2rem', marginBottom:'0'}}>
+                <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="vegan"
@@ -157,7 +160,7 @@ const Register = props => {
                             checked={formInputValues.diets.vegan}
                             /> Vegan
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="vegetarian"
@@ -167,7 +170,7 @@ const Register = props => {
                             checked={formInputValues.diets.vegetarian}
                             /> Vegetarian
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="pescetarian"
@@ -177,7 +180,7 @@ const Register = props => {
                             checked={formInputValues.diets.pescetarian}
                             /> Pescetarian
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="keto"
@@ -187,7 +190,7 @@ const Register = props => {
                             checked={formInputValues.diets.keto}
                             /> Keto
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="halal"
@@ -197,7 +200,7 @@ const Register = props => {
                             checked={formInputValues.diets.halal}
                             /> Halal
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="kosher"
@@ -207,7 +210,7 @@ const Register = props => {
                             checked={formInputValues.diets.kosher}
                             /> Kosher
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="gluten"
@@ -217,9 +220,11 @@ const Register = props => {
                             checked={formInputValues.diets.gluten}
                             /> Gluten
                     </label>
-                    </div>
-                    <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}>
-                    <label style={{width:'100px'}}>
+                    {/* </div> */}
+                    </Col>
+                    <Col sm='4' md='2' style={{margin:'2rem', marginBottom:'0'}}>
+                    {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="milk"
@@ -229,7 +234,7 @@ const Register = props => {
                             checked={formInputValues.diets.milk}
                             /> Milk
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="soy"
@@ -239,7 +244,7 @@ const Register = props => {
                             checked={formInputValues.diets.soy}
                             /> Soy
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="eggs"
@@ -249,7 +254,7 @@ const Register = props => {
                             checked={formInputValues.diets.eggs}
                             /> Eggs
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="peanuts"
@@ -259,7 +264,7 @@ const Register = props => {
                             checked={formInputValues.diets.peanuts}
                             /> Peanuts
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="treenuts"
@@ -269,7 +274,7 @@ const Register = props => {
                             checked={formInputValues.diets.treenuts}
                             /> Tree nuts
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="fish"
@@ -279,7 +284,7 @@ const Register = props => {
                             checked={formInputValues.diets.fish}
                             /> Fish
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="molluscs"
@@ -289,8 +294,10 @@ const Register = props => {
                             checked={formInputValues.diets.molluscs}
                             /> Molluscs
                     </label>
-                    </div>
-                    <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}>
+                    </Col>
+                    {/* </div> */}
+                    <Col sm='4' md='2' style={{margin:'2rem' ,marginTop:'0rem', marginBottom:'0'}}>
+                    {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
                     <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
@@ -301,7 +308,7 @@ const Register = props => {
                             checked={formInputValues.diets.crustaceans}
                             /> Crustaceans
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="mustard"
@@ -311,7 +318,7 @@ const Register = props => {
                             checked={formInputValues.diets.mustard}
                             /> Mustard
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="sesame"
@@ -321,7 +328,7 @@ const Register = props => {
                             checked={formInputValues.diets.sesame}
                             /> Sesame
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="celery"
@@ -331,7 +338,7 @@ const Register = props => {
                             checked={formInputValues.diets.celery}
                             /> Celery
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="lupin"
@@ -341,7 +348,7 @@ const Register = props => {
                             checked={formInputValues.diets.lupin}
                             /> Lupin
                     </label>
-                    <label>
+                    <label style={{width:'150px'}}>
                         <input 
                             type="checkbox"
                             id="sulphites"
@@ -352,8 +359,9 @@ const Register = props => {
                             /> Sulphites
                     </label>
                     <br />
-                    </div>
-            </div>
+                    {/* </div> */}
+                    </Col>
+            </Row>
            <button onClick = {handleSubmitButtonClick} style={{border: '1px solid blue', margin:'5px'}}>Submit</button>
            {formSubmitSuccess === true && <h3>Congrats!</h3>}
            {formSubmitSuccess === false && <h3 style={{ color: 'red'}}>Error occured, try later</h3>}
