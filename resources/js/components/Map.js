@@ -42,13 +42,13 @@ export default class CurrentLocation extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('I am mounted', this.props)
+    // console.log('I am mounted', this.props)
     if (this.props.centerAroundCurrentLocation) {
-      console.log('true')
+      // console.log('true')
       if (navigator && navigator.geolocation) {
-        console.log('true again')
-        console.log('nav', navigator.geolocation.getCurrentPosition(() => {
-          console.log('called')
+        // console.log('true again')
+        ('nav', navigator.geolocation.getCurrentPosition(() => {
+          // console.log('called')
         }))
         navigator.geolocation.getCurrentPosition(pos => {
           const coords = pos.coords;
