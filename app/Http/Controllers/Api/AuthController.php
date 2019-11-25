@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         $email = $request->email;
         $user = User::where('email', $email)
-            ->except(['last_name', 'date_of_birth', 'email', 'email_verified'])
+            // ->except(['last_name', 'date_of_birth', 'email', 'email_verified'])
             ->with('diets')
             ->first();
 
