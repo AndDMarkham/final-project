@@ -9,7 +9,14 @@ const Sidebar = props => {
                 <Link to ='/restaurantform'><h6>Or add a new restaurant</h6></Link>
             <Router history={history}>
                 <Switch>
-                    <Route path = '/' component={RestaurantCard} />
+                    <Route 
+                        path = '/' 
+                        render= {
+                            (props) => <RestaurantCard {...props} 
+                                user={props.user}
+                            />
+                        }
+                    />
                 </Switch>
             </Router>
         </div>

@@ -8,9 +8,9 @@ const DishCard = props => {
             
                 <div>
                     <CardTitle>{props.dish.name}</CardTitle>
-                    <CardText>{props.dish.description}
-                    <p>{props.dish.diet_id}</p>
-                    </CardText>
+                    <div>{props.dish.description}
+                        <p>{props.dish.diet_id}</p>
+                    </div>
                 </div>
                 <Reviews 
                     reviews={props.dish.reviews} 

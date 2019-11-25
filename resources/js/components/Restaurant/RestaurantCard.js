@@ -89,39 +89,40 @@ const restaurants1 = [
 const RestaurantCard = props => {
     const [restaurants, setRestaurants] = useState();
 
-    // useEffect(()=> {
-    //     async function fetchRestaurants(){
-    //         const response = await fetch('http://www.eatanywhere.test:8080/api/restaurants', {
-    //             headers: {
-    //                 'Authorization': 'Bearer ' + this.props.token,
-    //                 'X-Requested-With': 'XMLHttpRequest',
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         const data = await response.json();
-    //         setRestaurants (data);
-    //     }
-    //         fetchRestaurants();
-    // },[]);
-
+    useEffect(()=> {
+        const token = window.localStorage.getItem('token');
+        async function fetchRestaurants(){
+            const response = await fetch('http://www.eatanywhere.test:8080/api/restaurants', {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                }
+            })
+            const data = await response.json();
+            setRestaurants(data);
+            console.log('data', data);
+        }
+            fetchRestaurants();
+    },[]);
 
     return (
         <div className="restaurantCardsScroll">
             {
-                //restaurants && 
-                restaurants1.map((restaurant, key) => (
+                restaurants && 
+                restaurants.map((restaurant, key) => (
                     
                         <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
                             <CardTitle>{restaurant.name}</CardTitle>
-                            <CardText>
+                            <div>
                                 <Row>
-                                    <Col sm="12" md="4">{restaurant.address} </Col>
+                                    <Col sm="12" md="4"> {restaurant.address} </Col>
                                     <Col sm="12" md="4">{restaurant.phone} </Col>
-                                    <Col sm="12" md="4">{restaurant.website_url}</Col>
+                                    <Col sm="12" md="4">{restaurant.website_url} </Col>
                                 </Row>
-                            </CardText>
+                            </div>
                             <Dishes 
-                            dishes={restaurant.dishes} 
+                                dishes={restaurant.dishes} 
                             />
                         </Card>
                 ))

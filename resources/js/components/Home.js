@@ -13,9 +13,11 @@ const Home = props => {
     return (
         <Row className="home">
             <Col sm="12" md="6">
-                
+                <Sidebar 
+                    user={props.user}
+                />
                 {/* <Profile /> */}
-                <Register />
+                {/* <Register /> */}
             </Col>
             <Col >
                 <NewMap />
