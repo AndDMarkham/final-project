@@ -7,7 +7,7 @@ import history from "../history.js";
 import Navigation from "./Nav/Navigation";
 import Login from './Auth/Login';
 import Register from './Auth/Register';
-import Profile from './Profile/Profile';
+import LoginNav from './Nav/LoginNav';
 
 const App = () =>  {
     const [ user, setUser ] = useState({
@@ -15,11 +15,6 @@ const App = () =>  {
         token: '',
         user: {}
     });
-
-    const [ geoLoc, setGeoLoc ] = useState({
-        lat: '',
-        long: ''
-    })
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
@@ -41,10 +36,27 @@ const App = () =>  {
                 <div style={{width:'100vw', height: '100vh'}}>
                     <Navigation/>
                     <div> 
-                    <Home
-                        setUser={setUser} 
-                        user={user}
-                    />
+                    <Switch>
+                        <Route
+                            path = '/'
+                            render={() =>
+                                <Home
+                                    setUser={setUser} 
+                                    user={user}
+                                />
+                            }
+                        />
+                        {/* <Route
+                            exact={true}
+                            path = '/search'
+                            render={() => 
+                                <Search
+                                setUser={setUser} 
+                                user={user}
+                                />
+                            }
+                        /> */}
+                    </Switch>
                     </div>
                 </div>
             </HashRouter>
@@ -52,12 +64,23 @@ const App = () =>  {
         )
     } return (
         <>
-            <div style={{width:'100vw', height: '100vh'}}>
-                <Login 
-                setUser={setUser} 
-                user={user}
-                />
-            </div>
+           <HashRouter>
+                <div style={{width:'100vw', height: '100vh'}}>
+                    <LoginNav />
+                    <Switch>
+                        <Route
+                            exact={true} 
+                            path='/'
+                            component={Login}
+                        />  
+                        <Route
+                            exact={true} 
+                            path='/register'
+                            component={Register}
+                        />  
+                    </Switch>
+                </div>
+           </HashRouter>
         </>
     )
 }
@@ -65,9 +88,3 @@ const App = () =>  {
 export default App;
 
 ReactDOM.render(<App/>, document.getElementById('app'));
-
-
-
-{/* <div className="login">
-        <Login/> 
-    </div> */}

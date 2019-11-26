@@ -36,7 +36,7 @@ const Dishes = props => {
                 <CardTitle>Add New Dish</CardTitle>
             </div>
             <div style={{textAlign: 'center' ,fontSize:'5em'}}>
-                <Button tag={Link} to="/newdish" >+</Button>
+                <Button tag={Link} to="/dish/new" >+</Button>
             </div>
       </Card>
       </Slider>

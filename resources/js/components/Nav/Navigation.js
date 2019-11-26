@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 //import {Link} from "react-router-dom";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap';
 import {Link} from "react-router-dom";
 
 
@@ -22,10 +22,10 @@ const Navigation = props => {
               <Link to="/" className="navLink">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="/profile" className="navLink">Profile</Link>
+              <Link to="/search" className="navLink">Search</Link>
             </NavItem>
             <NavItem>
-              <Link to="/logout" className="navLink">Logout</Link>
+              <Button>Logout</Button>
             </NavItem>
           </Nav>
         </Collapse>

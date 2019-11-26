@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 import Dishes from '../Dish/Dishes';
+import {Link} from "react-router-dom";
 
 
 const RestaurantCard = props => {
@@ -35,28 +36,34 @@ const RestaurantCard = props => {
                 restaurants && 
                 restaurants.map((restaurant, key) => (
                     
-                        <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
-                            <CardTitle className="restaurantName">{restaurant.name}</CardTitle>
-                            <div className="restaurantInfo">
-                                <Row>
-                                    <Col sm="12" md="4"> {restaurant.address} </Col>
-                                    <Col sm="12" md="4">{restaurant.phone} </Col>
-                                    <Col sm="12" md="4">{restaurant.website_url} </Col>
-                                </Row>
-                                <Button className="btnShowOnMap" onClick={() => {
-                                    console.log(restaurant);
-                                    props.handleRestCoords({
-                                        lat: restaurant.latitude,
-                                        lon: restaurant.longitude
-                                    })
-                                }}>Show on the map</Button>
-                            </div>
-                            <Dishes 
-                                dishes={restaurant.dishes} 
-                            />
-                        </Card>
+                    <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
+                        <CardTitle className="restaurantName">{restaurant.name}</CardTitle>
+                        <div className="restaurantInfo">
+                            <Row>
+                                <Col sm="12" md="4"> {restaurant.address} </Col>
+                                <Col sm="12" md="4">{restaurant.phone} </Col>
+                                <Col sm="12" md="4">{restaurant.website_url} </Col>
+                            </Row>
+                            <Button className="btnShowOnMap" onClick={() => {
+                                console.log(restaurant);
+                                props.handleRestCoords({
+                                    lat: restaurant.latitude,
+                                    lon: restaurant.longitude
+                                })
+                            }}>Show on the map</Button>
+                        </div>
+                        <Dishes 
+                            dishes={restaurant.dishes} 
+                        />
+                    </Card>
                 ))
             }
+            <Card body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
+                <CardTitle className="restaurantName">Add New Restaurant</CardTitle>
+                <div className="restaurantInfo">
+                    <Button tag={Link} to="/restaurant/new" >+</Button>
+                </div>
+            </Card>
         </div>
     )
 }

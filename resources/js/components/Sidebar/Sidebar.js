@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
-import {Router, Route, Switch, Link, Redirect} from "react-router-dom";
+import {HashRouter, Route, Switch, Link, Redirect} from "react-router-dom";
 import history from "../../history";
+import Profile from '../Profile/Profile'
 import RestaurantCard from '../Restaurant/RestaurantCard';
 
 const Sidebar = props => {
@@ -12,23 +13,31 @@ const Sidebar = props => {
     }, [])
     return (
         <div className="sidebar">
-                <Link to ='/restaurantform'><h6>Or add a new restaurant</h6></Link>
-            {/* <Router history={history}>
+                {/* <Link to ='/restaurantform'><h6>Or add a new restaurant</h6></Link> */}
+            <HashRouter history={history}>
+                {/* <SidebarNav /> */}
                 <Switch>
-                    <Route 
+                    <Route
+                        // exact={true} 
                         path = '/' 
                         render= {
-                            (props) => <RestaurantCard {...props} 
+                            () => <RestaurantCard {...props}
+                                handleRestCoords={props.setRestCoords}
+                                user={props.user}
+                            />
+                        }
+                    />
+                    <Route 
+
+                        path = '/profile' 
+                        render= {
+                            () => <Profile {...props} 
                                 user={props.user}
                             />
                         }
                     />
                 </Switch>
-            </Router> */}
-            <RestaurantCard 
-                {...props} 
-                user={props.user}
-            />
+            </HashRouter>
         </div>
     )
 }
