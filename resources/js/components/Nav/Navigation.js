@@ -9,15 +9,7 @@ const Navigation = props => {
 
 
     return (
-        // <div style={headerStyle}>
-        //     <h2 style={{ marginLeft: '1rem'}} >eatAnywhere</h2>
-        //     <div style={navStyle} >
-        //         <Link style={linkStyle} to ='/home'><h4>Home</h4></Link>
-        //         <Link style={linkStyle} to ='/restaurants'><h4>Restaurants</h4></Link>
-        //         <a href="#"><h4>Logout</h4></a>
-        //     </div>
-        // </div>
-    
+        
         <div>
       <Navbar  color="faded" light> 
       
@@ -26,10 +18,10 @@ const Navigation = props => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="/">Components</NavLink>
+              <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/restaurants">Restaurants</NavLink>
+              <NavLink href="/profile">Profile</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/logout">Logout</NavLink>

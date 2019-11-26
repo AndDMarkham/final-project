@@ -2,89 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 import Dishes from '../Dish/Dishes';
 
-const restaurants1 = [
-    {
-        id: 1,
-        name: 'Burger Queen',
-        address: '1236 1300th Street',
-        phone: '+1 712 579 5715',
-        website_url: 'www.restaurant.com',
-        dishes: [
-            {
-                name: 'abc',
-                description: '12dr',
-                diet_id: '4',
-                reviews: [
-                    {
-                        image_path: '/images/fois_gras.jpg',
-                        ratings: 4,
-                        text: 'blah'
-                    },
-                    {
-                        image_path: '/images/fois_gras.jpg',
-                        ratings: 3,
-                        text: 'blahhhh'
-                    },
-                    {
-                        image_path: '/images/pickled_camembert.jpg',
-                        ratings: 1,
-                        text: 'blakhkhgh'
-                    },
-                ]
-            }, 
-            {
-                name: 'abc',
-                description: '12dr',
-                diet_id: '4',
-                reviews: [
-                    {
-                        image: '/images/salmon_fillet.jpg',
-                        ratings: 4,
-                        text: 'blah'
-                    },
-                    {
-                        image: '/images/shio_ramen_no_noodles.jpg',
-                        ratings: 3,
-                        text: 'blahhhh'
-                    },
-                    {
-                        image: '/images/veal_and_ribs.jpg',
-                        ratings: 1,
-                        text: 'blakhkhgh'
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        id: 2,
-        name: 'Burger man',
-        address: '1236 1300th Street',
-        phone: '+1 712 579 5715',
-        website_url: 'www.restaurant.cz',
-        dishes: [
-            {
-                name: 'aytc',
-                description: '124dr',
-                diet_id: '5'
-            }
-        ]
-    },
-    {
-        id: 3,
-        name: 'Salad man',
-        address: '1236 1300th Street',
-        phone: '+1 712 579 5715',
-        website_url: 'www.restaurant.cz',
-        dishes: [
-            {
-                name: 'abwedc',
-                description: '12aswdr',
-                diet_id: '23'
-            }
-        ]
-    },
-]
 
 const RestaurantCard = props => {
     const [restaurants, setRestaurants] = useState();
@@ -106,6 +23,8 @@ const RestaurantCard = props => {
             fetchRestaurants();
     },[]);
 
+
+
     return (
         <div className="restaurantCardsScroll">
             {
@@ -113,13 +32,20 @@ const RestaurantCard = props => {
                 restaurants.map((restaurant, key) => (
                     
                         <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
-                            <CardTitle>{restaurant.name}</CardTitle>
+                            <CardTitle className="restaurantName">{restaurant.name}</CardTitle>
                             <div>
                                 <Row>
                                     <Col sm="12" md="4"> {restaurant.address} </Col>
                                     <Col sm="12" md="4">{restaurant.phone} </Col>
                                     <Col sm="12" md="4">{restaurant.website_url} </Col>
                                 </Row>
+                                <Button className="btnShowOnMap" onClick={() => {
+                                    console.log(restaurant);
+                                    props.handleRestCoords({
+                                        lat: restaurant.latitude,
+                                        lon: restaurant.longitude
+                                    })
+                                }}>Show on the map</Button>
                             </div>
                             <Dishes 
                                 dishes={restaurant.dishes} 

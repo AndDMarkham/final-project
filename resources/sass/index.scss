@@ -87,7 +87,14 @@ body {
         
       }
 }
+.restaurantName {
+    text-align: center; 
+    align-items: center;    
+}
 
+.btnShowOnMap {
+    align-self: center;         
+}
 .dishCard {
     background-color: grey;
     margin:  0 2.5rem 0 2rem;

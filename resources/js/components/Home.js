@@ -1,26 +1,31 @@
-import React from 'react';
-import Sidebar from './Sidebar/Sidebar';
+import React, { useState } from 'react'
 import MapContainer from './MapContainer';
-// import RestaurantForm from './Restaurant/RestaurantForm';
-// import DishForm from "./Dish/DishForm.js";
-// import ReviewForm from "./Review/ReviewForm.js";
 import NewMap from "./NewMap.js";
-import Profile from "./Profile/Profile";
+//import Profile from "./Profile/Profile";
 import { Row, Col } from 'reactstrap';
-import Register from './Auth/Register.js';
+//import Register from './Auth/Register.js';
+import RestaurantCard from './Restaurant/RestaurantCard';
+
 
 const Home = props => {
+    const [restCoords, setRestCoords] = useState(null);
+
+    console.log(restCoords);
     return (
         <Row className="home">
             <Col sm="12" md="6">
-                <Sidebar 
+                <RestaurantCard
                     user={props.user}
+                
+                    handleRestCoords={setRestCoords}
                 />
                 {/* <Profile /> */}
                 {/* <Register /> */}
             </Col>
             <Col >
-                <NewMap />
+                <NewMap 
+                    restCoords={restCoords}
+                />
             </Col>
         </Row>
     )
