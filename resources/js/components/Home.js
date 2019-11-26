@@ -18,10 +18,10 @@ const Home = props => {
         <Row className="home">
             <Col sm="12" md="6">
             <Switch>
-                                <Route 
-                                exact={true}
-                                    path = '/' 
-                                    render={
+                <Route 
+                    exact={true}
+                    path = '/' 
+                    render={
                                         (props) => 
                                         <RestaurantCard
                     user={props.user}
@@ -35,8 +35,7 @@ const Home = props => {
                                 <Route path = '/profile' component={Profile} />
                         </Switch>
                 
-                {/* <Profile /> */}
-                {/* <Register /> */}
+                
             </Col>
             <Col >
                 <NewMap 
