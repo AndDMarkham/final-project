@@ -58,7 +58,7 @@ const InfoWindowWrapper = (props) => {
   )
 }
 
-const NewMap = () => {
+const NewMap = (props) => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(false);
   const [restaurantCoordsLat, setRestaurantCoordsLat] = useState();
   const [restaurantCoordsLng, setRestaurantCoordsLng] = useState();
@@ -79,13 +79,39 @@ const NewMap = () => {
   }
 
   console.log("displaying the state", restaurantCoordsLat)
+
+  console.log(props);
   return(
     <GoogleMap
       defaultZoom={10}
       defaultCenter={{ lat: 50.072, lng: 14.49 }}
       defaultOptions={{ styles: mapStyles }}
     >
-      {restaurantsPosition.map((rest, key) => {
+      {
+        props.restCoords !== null && (
+          <Marker
+            
+              onClick={() => {
+                setRestaurantCoordsLng(long)
+                setRestaurantCoordsLat(lat);
+                 setRestaurantId(key);
+
+                setSelectedRestaurant(!selectedRestaurant);
+                console.log('key', key)
+
+                console.log('restaurantid', restaurantId)
+                console.log(restaurantsPosition[restaurantId])
+                console.log(restaurantsPosition[restaurantId].name)
+
+              }}
+              position={{
+                lat: props.restCoords.lat,
+                lng: props.restCoords.lon
+              }}
+            />
+        )
+      }
+      {props.restCoords === null && restaurantsPosition.map((rest, key) => {
         console.log(rest.latitude)
         const lat = rest.latitude;
         const long = rest.longitude
@@ -138,7 +164,7 @@ const NewMap = () => {
 
 const MapWrapped = withScriptjs(withGoogleMap(NewMap));
 
-export default function App() {
+export default function App(props) {
   return (
     <Row>
       <MapWrapped
@@ -146,6 +172,7 @@ export default function App() {
         loadingElement={<Col sm="12"  />}
         containerElement={<Col sm="12" />}
         mapElement={<div className="mapElement" />}
+        restCoords={props.restCoords}
       />
     </Row>
   );
