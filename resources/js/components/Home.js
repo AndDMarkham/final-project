@@ -22,7 +22,7 @@ const Home = props => {
                 <Route 
                     exact={true}
                     path = '/'
-                    render={(props) => 
+                    render={() => 
                         <RestaurantCard
                             user={props.user}
                             handleRestCoords={setRestCoords}
@@ -32,7 +32,7 @@ const Home = props => {
                 <Route 
                     exact={true}
                     path='/newdish'
-                    render={(props) => 
+                    render={() => 
                         <RestaurantCard
                             user={props.user}
                             handleRestCoords={setRestCoords}
@@ -47,7 +47,7 @@ const Home = props => {
                 <Route 
                     exact={true}
                     path = '/'
-                    render = {(props)=>    
+                    render = {()=>    
                         <NewMap 
                             restCoords={restCoords}
                     />
@@ -56,7 +56,7 @@ const Home = props => {
                 <Route 
                     exact={true}
                     path = '/profile'
-                    render = {(props)=>    
+                    render = {()=>    
                         <NewMap 
                             restCoords={restCoords}
                     />
