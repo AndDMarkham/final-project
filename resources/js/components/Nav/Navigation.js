@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 //import {Link} from "react-router-dom";
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {Link} from "react-router-dom";
 
 
 const Navigation = props => {
@@ -18,13 +19,13 @@ const Navigation = props => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/profile">Profile</NavLink>
+              <Link to="/profile">Profile</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/logout">Logout</NavLink>
+              <Link to="/logout">Logout</Link>
             </NavItem>
           </Nav>
         </Collapse>
