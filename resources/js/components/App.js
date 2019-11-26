@@ -71,7 +71,11 @@ const App = () =>  {
                         <Route
                             exact={true} 
                             path='/'
-                            component={Login}
+                            render = {()=>    
+                                <Login 
+                                    setUser={setUser}
+                                />
+                            }
                         />  
                         <Route
                             exact={true} 

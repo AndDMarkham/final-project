@@ -4,10 +4,6 @@ import {Link} from "react-router-dom";
 
 
 const LoginNav = props => {
-    const [collapsed, setCollapsed] = useState(true);
-    const toggleNavbar = () => setCollapsed(!collapsed);
-
-
     return (
     <div>
         <Navbar  color="faded" className="navBar" light> 

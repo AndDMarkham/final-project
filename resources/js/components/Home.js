@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NewMap from "./NewMap.js";
+import Map from "./Map";
 import RestaurantForm from './Restaurant/RestaurantForm';
 import RestaurantDetail from './Restaurant/RestaurantDetail';
 import DishForm from './Dish/DishForm';
@@ -28,7 +28,7 @@ const Home = props => {
                             exact={true}
                             path = '/'
                             render = {()=>    
-                                <NewMap 
+                                <Map 
                                     restCoords={restCoords}
                             />
                             }
