@@ -23,10 +23,12 @@ const App = () =>  {
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
+        const user = JSON.parse(window.localStorage.getItem('user'));
         if (token) {
             setUser({
                 loggedIn: true,
-                token: token
+                token: token,
+                user: user
             })
         }
     }, []);
