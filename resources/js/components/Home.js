@@ -7,6 +7,7 @@ import { Row, Col } from 'reactstrap';
 //import Register from './Auth/Register.js';
 import RestaurantCard from './Restaurant/RestaurantCard';
 import Profile from './Profile/Profile';
+import DishForm from './Dish/DishForm';
 
 
 
@@ -20,7 +21,17 @@ const Home = props => {
             <Switch>
                 <Route 
                     exact={true}
-                    path = '/' 
+                    path = '/'
+                    render={(props) => 
+                        <RestaurantCard
+                            user={props.user}
+                            handleRestCoords={setRestCoords}
+                        />
+                    }
+                />
+                <Route 
+                    exact={true}
+                    path='/newdish'
                     render={(props) => 
                         <RestaurantCard
                             user={props.user}
@@ -31,10 +42,28 @@ const Home = props => {
                 <Route path = '/profile' component={Profile} />
             </Switch>
             </Col>
-            <Col >
-                <NewMap 
-                    restCoords={restCoords}
+            <Col sm="12" md="6">
+            <Switch>
+                <Route 
+                    exact={true}
+                    path = '/'
+                    render = {(props)=>    
+                        <NewMap 
+                            restCoords={restCoords}
+                    />
+                    }
                 />
+                <Route 
+                    exact={true}
+                    path = '/profile'
+                    render = {(props)=>    
+                        <NewMap 
+                            restCoords={restCoords}
+                    />
+                    }
+                />
+                 <Route path = '/newdish' component={DishForm}/>
+            </Switch> 
             </Col>
         </Row>
     )

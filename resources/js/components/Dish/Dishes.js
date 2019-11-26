@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DishCard from "./DishCard";
+import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
+import {Link} from "react-router-dom";
 
 const Dishes = props => {
   const settings = {
@@ -29,6 +31,14 @@ const Dishes = props => {
             />
           ))
         }
+        <Card className="dishCard shadow-sm p-3 mb-5 bg-white rounded">
+            <div>
+                <CardTitle>Add New Dish</CardTitle>
+            </div>
+            <div style={{textAlign: 'center' ,fontSize:'5em'}}>
+                <Button tag={Link} to="/newdish" >+</Button>
+            </div>
+      </Card>
       </Slider>
     </>
   );
