@@ -21,21 +21,15 @@ const Home = props => {
                 <Route 
                     exact={true}
                     path = '/' 
-                    render={
-                                        (props) => 
-                                        <RestaurantCard
-                    user={props.user}
-                
-                    handleRestCoords={setRestCoords}
+                    render={(props) => 
+                        <RestaurantCard
+                            user={props.user}
+                            handleRestCoords={setRestCoords}
+                        />
+                    }
                 />
-                                        
-                                        
-                                    }
-                                />
-                                <Route path = '/profile' component={Profile} />
-                        </Switch>
-                
-                
+                <Route path = '/profile' component={Profile} />
+            </Switch>
             </Col>
             <Col >
                 <NewMap 
