@@ -1,130 +1,264 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { Container, Row, Col } from 'reactstrap';
 
+import {
+  withGoogleMap,
+  withScriptjs,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps";
+import { googleKey } from '../../key.js';
 const mapStyles = {
-  map: {
-    position: 'absolute',
-    width: '54vw',
-    height: '80vh'
-  }
+  width: '54vw',
+  height: '80vh'
 };
 
-export default class CurrentLocation extends React.Component {
-  constructor(props) {
-    super(props);
+const restaurantsPosition = [
+  {
+    name: "rest A",
+    latitude: 50.20,
+    longitude: 14.49,
+    
+  },
+  {
+    name: "rest C",
+    latitude: 50.08,
+    longitude: 14.31,
 
-    const { lat, lng } = this.props.initialCenter;
-    this.state = {
-      currentLocation: {
-        lat: lat,
-        lng: lng
-      }
-    };
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.google !== this.props.google) {
-      this.loadMap();
-    }
-    if (prevState.currentLocation !== this.state.currentLocation) {
-      this.recenterMap();
-    }
-  }
-  recenterMap() {
-    const map = this.map;
-    const current = this.state.currentLocation;
+  },
+  {
+    name: "rest B",
+    latitude: 50.09,
+    longitude: 14.72,
 
-    const google = this.props.google;
-    const maps = google.maps;
+  },
+  {
+    name: "rest D",
+    latitude: 49.90,
+    longitude: 14.43,
 
-    if (map) {
-      let center = new maps.LatLng(current.lat, current.lng);
-      map.panTo(center);
-    }
-  }
-  componentDidMount() {
-    // console.log('I am mounted', this.props)
-    if (this.props.centerAroundCurrentLocation) {
-      // console.log('true')
-      if (navigator && navigator.geolocation) {
-        // console.log('true again')
-        ('nav', navigator.geolocation.getCurrentPosition(() => {
-          // console.log('called')
-        }))
-        navigator.geolocation.getCurrentPosition(pos => {
-          const coords = pos.coords;
-          console.log('pos', pos.coords)
-          this.setState({
-            currentLocation: {
-              lat: coords.latitude,
-              lng: coords.longitude
-            }
-          });
-        });
-      }
-    }
-    this.loadMap();
-  }
-  loadMap() {
-    if (this.props && this.props.google) {
-      // checks if google is available
-      const { google } = this.props;
-      const maps = google.maps;
+  },
+]
 
-      const mapRef = this.refs.map;
+const InfoWindowWrapper = (props) => {
 
-      // reference to the actual DOM element
-      const node = ReactDOM.findDOMNode(mapRef);
-
-      let { zoom } = this.props;
-      const { lat, lng } = this.state.currentLocation;
-      const center = new maps.LatLng(lat, lng);
-      const mapConfig = Object.assign(
-        {},
-        {
-          center: center,
-          zoom: zoom
-        }
-      );
-
-      // maps.Map() is constructor that instantiates the map
-      this.map = new maps.Map(node, mapConfig);
-    }
-  }
-  renderChildren() {
-    const { children } = this.props;
-
-    if (!children) return;
-
-    return React.Children.map(children, c => {
-      if (!c) return;
-      return React.cloneElement(c, {
-        map: this.map,
-        google: this.props.google,
-        mapCenter: this.state.currentLocation
-      });
-    });
-  }
-  render() {
-    const style = Object.assign({}, mapStyles.map);
-   return (
-     <div>
-       <div style={style} ref="map">
-         Loading map...
-       </div>
-       {this.renderChildren()}
-     </div>
-   );
- }
+  return(
+    <InfoWindow
+            position={{
+              lat: props.latitude,
+              lng: props.longitude
+            }}
+          >
+            <div>
+              <h2>{props.name}</h2>
+            </div>
+          </InfoWindow>
+   
+  )
 }
 
+const NewMap = (props) => {
+  const [selectedRestaurant, setSelectedRestaurant] = useState(false);
+  const [restaurantCoordsLat, setRestaurantCoordsLat] = useState();
+  const [restaurantCoordsLng, setRestaurantCoordsLng] = useState();
+  const [restaurantId, setRestaurantId] = useState();
+ 
 
-CurrentLocation.defaultProps = {
-  zoom: 14,
-  initialCenter: {
-    lat: 50.0755,
-    lng: 14.49
-  },
-  centerAroundCurrentLocation: false,
-  visible: true
-};
+  const handleMouseClick = async(lat, long) => {
+    console.log('clicking')
+    console.log('clicking', lat, long)
+    latvar = lat;
+    longvar = long;
+    setSelectedRestaurant(true);
+    console.log("displaying the variable", latvar, longvar)
+    setRestaurantCoordsLat(lat)
+    setRestaurantCoordsLng(long)
+    console.log("state coord lat", restaurantCoordsLat)
+    console.log(" state coord long", restaurantCoordsLng)
+  }
 
+  console.log("displaying the state", restaurantCoordsLat)
+
+  console.log(props);
+  return(
+    <GoogleMap
+      defaultZoom={10}
+      defaultCenter={{ lat: 50.072, lng: 14.49 }}
+      defaultOptions={{ styles: mapStyles }}
+    >
+      {
+        props.restCoords !== null && (
+          <Marker
+            
+              onClick={() => {
+                setRestaurantCoordsLng(long)
+                setRestaurantCoordsLat(lat);
+                 setRestaurantId(key);
+
+                setSelectedRestaurant(!selectedRestaurant);
+                console.log('key', key)
+
+                console.log('restaurantid', restaurantId)
+                console.log(restaurantsPosition[restaurantId])
+                console.log(restaurantsPosition[restaurantId].name)
+
+              }}
+              position={{
+                lat: props.restCoords.lat,
+                lng: props.restCoords.lon
+              }}
+            />
+        )
+      }
+      {props.restCoords === null && restaurantsPosition.map((rest, key) => {
+        console.log(rest.latitude)
+        const lat = rest.latitude;
+        const long = rest.longitude
+        console.log(lat, long)
+        return (
+         
+            <Marker
+              key={key}
+              
+              onClick={() => {
+                setRestaurantCoordsLng(long)
+                setRestaurantCoordsLat(lat);
+                 setRestaurantId(key);
+
+                setSelectedRestaurant(!selectedRestaurant);
+                console.log('key', key)
+
+                console.log('restaurantid', restaurantId)
+                console.log(restaurantsPosition[restaurantId])
+                console.log(restaurantsPosition[restaurantId].name)
+
+              }}
+              position={{
+                lat: lat,
+                lng: long
+              }}
+            />
+        )
+      })}
+
+{selectedRestaurant && (
+ 
+  
+    <InfoWindow
+  position={{
+    lat: restaurantCoordsLat ,
+    lng: restaurantCoordsLng
+  }} >
+    <div>
+      {restaurantId ? <p>{restaurantsPosition[restaurantId].name}</p> :<p>click again</p>}
+    </div>
+ 
+</InfoWindow> )
+  
+}
+
+    </GoogleMap>
+  )
+}
+
+const MapWrapped = withScriptjs(withGoogleMap(NewMap));
+
+export default function App(props) {
+  return (
+    <Row>
+      <MapWrapped
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${googleKey}`}
+        loadingElement={<Col sm="12"  />}
+        containerElement={<Col sm="12" />}
+        mapElement={<div className="mapElement" />}
+        restCoords={props.restCoords}
+      />
+    </Row>
+  );
+}
+
+// class NewMap extends Component {
+
+//   constructor(props) {
+//     super(props);
+//     console.log('this.props', this.props)
+//     this.state = {
+//       showingInfoWindow: false,
+//       activeMarker: {},
+//       selectedPlace: {},
+//       markerObjects: []
+//     }
+//     this.onMarkerClick = this.onMarkerClick.bind(this)
+//     this.onClose = this.onClose.bind(this)
+
+//     this.onMarkerMounted = element => {
+//       this.setState(prevState => ({
+//       markerObjects: [...prevState.markerObjects, element.marker]
+//       }))
+//     };
+//   };
+
+
+//   onMarkerClick(props, marker, e) {
+//     this.setState({
+//       selectedPlace: props,
+//       activeMarker: marker,
+//       showingInfoWindow: true
+//     });
+
+//   }
+
+//   onClose(props) {
+//     if (this.state.showingInfoWindow) {
+//       this.setState({
+//         showingInfoWindow: false,
+//         activeMarker: null
+//       });
+//     }
+//   };
+
+//   render() {
+//     console.log('rest', restaurantsPosition)
+
+//     const restaurantPositionMarkers = restaurantsPosition.map((rest, index) => {
+//       return (
+//         <Marker
+//           ref={this.onMarkerMounted}
+//           key={`mapMarker-${index}`}
+//           onClick={this.onMarkerClick}
+//           name={rest.name}
+//           latitude={rest.latitude}
+//           longitude={rest.longitude}
+//         />
+//       )
+//     })
+//     console.log('resMarkers', restaurantPositionMarkers)
+//     return (
+//       <Map
+//         google={this.props.google}
+//         zoom={14}
+//         style={mapStyles}
+//         initialCenter={{
+//           lat: 50.065,
+//           lng: 14.46
+//         }}
+//       >
+//         {restaurantPositionMarkers}
+//         <InfoWindow
+//           marker={this.state.activeMarker}
+//           visible={this.state.showingInfoWindow}
+//           onClose={this.onClose}
+//         >
+//           <div>
+//             <h4>{this.state.selectedPlace.name}</h4>
+//           </div>
+//         </InfoWindow>
+//       </Map>
+//     );
+//   }
+// }
+
+// export default GoogleApiWrapper({
+//   apiKey: googleKey
+// })(NewMap);

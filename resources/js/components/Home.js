@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import MapContainer from './MapContainer';
-import NewMap from "./NewMap.js";
-//import Profile from "./Profile/Profile";
-import {Router, Route, Switch, Redirect} from "react-router-dom";
-import { Row, Col } from 'reactstrap';
-//import Register from './Auth/Register.js';
-import RestaurantCard from './Restaurant/RestaurantCard';
-import Profile from './Profile/Profile';
+import Map from "./Map";
+import RestaurantForm from './Restaurant/RestaurantForm';
+import RestaurantDetail from './Restaurant/RestaurantDetail';
 import DishForm from './Dish/DishForm';
-
-
+import ReviewForm from './Review/ReviewForm';
+import Sidebar from './Sidebar/Sidebar'
+import { Row, Col } from 'reactstrap';
+import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 
 const Home = props => {
     const [restCoords, setRestCoords] = useState(null);
@@ -17,54 +14,49 @@ const Home = props => {
     console.log(restCoords);
     return (
         <Row className="home">
-            <Col sm="12" md="6">
-            <Switch>
-                <Route 
-                    exact={true}
-                    path = '/'
-                    render={(props) => 
-                        <RestaurantCard
-                            user={props.user}
-                            handleRestCoords={setRestCoords}
-                        />
-                    }
-                />
-                <Route 
-                    exact={true}
-                    path='/newdish'
-                    render={(props) => 
-                        <RestaurantCard
-                            user={props.user}
-                            handleRestCoords={setRestCoords}
-                        />
-                    }
-                />
-                <Route path = '/profile' component={Profile} />
-            </Switch>
-            </Col>
-            <Col sm="12" md="6">
-            <Switch>
-                <Route 
-                    exact={true}
-                    path = '/'
-                    render = {(props)=>    
-                        <NewMap 
-                            restCoords={restCoords}
+            <HashRouter>
+                <Col sm="12" md="6">
+                    <Sidebar 
+                        setRestCoords={setRestCoords}
+                        user={props.user}
+                        setUser={props.setUser} 
                     />
-                    }
-                />
-                <Route 
-                    exact={true}
-                    path = '/profile'
-                    render = {(props)=>    
-                        <NewMap 
-                            restCoords={restCoords}
-                    />
-                    }
-                />
-                 <Route path = '/newdish' component={DishForm}/>
-            </Switch> 
-            </Col>
+                </Col>
+                <Col sm="12" md="6">
+                    <Switch>
+                        <Route 
+                            exact={true}
+                            path = '/'
+                            render = {()=>    
+                                <Map 
+                                    restCoords={restCoords}
+                            />
+                            }
+                        />
+                        <Route
+                            exact={true}
+                            path = '/restaurant'
+                            render = {()=>    
+                                <RestaurantDetail />                           
+                            } 
+                        />
+                        <Route
+                            exact={true}
+                            path = '/restaurant/new'
+                            component ={RestaurantForm}
+                        />
+                        <Route
+                            exact={true}
+                            path = '/dish/new'
+                            component ={DishForm}
+                        />
+                        <Route
+                            path = '/review/new'
+                            component ={ReviewForm}
+                        />
+                    </Switch>
+                </Col>
+            </HashRouter>
         </Row>
     )
 }

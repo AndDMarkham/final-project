@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from "react-router-dom";
 
 const Login = props => {
     const [ loginInfo, setLoginInfo ] = useState({
@@ -60,7 +61,7 @@ const Login = props => {
                     style: {color: 'green'}
                 })
                 window.localStorage.setItem('token', data.token);
-                window.localStorage.setItem('user', )
+                window.localStorage.setItem('user', JSON.stringify(data.user))
             }
         }
 
@@ -91,7 +92,12 @@ const Login = props => {
                     /><br />
                     <input type="submit" value="Log in" />
                 </form>
-                <a href="">Register Here</a>
+                <div>
+                    Not a registered user? <br/>
+                    <Link to="/register" className="navLink">
+                        Click here!
+                    </Link>
+                </div>
             </div>
         </>
     )

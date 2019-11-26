@@ -34,7 +34,7 @@ Route::group(['middleware' => ['json.response']], function () {
         Route::get('/logout', 'Api\AuthController@logout')->name('logout');
 
         //PrimaryApi:
-        Route::get('/restaurants', 'Api\PrimaryController@index');
+        Route::post('/restaurants', 'Api\PrimaryController@index');
 
         //RestaurantApis:
         Route::get('/restaurant/{id}', 'Api\RestaurantsController@show');

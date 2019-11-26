@@ -7,15 +7,25 @@ use Illuminate\Http\Request;
 use App\Restaurant;
 use App\Dish;
 
+use Illuminate\Database\Eloquent\Builder;
+
+
 class PrimaryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // $diets = $request->diets;
+        $diets = $request->diets;
 
-        $restaurants = Restaurant::with('dishes')->with('dishes.reviews')->with('dishes.reviews.image')->limit(5)->get();
-
-        // $dishes = Dish::with('diets')->whereIn('restaurant_id', $restaurants->pluck('id'));
+        $restaurants = Restaurant::whereHas('dishes', function (Builder $dishQuery) use ($diets) {
+            $dishQuery->whereHas('diets', function (Builder $dietQuery) use ($diets) {
+                $dietQuery->whereIn('diets.id', $diets);
+            });
+        })->with(['dishes' => function ($dishQ) use ($diets) {
+            $dishQ->whereHas('diets', function (Builder $dietQuery) use ($diets) {
+                $dietQuery->whereIn('diets.id', $diets);
+            })->with('reviews.image');
+        }])->limit(5)->get();
+    
 
         return $restaurants;
     }
