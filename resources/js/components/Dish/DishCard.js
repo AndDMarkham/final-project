@@ -1,6 +1,8 @@
 import React from 'react';
 import Reviews from '../Review/Reviews';
 import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
+import '../../../sass/index.scss';
+import {Link} from "react-router-dom";
 
 const DishCard = props => {
     return (
@@ -15,6 +17,9 @@ const DishCard = props => {
                 <Reviews 
                     reviews={props.dish.reviews} 
                 />
+                {/* <div style={{textAlign: 'center' ,fontSize:'.5em'}}>
+                    <Button tag={Link} to="/newdish" > Add new dish</Button>
+                </div> */}
         </Card>
         
     )
