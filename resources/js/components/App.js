@@ -40,9 +40,9 @@ const App = () =>  {
                     <Navigation/>
                     <div> 
                     <Home
-                                            setUser={setUser} 
-                                            user={user}
-                                                    />
+                        setUser={setUser} 
+                        user={user}
+                    />
                     </div>
                 </div>
             </HashRouter>

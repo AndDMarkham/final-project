@@ -33,7 +33,7 @@ const RestaurantCard = props => {
                     
                         <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
                             <CardTitle className="restaurantName">{restaurant.name}</CardTitle>
-                            <div>
+                            <div className="restaurantInfo">
                                 <Row>
                                     <Col sm="12" md="4"> {restaurant.address} </Col>
                                     <Col sm="12" md="4">{restaurant.phone} </Col>

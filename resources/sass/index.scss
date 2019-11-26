@@ -12,14 +12,8 @@ body {
       }
 }
 
-.bgWhite {
-    background-color: rgba(255, 255, 255, 0.7);
-    
-    top: 0;
-    left: 0;
-    
-}
 
+//Home
 .home {
     display: flex;
     flex-direction: row;
@@ -29,13 +23,16 @@ body {
       }
 }
 
-.sidebar {
-    justify-content: space-between;
-    //background-color: lightgrey;
-    text-align: center;
-    padding: 1rem 0 1rem 0;
+//Navigation
+.navBar {
+    background-color: rgba(255, 255, 255, 0.7);   
 }
 
+.navLink {
+    color: darkgreen;
+}
+
+//NewMap
 .mapElement {
     height: 100vh; 
     width: 100vw;
@@ -49,6 +46,7 @@ body {
     flex-direction: row;
 }
 
+//Login
 .login{
     display: flex;
     flex-direction: column;
@@ -57,6 +55,14 @@ body {
     justify-content: center;
 }
 
+//Profile
+.profileDiv {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+    padding-top: 2rem;
+}
 .profileIcons {
     display: flex;
     flex-direction: row;
@@ -79,10 +85,11 @@ body {
     padding: 1rem;
 }
 
+//RestaurantCard
 .restaurantCardsScroll {
     overflow-y: scroll;
-    height: 360px;
-    @media screen and (min-width: 992px) {
+    height: 200px;
+    @media screen and (min-width: 768px) {
         height: 500px;
         
       }
@@ -92,14 +99,21 @@ body {
     align-items: center;    
 }
 
+.restaurantInfo {
+    text-align: center;
+}
+
 .btnShowOnMap {
     align-self: center;         
 }
+
+//DishCard
 .dishCard {
     background-color: grey;
     margin:  0 2.5rem 0 2rem;
 }
 
+//ReviewCard
 .colReviewPic {
     justify-items: center;    
 }
@@ -116,6 +130,7 @@ body {
     
 }
 
+//Carousel style
 .slick-arrow.slick-prev:before {
     color: black;
     font-size: 25px;
@@ -134,4 +149,5 @@ body {
 .slick-arrow.slick-next {
     right: 0;
 }
+
 

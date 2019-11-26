@@ -12,20 +12,20 @@ const Navigation = props => {
     return (
         
         <div>
-      <Navbar  color="faded" light> 
+      <Navbar  color="faded" className="navBar" light> 
       
         <NavbarBrand href="/" className="mr-auto">eatAnywhere</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <Link to="/">Home</Link>
+              <Link to="/" className="navLink">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile" className="navLink">Profile</Link>
             </NavItem>
             <NavItem>
-              <Link to="/logout">Logout</Link>
+              <Link to="/logout" className="navLink">Logout</Link>
             </NavItem>
           </Nav>
         </Collapse>

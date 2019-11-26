@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 const Profile = () => {
     return (
-        <div >
+        <div className="profileDiv">
             <div className="profileIcons">
                 <img src="/images/meat.png" alt="meat" className="profileIcon"></img>
                 <img src="/images/icons8-no-mustard-80.png" alt="no mustard" className="profileIcon"></img>
