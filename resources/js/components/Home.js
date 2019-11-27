@@ -16,7 +16,7 @@ const Home = props => {
     return (
         <Row className="home">
             <HashRouter>
-                <Col sm="12" md="6">
+                <Col sm="12" md="6" className="pad pad-left">
                     <Sidebar 
                         setRestaurantId={setRestaurantId}
                         setRestCoords={setRestCoords}
@@ -24,7 +24,7 @@ const Home = props => {
                         setUser={props.setUser} 
                     />
                 </Col>
-                <Col sm="12" md="6">
+                <Col sm="12" md="6" className="pad pad-right">
                     <Switch>
                         <Route 
                             exact={true}
