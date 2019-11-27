@@ -1,8 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {HashRouter, Route, Switch, Link, Redirect} from "react-router-dom";
 import history from "../../history";
-import Profile from '../Profile/Profile'
+import Profile from '../Profile/Profile';
+import ProfileCard from '../Profile/ProfileCard';
 import RestaurantCard from '../Restaurant/RestaurantCard';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
+
 
 const Sidebar = props => {
     console.log('sidebar component')
@@ -11,38 +15,60 @@ const Sidebar = props => {
         // props.handleLatitude();
 
     }, [])
-    return (
-        <div className="sidebar">
-                {/* <Link to ='/restaurantform'><h6>Or add a new restaurant</h6></Link> */}
-            <Profile
-            user={props.user}
-            />
-            <HashRouter history={history}>
-                {/* <SidebarNav /> */}
-                <Switch>
-                    <Route
-                        // exact={true} 
-                        path = '/' 
-                        render= {
-                            () => <RestaurantCard {...props}
-                                handleRestCoords={props.setRestCoords}
-                                user={props.user}
-                            />
-                        }
-                    />
-                    <Route 
 
-                        path = '/profile' 
-                        render= {
-                            () => <Profile {...props} 
-                                user={props.user}
-                            />
-                        }
-                    />
-                </Switch>
-            </HashRouter>
-        </div>
-    )
+const [activeTab, setActiveTab] = useState('0');
+
+  const toggle = tab => {
+    if(activeTab !== tab) setActiveTab(tab);
+  }
+
+return (
+    <div className="sidebar">
+            
+        <Profile
+        user={props.user}
+        />
+        
+
+        
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '0' })}
+            onClick={() => { toggle('0'); }}
+          >
+            Dishes for you
+          </NavLink>
+        </NavItem>
+        
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '1' })}
+            onClick={() => { toggle('1'); }}
+          >
+            Dishes you uploaded
+          </NavLink>
+        </NavItem>
+      </Nav>
+     
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="0">
+          
+          <RestaurantCard {...props}
+                                    handleRestCoords={props.setRestCoords}
+                                    user={props.user}
+                                    />
+                                
+        </TabPane>
+        <TabPane tabId="1">
+                <ProfileCard {...props}
+                                     user={props.user}
+                                />         
+        </TabPane>                    
+        </TabContent>                    
+                            
+    </div>
+)
 }
 
 export default Sidebar;
