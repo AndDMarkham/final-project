@@ -49,8 +49,8 @@ console.log(diets);
             <div className="communityQuote">“One of the marvelous things about community is that it enables us to help people in a way we couldn't as individuals.” – Jean Vanier</div>
             <div className="profileIcons">
                 {
-                    diets.map(diet => (
-                        <img src={ `/images/${diet.picture}` } alt={ diet.name } className="profileIcon"></img>
+                    diets.map((diet, key) => (
+                        <img key={key} src={ `/images/${diet.picture}` } alt={ diet.name } className="profileIcon"></img>
                     ))
                 }
                 
