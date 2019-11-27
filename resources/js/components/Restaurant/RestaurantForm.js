@@ -59,47 +59,49 @@ const RestaurantForm = props => {
       }
 
     return (
-        <form style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '15rem', paddingTop: '5rem'}}>
-            <h2>Add New Restaurant</h2>
-            <input
-              id="name"
+        <div className="restaurantFormBackground">
+          <form  className="restaurantForm" >
+              <h2>Add New Restaurant</h2>
+              <input
+                id="name"
+                type="text"
+                placeholder = "name"
+                value={formInputValues.name}
+                onChange={handleNameInputChange}
+                style={formStyle}
+                />
+      
+              <input
+                id="address"
+                type="text"
+                placeholder = "address"
+                value={formInputValues.address}
+                onChange={handleNameInputChange}
+                style={formStyle}     
+              />
+  
+              <input
+                id="phone"
+                type="text"
+                placeholder = "phone"
+                value={formInputValues.phone}
+                onChange={handleNameInputChange}
+                style={formStyle}     
+              />
+  
+              <input
+              id="website_url"
               type="text"
-              placeholder = "name"
-              value={formInputValues.name}
+              placeholder = "website url"
+              value={formInputValues.website_url}
               onChange={handleNameInputChange}
               style={formStyle}
               />
-    
-            <input
-              id="address"
-              type="text"
-              placeholder = "address"
-              value={formInputValues.address}
-              onChange={handleNameInputChange}
-              style={formStyle}     
-            />
-
-            <input
-              id="phone"
-              type="text"
-              placeholder = "phone"
-              value={formInputValues.phone}
-              onChange={handleNameInputChange}
-              style={formStyle}     
-            />
-
-            <input
-            id="website_url"
-            type="text"
-            placeholder = "website url"
-            value={formInputValues.website_url}
-            onChange={handleNameInputChange}
-            style={formStyle}
-            />
-            <button onClick={handleSubmitButtonClick}>Submit</button>
-            {formSubmitSuccess === true && <h3>Congrats!</h3>}
-            {formSubmitSuccess === false && <h3>Error Occurred, try again later</h3>}
-        </form>
+              <button onClick={handleSubmitButtonClick}>Submit</button>
+              {formSubmitSuccess === true && <h3>Congrats!</h3>}
+              {formSubmitSuccess === false && <h3>Error Occurred, try again later</h3>}
+          </form>
+        </div>
     )
 }
 

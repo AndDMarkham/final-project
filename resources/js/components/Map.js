@@ -83,7 +83,7 @@ const NewMap = (props) => {
   console.log(props);
   return(
     <GoogleMap
-      defaultZoom={10}
+      defaultZoom={10.5}
       defaultCenter={{ lat: 50.072, lng: 14.49 }}
       defaultOptions={{ styles: mapStyles }}
     >
