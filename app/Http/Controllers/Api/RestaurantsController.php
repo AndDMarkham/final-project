@@ -12,10 +12,8 @@ class RestaurantsController extends Controller
     public function show($id)
     {
         $restaurant = Restaurant::where('id', $id)
-            ->with('dishes')
-            ->with('dishes.reviews')
             ->with('dishes.reviews.image')
-            ->get();
+            ->first();
 
        return $restaurant;
     }

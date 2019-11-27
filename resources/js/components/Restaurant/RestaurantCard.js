@@ -36,8 +36,11 @@ const RestaurantCard = props => {
                 restaurants && 
                 restaurants.map((restaurant, key) => (
                     <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
-                        <CardTitle  className="restaurantName">
-                             <Link to="/restaurant">{restaurant.name}</Link>
+                        <CardTitle  className="restaurantName" >
+                             <Link to="/restaurant/" onClick={() => 
+                                props.setRestaurantId(restaurant.id)}>
+                                    {restaurant.name}
+                            </Link>
                         </CardTitle>
                         <div className="restaurantInfo">
                             <Row>
