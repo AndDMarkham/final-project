@@ -41,7 +41,7 @@ const RestaurantForm = props => {
               body: JSON.stringify({
                   'name': formInputValues.name,
                   'address': formInputValues.address,
-                  'address': formInputValues.phone,
+                  'phone': formInputValues.phone,
                   'website': formInputValues.website_url 
               }),
               })

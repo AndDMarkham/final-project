@@ -22,6 +22,7 @@ const Sidebar = props => {
                         path = '/' 
                         render= {
                             () => <RestaurantCard {...props}
+                                setRestaurantId={props.setRestaurantId}
                                 handleRestCoords={props.setRestCoords}
                                 user={props.user}
                             />

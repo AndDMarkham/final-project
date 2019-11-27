@@ -13,7 +13,7 @@ class RestaurantRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class RestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha|max:100',
+            'name' => 'required|regex:/^[\w\/\.\s]+$/imsu|max:100',
             'address' => 'required|regex:/^[\w\/\.\s]+$/imsu|min:5|max:250',
             'phone' => 'regex:/^\+*[\d\s]+$/|max:12',
             'website_url' => 'url|max:250'

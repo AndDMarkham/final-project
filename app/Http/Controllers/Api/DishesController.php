@@ -22,9 +22,11 @@ class DishesController extends Controller
     public function store(DishRequest $request)
     {
         $newDish = Dish::create([
+            'restaurant_id' => $request->input('restaurant_id'),
             'name' => $request->input('name'),
             'description' => $request->input('description')
         ]);
+        $newDish -> diets()->attach($request['diets']);
         return $newDish;
     }
 }

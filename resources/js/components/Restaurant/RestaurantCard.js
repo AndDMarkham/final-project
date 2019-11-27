@@ -35,7 +35,6 @@ const RestaurantCard = props => {
             {
                 restaurants && 
                 restaurants.map((restaurant, key) => (
-                    
                     <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
                         <CardTitle className="restaurantName">{restaurant.name}</CardTitle>
                         <div className="restaurantInfo">
@@ -52,8 +51,10 @@ const RestaurantCard = props => {
                                 })
                             }}>Show on the map</Button>
                         </div>
-                        <Dishes 
-                            dishes={restaurant.dishes} 
+                        <Dishes
+                            dishes={restaurant.dishes}
+                            restaurantId={restaurant.id}
+                            setRestaurantId={props.setRestaurantId}
                         />
                     </Card>
                 ))

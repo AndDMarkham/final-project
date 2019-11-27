@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dish extends Model
 {
+
+    protected $fillable = [
+        'restaurant_id','name', 'description'
+    ];
+
     public function diets()
     {
         return $this->belongsToMany('App\Diet');

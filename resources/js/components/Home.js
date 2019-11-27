@@ -10,6 +10,7 @@ import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 
 const Home = props => {
     const [restCoords, setRestCoords] = useState(null);
+    const [ restaurantId, setRestaurantId ] = useState(null)
 
     console.log(restCoords);
     return (
@@ -17,6 +18,7 @@ const Home = props => {
             <HashRouter>
                 <Col sm="12" md="6">
                     <Sidebar 
+                        setRestaurantId={setRestaurantId}
                         setRestCoords={setRestCoords}
                         user={props.user}
                         setUser={props.setUser} 
@@ -48,7 +50,11 @@ const Home = props => {
                         <Route
                             exact={true}
                             path = '/dish/new'
-                            component ={DishForm}
+                            render = {()=>    
+                                <DishForm 
+                                    restaurantId={restaurantId}
+                            />
+                            }
                         />
                         <Route
                             path = '/review/new'

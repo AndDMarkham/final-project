@@ -13,7 +13,7 @@ class DishRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,8 @@ class DishRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha|max:100',
-            'description' => 'required|alpha|max:100',
+            'name' => 'required|max:100',
+            'description' => 'required|max:100',
         ];
     }
 }
