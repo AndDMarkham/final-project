@@ -39,7 +39,6 @@ const App = () =>  {
                     <div> 
                     <Switch>
                         <Route
-                            exact={true}
                             path = '/'
                             render={() =>
                                 <Home

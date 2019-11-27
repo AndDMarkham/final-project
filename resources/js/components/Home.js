@@ -39,7 +39,9 @@ const Home = props => {
                             exact={true}
                             path = '/restaurant'
                             render = {()=>    
-                                <RestaurantDetail />                           
+                                <RestaurantDetail
+                                restaurantId={restaurantId}
+                            />                           
                             } 
                         />
                         <Route

@@ -10,7 +10,7 @@ const RestaurantDetail = props => {
     return (
         <div>
             <div style={{display:'flex', flexDirection:'row'}}>
-                <div style={restaurantDetailStyle}>Some restaurant</div>
+                <div style={restaurantDetailStyle}>{props.restaurant.name}</div>
                 <div style={restaurantDetailStyle}>Some address</div>
                 <div style={restaurantDetailStyle}>Some phone</div>
                 <div style={restaurantDetailStyle}>Some website_url</div>
