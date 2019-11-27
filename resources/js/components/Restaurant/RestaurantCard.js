@@ -35,25 +35,25 @@ const RestaurantCard = props => {
             {
                 restaurants && 
                 restaurants.map((restaurant, key) => (
-                    <Card key={key} body  className="shadow p-1 mb-5 bg-white rounded">
-                        <div className="restaurantCardMobile">
-                            <CardTitle className="restaurantName">
-                                <Link to="/restaurant">{restaurant.name}</Link>
-                            </CardTitle>
-                            <div className="restaurantInfo">
-                                <Row>
-                                    <Col xs="12" md="6" lg="4"> {restaurant.address} </Col>
-                                    <Col xs="12" md="6" lg="4">{restaurant.phone} </Col>
-                                    <Col xs="12" md="12" lg="4">{restaurant.website_url} </Col>
-                                </Row>
-                            </div>    
-                                <Button className="btnShowOnMap" onClick={() => {
-                                    console.log(restaurant);
-                                    props.handleRestCoords({
-                                        lat: restaurant.latitude,
-                                        lon: restaurant.longitude
-                                    })
-                                }}>Show on the map</Button>
+                    <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
+                        <CardTitle  className="restaurantName" > 
+                                <Link to="/restaurant/" onClick={() => 
+                                    props.setRestaurantId(restaurant.id)}>
+                                        {restaurant.name}
+                                </Link>
+                        </CardTitle>
+                        <div className="restaurantInfo">
+                            <Row>
+                                <Col sm="12" md="4"> {restaurant.address} </Col>
+                                <Col sm="12" md="4">{restaurant.phone} </Col>
+                                <Col sm="12" md="4">{restaurant.website_url} </Col>
+                            </Row>
+                            <Button className="btnShowOnMap" onClick={() => {
+                                props.handleRestCoords({
+                                    lat: restaurant.latitude,
+                                    lon: restaurant.longitude
+                                })
+                            }}>Show on the map</Button>
                         </div>
                         
                         <Dishes
