@@ -14,6 +14,9 @@ const Sidebar = props => {
     return (
         <div className="sidebar">
                 {/* <Link to ='/restaurantform'><h6>Or add a new restaurant</h6></Link> */}
+            <Profile
+            user={props.user}
+            />
             <HashRouter history={history}>
                 {/* <SidebarNav /> */}
                 <Switch>

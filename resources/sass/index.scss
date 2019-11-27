@@ -150,4 +150,14 @@ body {
     right: 0;
 }
 
-
+//searchbar
+.searchbar {
+    display:flex;
+    flex-direction: column;
+    
+    text-align: center;
+    padding: 2rem;  
+}
+.btnSearch {
+    margin: auto;  
+}
