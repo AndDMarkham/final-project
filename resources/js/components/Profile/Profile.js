@@ -55,7 +55,7 @@ console.log(diets);
                 
             </div>
             <div className="profileText">Hello, {props.user.user.first_name}! <br/>
-            <Button color="link" className="dietaryRestrictionsLink">Check out the dishes suitable for your dietary restrictions!</Button>
+            <div>Thanks for helping our community of </div>
             </div>
         </div>
     )
