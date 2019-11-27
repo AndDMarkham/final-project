@@ -8,6 +8,7 @@ import Navigation from "./Nav/Navigation";
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import LoginNav from './Nav/LoginNav';
+import Search from './Search/Search';
 
 const App = () =>  {
     const [ user, setUser ] = useState({
@@ -38,6 +39,7 @@ const App = () =>  {
                     <div> 
                     <Switch>
                         <Route
+                            exact={true}
                             path = '/'
                             render={() =>
                                 <Home
@@ -46,7 +48,7 @@ const App = () =>  {
                                 />
                             }
                         />
-                        {/* <Route
+                        <Route
                             exact={true}
                             path = '/search'
                             render={() => 
@@ -55,7 +57,7 @@ const App = () =>  {
                                 user={user}
                                 />
                             }
-                        /> */}
+                        />
                     </Switch>
                     </div>
                 </div>
