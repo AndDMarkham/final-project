@@ -55,13 +55,22 @@ body {
     justify-content: center;
 }
 
+.sidebar {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
 //Profile
 .profileDiv {
     display: flex;
     flex-direction: column; 
     align-items: center;
     text-align: center;
-    padding-top: 2rem;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    
+}
+
+.communityQuote {
+    font-style: italic;
 }
 .profileIcons {
     display: flex;
@@ -74,7 +83,10 @@ body {
     padding: 0.5rem;
     border: grey solid 1px;
 }
-
+.profileGreetings{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 .profileText {
     padding-left: 1rem;
     font-weight: bold;
@@ -90,13 +102,14 @@ body {
     overflow-y: scroll;
     height: 200px;
     @media screen and (min-width: 768px) {
-        height: 500px;
+        height: 400px;
         
       }
 }
 .restaurantName {
     text-align: center; 
-    align-items: center;    
+    align-items: center;
+    text-decoration: underline;    
 }
 
 .restaurantInfo {
@@ -150,4 +163,14 @@ body {
     right: 0;
 }
 
-
+//searchbar
+.searchbar {
+    display:flex;
+    flex-direction: column;
+    
+    text-align: center;
+    padding: 2rem;  
+}
+.btnSearch {
+    margin: auto;  
+}

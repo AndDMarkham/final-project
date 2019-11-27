@@ -8,18 +8,19 @@ import Navigation from "./Nav/Navigation";
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import LoginNav from './Nav/LoginNav';
+import Search from './Search/Search';
 
 const App = () =>  {
     const [ user, setUser ] = useState({
         loggedIn: false,
         token: '',
-        user: {}
+        user: null
     });
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
         const user = JSON.parse(window.localStorage.getItem('user'));
-        if (token) {
+        if (token && user) {
             setUser({
                 loggedIn: true,
                 token: token,
@@ -46,7 +47,7 @@ const App = () =>  {
                                 />
                             }
                         />
-                        {/* <Route
+                        <Route
                             exact={true}
                             path = '/search'
                             render={() => 
@@ -55,7 +56,7 @@ const App = () =>  {
                                 user={user}
                                 />
                             }
-                        /> */}
+                        />
                     </Switch>
                     </div>
                 </div>
@@ -73,6 +74,7 @@ const App = () =>  {
                             path='/'
                             render = {()=>    
                                 <Login 
+                                    user={user}
                                     setUser={setUser}
                                 />
                             }
@@ -80,7 +82,12 @@ const App = () =>  {
                         <Route
                             exact={true} 
                             path='/register'
-                            component={Register}
+                            render = {()=>    
+                                <Register 
+                                    user={user}
+                                    setUser={setUser}
+                                />
+                            }
                         />  
                     </Switch>
                 </div>

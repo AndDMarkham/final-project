@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios";
 import { Row, Col, Card, Button, CardTitle, CardText } from 'reactstrap';
 
@@ -25,13 +25,16 @@ const dietMap = {
     sulphites: 20,
 }
 
+const dietNames = Object.keys(dietMap);
+
 const getDietIds = (diets) => Object.keys(diets).reduce((acc, dietName) => {
         if(diets[dietName]) acc.push(dietMap[dietName])
         return acc
     }, [])
 
 const Register = props => {
-    const [formInputValues, setFormInputValues] = useState({firstName: '', lastName: '', userName: '', email: '', dateofBirth: '', diets:{
+    const { user } = props;
+    const [formInputValues, setFormInputValues] = useState({firstName: '', lastName: '', email: '', password: '', dateOfBirth: '', diets:{
         vegan: false,
         vegetarian: false,
         pescetarian: false,
@@ -53,7 +56,7 @@ const Register = props => {
         lupin: false,
         sulphites: false
     }});
-    const [formSubmitSuccess, setFormSubmitSuccess] = useState()
+    const [alert, setAlert] = useState({})
     const formStyle = { borderRadius: '10px', margin: '.3rem', width:'286px' }
 
     const handleNameInputChange = e => {
@@ -77,29 +80,64 @@ const Register = props => {
         }))
     }
 
+    async function postRegister(diets) {
+        const response = await fetch('http://www.eatanywhere.test:8080/api/register', {
+        method: 'POST',
+        withCredentials: true,
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+        },
+        responseType: 'json',
+        body: JSON.stringify({
+            first_name: formInputValues.firstName,
+            last_name: formInputValues.lastName,
+            email: formInputValues.email,
+            password: formInputValues.password,
+            date_of_birth: formInputValues.dateOfBirth,
+            diet: diets
+        }),
+        })
+        const data = await response.json();
+
+        console.log(data);
+
+        if (data.error) {
+            setAlert();
+        } else if (data.token) {
+            props.setUser({
+                loggedIn: true,
+                token: data.token,
+                user: data.user
+            })
+            setAlert({
+                message: 'You\'ve been logged in successfully',
+                style: {color: 'green'}
+            })
+            window.localStorage.setItem('token', data.token);
+        }
+    }
+
     const handleSubmitButtonClick = (e) => {
         e.preventDefault()
         const diets = getDietIds(formInputValues.diets)
-        console.log("diets", diets)
-    //    axios.post('http://www.eatanywhere.test:8080/api/dish/new',{
-    //        name: "name",
-    //        description: "description",
-    //        diets: getDietIds(formInputValues.diets)
-    //    })
-        
-    //    .then ((response) => {
-    //        console.log(response)
-    //        setFormSubmitSuccess(true)
-    //    })
-    //    .catch((e) => {
-    //        console.log(e)
-    //        setFormSubmitSuccess(false)
-    //    })
+        try {
+            postRegister(diets);
+        } catch (e) {
+            console.log('errors', e)
+        }
     } 
+
+    useEffect(() => {
+        user ? ( user.token ? location.replace('/') : null ) : null;
+    }, [user])
 
     return (
         <form style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '1rem', paddingTop: '0rem'}}>
            <h2>Register</h2>
+            <h4>{ alert.error }</h4>
            <input
             id="firstName"
             type="text"
@@ -119,254 +157,55 @@ const Register = props => {
            />
            <br/>
            <input
-            id="userName"
-            type="text"
-            placeholder = "User name"
-            value={formInputValues.userName}
-            onChange = {handleNameInputChange}
-            style={formStyle}
-           />
-           <br/>
-           <input
             id="email"
             type="text"
-            placeholder = "email"
+            placeholder = "E-mail"
             value={formInputValues.email}
             onChange = {handleNameInputChange}
             style={formStyle}
            />
            <br/>
            <input
-            id="dateofBirth"
-            type="text"
+            id="password"
+            type="password"
+            placeholder = "Password"
+            value={formInputValues.password}
+            onChange = {handleNameInputChange}
+            style={formStyle}
+           />
+           <br/>
+           <input
+            id="dateOfBirth"
+            type="date"
             placeholder = "Date of birth"
             value={formInputValues.dateOfBirth}
             onChange = {handleNameInputChange}
             style={formStyle}
            />
            <br/>
-           <h4>Diet & Allergies Restrictions</h4>
-           {/* <div style={{display:'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'flex-start', padding: '0rem', paddingTop: '0rem', margin:'0rem'}}> */}
+           <h4>Diets & Allergies</h4>
                <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'0',marginBottom:'1rem', paddingBottom:'0', width:'60%'}}>
-                {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
                 <Col md='12' style={{margin:'2rem', marginBottom:'0', textAlign:'center'}}>
-                <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="vegan"
-                            name="vegan"
-                            value="1"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.vegan}
-                            /> Vegan
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="vegetarian"
-                            name="vegetarian"
-                            value="2"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.vegetarian}
-                            /> Vegetarian
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="pescetarian"
-                            name="pescetarian"
-                            value="3"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.pescetarian}
-                            /> Pescetarian
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="keto"
-                            name="keto"
-                            value="4"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.keto}
-                            /> Keto
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="halal"
-                            name="halal"
-                            value="5"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.halal}
-                            /> Halal
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="kosher"
-                            name="kosher"
-                            value="6"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.kosher}
-                            /> Kosher
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="gluten"
-                            name="gluten"
-                            value="7"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.gluten}
-                            /> Gluten
-                    </label>
-                    {/* </div> */}
-                    {/* </Col> */}
-                    {/* <Col sm='4' md='2' style={{margin:'2rem', marginBottom:'0'}}> */}
-                    {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="milk"
-                            name="milk"
-                            value="8"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.milk}
-                            /> Milk
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="soy"
-                            name="soy"
-                            value="9"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.soy}
-                            /> Soy
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="eggs"
-                            name="eggs"
-                            value="10"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.eggs}
-                            /> Eggs
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="peanuts"
-                            name="peanuts"
-                            value="11"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.peanuts}
-                            /> Peanuts
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="treenuts"
-                            name="treenuts"
-                            value="12"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.treenuts}
-                            /> Tree nuts
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="fish"
-                            name="fish"
-                            value="13"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.fish}
-                            /> Fish
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="molluscs"
-                            name="molluscs"
-                            value="14"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.molluscs}
-                            /> Molluscs
-                    </label>
-                    {/* </Col>
-                    {/* </div> */}
-                    {/* <Col sm='4' md='2' style={{margin:'2rem' ,marginTop:'0rem', marginBottom:'0'}}> */} 
-                    {/* <div style={{display:'flex',flexDirection:'column',margin:'5rem', marginTop:'1rem', marginBottom:'1rem'}}> */}
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="crustaceans"
-                            name="crustaceans"
-                            value="15"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.crustaceans}
-                            /> Crustaceans
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="mustard"
-                            name="mustard"
-                            value="16"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.mustard}
-                            /> Mustard
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="sesame"
-                            name="sesame"
-                            value="17"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.sesame}
-                            /> Sesame
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="celery"
-                            name="celery"
-                            value="18"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.celery}
-                            /> Celery
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="lupin"
-                            name="lupin"
-                            value="19"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.lupin}
-                            /> Lupin
-                    </label>
-                    <label style={{width:'150px'}}>
-                        <input 
-                            type="checkbox"
-                            id="sulphites"
-                            name="sulphites"
-                            value="20"
-                            onChange={handleCheckboxInputChange}
-                            checked={formInputValues.diets.sulphites}
-                            /> Sulphites
-                    </label>
-                    <br />
-                    {/* </div> */}
+                    {
+                        dietNames.map((diet, key) => (
+                            <label key={key} style={{width:'150px'}}>
+                                <input 
+                                    type="checkbox"
+                                    id={diet}
+                                    name={diet}
+                                    value={key + 1}
+                                    onChange={handleCheckboxInputChange}
+                                    checked={formInputValues.diets.diet}
+                                    /> {diet}
+                            </label>
+                        ))
+                    }
                     </Col>
             </Row>
            <button onClick = {handleSubmitButtonClick} style={{border: '1px solid blue', margin:'5px'}}>Submit</button>
-           {formSubmitSuccess === true && <h3>Congrats!</h3>}
-           {formSubmitSuccess === false && <h3 style={{ color: 'red'}}>Error occured, try later</h3>}
        </form>
-   )
-};
+    )
+
+}
 
 export default Register;

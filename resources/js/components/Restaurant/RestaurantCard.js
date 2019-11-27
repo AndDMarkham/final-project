@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 
 const RestaurantCard = props => {
     const [restaurants, setRestaurants] = useState();
-    console.log(props);
     useEffect(()=> {
         const token = window.localStorage.getItem('token');
+        const user = JSON.parse(window.localStorage.getItem('user'));
         async function fetchRestaurants(){
             const response = await fetch('http://www.eatanywhere.test:8080/api/restaurants', {
                 method: 'POST',
@@ -18,7 +18,7 @@ const RestaurantCard = props => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    diets: props.user.user.diets.map(d => d.id)
+                    diets: user.diets.map(d => d.id)
                 })
             })
             const data = await response.json();
@@ -36,7 +36,9 @@ const RestaurantCard = props => {
                 restaurants && 
                 restaurants.map((restaurant, key) => (
                     <Card key={key} body outline color="secondary" className="shadow p-3 mb-5 bg-white rounded">
-                        <CardTitle className="restaurantName">{restaurant.name}</CardTitle>
+                        <CardTitle  className="restaurantName">
+                             <Link to="/restaurant">{restaurant.name}</Link>
+                        </CardTitle>
                         <div className="restaurantInfo">
                             <Row>
                                 <Col sm="12" md="4"> {restaurant.address} </Col>
@@ -44,7 +46,6 @@ const RestaurantCard = props => {
                                 <Col sm="12" md="4">{restaurant.website_url} </Col>
                             </Row>
                             <Button className="btnShowOnMap" onClick={() => {
-                                console.log(restaurant);
                                 props.handleRestCoords({
                                     lat: restaurant.latitude,
                                     lon: restaurant.longitude
