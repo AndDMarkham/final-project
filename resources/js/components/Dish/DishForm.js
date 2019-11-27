@@ -25,6 +25,9 @@ const dietMap = {
     sulphites: 20,
 }
 
+// const [restaurantId] = useState();
+// console.log(props.rest);
+
 const getDietIds = (diets) => Object.keys(diets).reduce((acc, dietName) => {
         if(diets[dietName]) acc.push(dietMap[dietName])
         return acc
@@ -56,6 +59,7 @@ const DishForm = props => {
     const [formSubmitSuccess, setFormSubmitSuccess] = useState()
     const formStyle = { margin: '.5rem' }
 
+    console.log('rest.id', props.restaurantId);
 
     const handleNameInputChange = e => {
         setFormInputValues({
@@ -83,20 +87,37 @@ const DishForm = props => {
         e.preventDefault()
         const diets = getDietIds(formInputValues.diets)
         console.log("diets", diets)
-    //    axios.post('http://www.eatanywhere.test:8080/api/dish/new',{
-    //        name: "name",
-    //        description: "description",
-    //        diets: getDietIds(formInputValues.diets)
-    //    })
-       
-    //    .then ((response) => {
-    //        console.log(response)
-    //        setFormSubmitSuccess(true)
-    //    })
-    //    .catch((e) => {
-    //        console.log(e)
-    //        setFormSubmitSuccess(false)
-    //    })
+        async function postSubmit() {
+            const token = window.localStorage.getItem('token');
+            const response = await fetch('http://www.eatanywhere.test:8080/api/dish/new', {
+            method: 'POST',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + token,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            },
+            responseType: 'json',
+            body: JSON.stringify({
+                'restaurant_id': props.restaurantId,
+                'name': formInputValues.name,
+                'description': formInputValues.description,
+                'diets': diets 
+            }),
+            })
+            const data = await response.json();
+
+            console.log(data);
+        }
+
+        try {
+            postSubmit();
+
+        } catch (e) {
+            console.log('errors', e)
+        }
    } 
 
    return (

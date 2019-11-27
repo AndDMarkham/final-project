@@ -36,7 +36,8 @@ const Dishes = props => {
                 <CardTitle>Add New Dish</CardTitle>
             </div>
             <div style={{textAlign: 'center' ,fontSize:'5em'}}>
-                <Button tag={Link} to="/dish/new" >+</Button>
+                <Button onClick={() => props.setRestaurantId(props.restaurantId)}
+                tag={Link} to="/dish/new" >+</Button>
             </div>
       </Card>
       </Slider>
@@ -46,3 +47,4 @@ const Dishes = props => {
 }
 
 export default Dishes;
+

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {HashRouter, Route, Switch, Link, Redirect} from "react-router-dom";
 import history from "../../history";
 import Profile from '../Profile/Profile';
@@ -9,14 +9,9 @@ import classnames from 'classnames';
 
 
 const Sidebar = props => {
-    console.log('sidebar component')
-    console.log('sidebar props', props)
-    useEffect(() => {
-        // props.handleLatitude();
+    
 
-    }, [])
-
-const [activeTab, setActiveTab] = useState('0');
+  const [activeTab, setActiveTab] = useState('0');
 
   const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
@@ -56,6 +51,7 @@ return (
           
           <RestaurantCard {...props}
                                     handleRestCoords={props.setRestCoords}
+                                    setRestaurantId={props.setRestaurantId}
                                     user={props.user}
                                     />
                                 
@@ -72,3 +68,5 @@ return (
 }
 
 export default Sidebar;
+
+
