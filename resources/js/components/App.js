@@ -13,13 +13,13 @@ const App = () =>  {
     const [ user, setUser ] = useState({
         loggedIn: false,
         token: '',
-        user: {}
+        user: null
     });
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
         const user = JSON.parse(window.localStorage.getItem('user'));
-        if (token) {
+        if (token && user) {
             setUser({
                 loggedIn: true,
                 token: token,
@@ -73,6 +73,7 @@ const App = () =>  {
                             path='/'
                             render = {()=>    
                                 <Login 
+                                    user={user}
                                     setUser={setUser}
                                 />
                             }
@@ -80,7 +81,12 @@ const App = () =>  {
                         <Route
                             exact={true} 
                             path='/register'
-                            component={Register}
+                            render = {()=>    
+                                <Register 
+                                    user={user}
+                                    setUser={setUser}
+                                />
+                            }
                         />  
                     </Switch>
                 </div>

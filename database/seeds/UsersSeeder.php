@@ -46,7 +46,6 @@ class UsersSeeder extends Seeder
 
             $user->first_name = $faker->firstName();
             $user->last_name = $faker->lastName();
-            $user->user_name = $faker->userName();
             $user->date_of_birth = $faker->date();
             $user->email = $faker->email();
             $user->password = Hash::make($passwords[$i]);

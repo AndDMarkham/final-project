@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 
 const RestaurantCard = props => {
     const [restaurants, setRestaurants] = useState();
-    console.log(props);
     useEffect(()=> {
         const token = window.localStorage.getItem('token');
+        const user = JSON.parse(window.localStorage.getItem('user'));
         async function fetchRestaurants(){
             const response = await fetch('http://www.eatanywhere.test:8080/api/restaurants', {
                 method: 'POST',
@@ -18,7 +18,7 @@ const RestaurantCard = props => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    diets: props.user.user.diets.map(d => d.id)
+                    diets: user.diets.map(d => d.id)
                 })
             })
             const data = await response.json();

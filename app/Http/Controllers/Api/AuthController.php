@@ -10,15 +10,14 @@ use App\User;
 
 class AuthController extends Controller
 {
-    public function registration(Request $request)
+    public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'user_name' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required', 'date', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
+            'password' => ['required', 'string', 'min:8']
         ]);
     
         if ($validator->fails())
@@ -29,13 +28,13 @@ class AuthController extends Controller
         $user = User::create([
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
-            'username' => $request['username'],
             'date_of_birth' => $request['date_of_birth'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
 
         $user->diets()->attach($request['diet']);
+        
     
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
         $response = ['token' => $token];
