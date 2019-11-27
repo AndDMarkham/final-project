@@ -46,6 +46,7 @@ console.log(diets);
 
     return (
         <div className="profileDiv">
+            <div className="communityQuote">“One of the marvelous things about community is that it enables us to help people in a way we couldn't as individuals.” – Jean Vanier</div>
             <div className="profileIcons">
                 {
                     diets.map(diet => (
@@ -54,9 +55,9 @@ console.log(diets);
                 }
                 
             </div>
-            <div className="profileText">Hello, {props.user.user.first_name}! <br/>
-            <div>Thanks for helping our community of </div>
-            </div>
+            <div className="profileGreetings">Hello, {props.user.user.first_name}!</div>
+            <div className="profileText">Thanks for helping us by uploading new dishes and reviews of dishes suitable for your dietary restrictions. You are making a difference in this community!</div>
+        
         </div>
     )
 }
