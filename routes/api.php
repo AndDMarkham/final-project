@@ -40,6 +40,9 @@ Route::group(['middleware' => ['json.response']], function () {
         Route::get('/dish/{id}', 'Api\DishesController@show');
         Route::post('/dish/new', 'Api\DishesController@store');
 
+        //ReviewApis:
+        Route::get('/review/{id}', 'Api\ReviewsController@show');
+
     });
 
 });
