@@ -108,6 +108,7 @@ body {
     justify-content: center;
 }
 
+<<<<<<< HEAD
 .login-form {
     display: flex;
     flex-direction: column;
@@ -120,14 +121,22 @@ body {
 .sidebar {
     background-color: rgba(255, 255, 255, 0.8);
 }
+=======
+// .sidebar {
+    
+// }
+>>>>>>> h6
 
 //Profile
 .profileDiv {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
     display: flex;
     flex-direction: column; 
     align-items: center;
     text-align: center;
     padding: 0.5rem;
+    
     
 }
 
@@ -182,28 +191,45 @@ body {
       }
 }
 
+.restaurantCard {
+    background-color: rgba(213, 218, 213, 0.7);
+}
+
+.clickRestName {
+    display: none;
+    @media screen and (min-width: 768px) {
+        display: block;
+    }
+}
 .restaurantCardMobile {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     @media screen and (min-width: 768px) {
         display: flex;
-        flex-direction: column;    
+        flex-direction: column; 
+        align-items: center;   
     }
 }
 
 .restaurantName {
     text-align: center; 
-    align-items: center;
-    text-decoration: underline;    
+    
+    text-decoration: underline; 
+    color:darkgreen;   
+}
+
+.restaurantName:hover {
+    color: rgb(2, 126, 2);
+    
 }
 
 .restaurantInfo {
     display: none;
-    @media screen and (min-width: 768px) {
-        display: block;
-        text-align: center;
-      }
+    // @media screen and (min-width: 768px) {
+    //     display: block;
+    //     text-align: center;
+    //   }
 }
 
 .newRestaurant {
@@ -216,13 +242,33 @@ body {
     
     @media screen and (min-width: 768px) {
         align-self: center; 
-        text-align: center;  
+        text-align: center; 
+        margin: 1rem;
       }     
 }
 
+.restaurantDetailPageStyle {
+    background-color: rgba(213, 218, 213, 0.8);
+    border-radius: 5px;
+    h1 {
+        color:  darkgreen;
+        text-align: center;
+    }
+    
+}
+.restaurantDetailPageScroll {
+    overflow-y: scroll;
+    height: 530px;
+}
 
+.restaurantDetailBackground {
+    //background-color: rgba(213, 218, 213, 0.7);
+    display: flex; 
+    flex-direction: row;
+}
 
 //restaurantForm
+
 .restaurantFormBackground {
     background-color: rgba(255, 255, 255, 0.8);
     
@@ -246,6 +292,8 @@ body {
     padding-top: 5rem;
 }
 
+
+
 //DishCard
 .dishCard {
     background-color: grey;
@@ -261,9 +309,10 @@ body {
     }
 }
 
-.addNewDishCard {
-    margin-left: 0;
-}
+// .addNewDishCard {
+//     margin-left: 0;
+    
+// }
 
 //DishForm
 
@@ -302,7 +351,10 @@ body {
 
 .slick-arrow.slick-prev {
     left: 10px;
-    z-index: 500;   
+    z-index: 500;  
+    @media screen and (min-width: 997px) {
+        left: -5px;
+    }
 }
 
 .slick-arrow.slick-next:before {

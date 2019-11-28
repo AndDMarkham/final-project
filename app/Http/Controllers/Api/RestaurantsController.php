@@ -13,6 +13,7 @@ class RestaurantsController extends Controller
     public function show($id)
     {
         $restaurant = Restaurant::where('id', $id)
+            ->with('dishes.diets')
             ->with('dishes.reviews.image')
             ->first();
 
