@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {HashRouter, Route, Switch, Link, Redirect} from "react-router-dom";
-import history from "../../history";
 import Profile from '../Profile/Profile';
 import ProfileCard from '../Profile/ProfileCard';
 import RestaurantCard from '../Restaurant/RestaurantCard';
@@ -55,6 +53,7 @@ return (
                                     user={user}
                                     setUser={setUser}
                                     executeScroll={executeScroll}
+                                    setScrollTo={props.setScrollTo}
                                     />
                                 
         </TabPane>

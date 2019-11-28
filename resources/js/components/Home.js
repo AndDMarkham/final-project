@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Map from "./Map";
 import RestaurantForm from './Restaurant/RestaurantForm';
 import RestaurantDetail from './Restaurant/RestaurantDetail';
@@ -10,7 +10,7 @@ import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 
 
 const Home = props => {
-    const { mapRef, executeScroll, user, setUser } = props;
+    const { executeScroll, user, setUser } = props;
     const [ restCoords, setRestCoords ] = useState(null);
     const [ restaurantId, setRestaurantId ] = useState(null)
 console.log(user)
@@ -25,10 +25,11 @@ console.log(user)
                         setRestCoords={setRestCoords}
                         user={user}
                         setUser={setUser}
-                        executeScroll={executeScroll} 
+                        executeScroll={executeScroll}
+                        setScrollTo={props.setScrollTo} 
                     />
                 </Col>
-                <Col sm="12" md="6" className="pad pad-right" ref={mapRef}>
+                <Col sm="12" md="6" className="pad pad-right" >
                     <Switch>
                         <Route 
                             exact={true}
@@ -36,7 +37,7 @@ console.log(user)
                             render = {()=>    
                                 <Map 
                                     restCoords={restCoords}
-                                    // mapRef={mapRef}
+                                    
                             />
                             }
                         />

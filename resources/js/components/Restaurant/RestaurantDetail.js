@@ -55,19 +55,19 @@ const RestaurantDetail = props => {
         },[props.restaurantId]);
     
 
-    const restaurantDetailStyle = { padding:'2rem'}
+    
     
     if (restaurant) {
         console.log('restaurant', restaurant);
         return (
-            <div >
+            <div className="restaurantDetail">
                 <div className="restaurantDetailPageStyle">
                     <h1>{restaurant.name}</h1>
-                    <div className="restaurantDetailBackground">
-                        <div style={restaurantDetailStyle}>Address: {restaurant.address} </div>
-                        <div style={restaurantDetailStyle}>Phone: {restaurant.phone} </div>
-                        <div style={restaurantDetailStyle}>Website: {restaurant.website_url} </div>
-                    </div>
+                    <Row className="restaurantDetailBackground">
+                        <Col sm="12" md="4">Address: {restaurant.address} </Col>
+                        <Col sm="12" md="4">Phone: {restaurant.phone} </Col>
+                        <Col sm="12" md="4">Website: {restaurant.website_url} </Col>
+                    </Row>
                 </div>
                 <div className="restaurantDetailPageScroll">
                     {
@@ -78,8 +78,8 @@ const RestaurantDetail = props => {
                                     <CardTitle className="restaurantDetail">{dish.name}</CardTitle>
                                         <div>{dish.description}</div>
                                         {
-                                            dish.diets.map(diet => (
-                                                <img src={ `/images/${dietPicture[diet.name]}` } alt={ diet.name } className="profileIcon"></img>
+                                            dish.diets.map((diet, key) => (
+                                                <img key={key} src={ `/images/${dietPicture[diet.name]}` } alt={ diet.name } className="profileIcon"></img>
                                             ))
                                         }
                                         
