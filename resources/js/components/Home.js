@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Map from "./Map";
 import RestaurantForm from './Restaurant/RestaurantForm';
 import RestaurantDetail from './Restaurant/RestaurantDetail';
@@ -10,11 +10,12 @@ import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 
 
 const Home = props => {
-    const { mapRef, executeScroll } = props;
-    const [restCoords, setRestCoords] = useState(null);
+    const { mapRef, executeScroll, user, setUser } = props;
+    const [ restCoords, setRestCoords ] = useState(null);
     const [ restaurantId, setRestaurantId ] = useState(null)
-
-    console.log(restCoords);
+console.log(user)
+    
+    // console.log(restCoords);
     return (
         <Row className="home">
             <HashRouter>
@@ -22,8 +23,8 @@ const Home = props => {
                     <Sidebar 
                         setRestaurantId={setRestaurantId}
                         setRestCoords={setRestCoords}
-                        user={props.user}
-                        setUser={props.setUser}
+                        user={user}
+                        setUser={setUser}
                         executeScroll={executeScroll} 
                     />
                 </Col>
