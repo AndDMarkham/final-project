@@ -48,18 +48,18 @@ return (
         <TabPane tabId="0">
           
           <RestaurantCard {...props}
-                                    handleRestCoords={props.setRestCoords}
-                                    setRestaurantId={props.setRestaurantId}
-                                    user={user}
-                                    setUser={setUser}
-                                    executeScroll={executeScroll}
-                                    setScrollTo={props.setScrollTo}
-                                    />
+              handleRestCoords={props.setRestCoords}
+              setRestaurantId={props.setRestaurantId}
+              user={user}
+              setUser={setUser}
+              executeScroll={executeScroll}
+              setScrollTo={props.setScrollTo}
+              />
                                 
         </TabPane>
         <TabPane tabId="1">
                 <ProfileCard {...props}
-                                     user={props.user}
+                    user={props.user}
                                 />         
         </TabPane>                    
         </TabContent>                    
