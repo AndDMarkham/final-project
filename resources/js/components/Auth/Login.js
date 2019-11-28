@@ -74,32 +74,34 @@ const Login = props => {
     }
 
     return (
-        <>
-            <h1>eatAnywhere</h1>
-            <div className="login">
-                <h2>Login</h2>
+        <div className="login">
+            <h1 style={{fontSize: '4rem', marginBottom: '2rem'}}>eatAnywhere</h1>
+            <div className="login-form">
+                <h2 style={{fontSize: '2rem'}}>Login</h2>
                 <h4 style={alert.style}>{ alert.message }</h4>
-                <form action="" method="post" onSubmit={ handleFormSubmit }>
+                <form action="" method="post" onSubmit={ handleFormSubmit } >
                     Email:<br />
                     <input id="email" type="text" name="email" 
                         value={ loginInfo.email } 
                         onChange={ handleFormChange } 
+                        style={{marginBottom: '1rem'}}
                     /><br />
                     Password:<br />
                     <input id="password" type="password" name="password" 
                         value={ loginInfo.password } 
                         onChange={ handleFormChange }
+                        style={{marginBottom: '1rem'}}
                     /><br />
                     <input type="submit" value="Log in" />
                 </form>
-                <div>
+                <div style={{marginTop: '1rem'}}>
                     Not a registered user? <br/>
                     <Link to="/register" className="navLink">
                         Click here!
                     </Link>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

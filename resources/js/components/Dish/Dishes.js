@@ -31,15 +31,33 @@ const Dishes = props => {
             />
           ))
         }
-        <Card className="dishCard shadow-sm p-3 mb-5 bg-white rounded">
-            <div>
-                <CardTitle>Add New Dish</CardTitle>
-            </div>
+        <div >
+            
+            <h5 className="restaurantName">Add New Dish</h5>
+            
             <div style={{textAlign: 'center' ,fontSize:'5em'}}>
-                <Button onClick={() => props.setRestaurantId(props.restaurantId)}
-                tag={Link} to="/dish/new" >+</Button>
+                <Button 
+                onClick={() => {
+                  props.setRestaurantId(props.restaurantId)
+                  if (window.innerWidth < 767) {
+                    setTimeout(() => {
+                      const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                      console.log(scrolltop)
+                      console.log(document.querySelector('.dishForm').getBoundingClientRect().top)
+                      console.log(document.querySelector('.dishForm').getBoundingClientRect().top + scrolltop)
+                      window.scrollTo({
+                          top: document.querySelector('.dishForm').getBoundingClientRect().top + scrolltop, 
+                          left: 0, 
+                          behavior: 'smooth'
+                      });
+                    }, 50)
+                  }
+                  
+                }}
+                tag={Link} to="/dish/new" >+
+              </Button>
             </div>
-      </Card>
+      </div>
       </Slider>
     </>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Button} from 'reactstrap';
 
-const Searchbar = () => {
+const Searchbar = props => {
+    console.log('searchbar', props)
     return (
         <div>
             <div className="searchbar">

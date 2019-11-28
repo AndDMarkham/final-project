@@ -8,23 +8,28 @@ import Sidebar from './Sidebar/Sidebar'
 import { Row, Col } from 'reactstrap';
 import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
 
-const Home = props => {
-    const [restCoords, setRestCoords] = useState(null);
-    const [ restaurantId, setRestaurantId ] = useState(null)
 
-    console.log(restCoords);
+const Home = props => {
+    const { executeScroll, user, setUser } = props;
+    const [ restCoords, setRestCoords ] = useState(null);
+    const [ restaurantId, setRestaurantId ] = useState(null)
+console.log(user)
+    
+    // console.log(restCoords);
     return (
         <Row className="home">
             <HashRouter>
-                <Col sm="12" md="6">
+                <Col sm="12" md="6" className="pad pad-left">
                     <Sidebar 
                         setRestaurantId={setRestaurantId}
                         setRestCoords={setRestCoords}
-                        user={props.user}
-                        setUser={props.setUser} 
+                        user={user}
+                        setUser={setUser}
+                        executeScroll={executeScroll}
+                        setScrollTo={props.setScrollTo} 
                     />
                 </Col>
-                <Col sm="12" md="6">
+                <Col sm="12" md="6" className="pad pad-right" >
                     <Switch>
                         <Route 
                             exact={true}
@@ -32,10 +37,12 @@ const Home = props => {
                             render = {()=>    
                                 <Map 
                                     restCoords={restCoords}
+                                    
                             />
                             }
                         />
                         <Route
+                            exact={true}
                             path = '/restaurant'
                             render = {()=>    
                                 <RestaurantDetail

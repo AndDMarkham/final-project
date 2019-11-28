@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {HashRouter, Route, Switch, Link, Redirect} from "react-router-dom";
-import history from "../../history";
 import Profile from '../Profile/Profile';
 import ProfileCard from '../Profile/ProfileCard';
 import RestaurantCard from '../Restaurant/RestaurantCard';
@@ -10,7 +8,7 @@ import classnames from 'classnames';
 
 const Sidebar = props => {
     
-
+  const { executeScroll, user, setUser } = props
   const [activeTab, setActiveTab] = useState('0');
 
   const toggle = tab => {
@@ -41,7 +39,7 @@ return (
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            Dishes you uploaded
+            Your uploads
           </NavLink>
         </NavItem>
       </Nav>
@@ -52,7 +50,10 @@ return (
           <RestaurantCard {...props}
                                     handleRestCoords={props.setRestCoords}
                                     setRestaurantId={props.setRestaurantId}
-                                    user={props.user}
+                                    user={user}
+                                    setUser={setUser}
+                                    executeScroll={executeScroll}
+                                    setScrollTo={props.setScrollTo}
                                     />
                                 
         </TabPane>

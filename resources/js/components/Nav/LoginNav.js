@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Row } from 'reactstrap';
 import {Link} from "react-router-dom";
 
 
@@ -9,12 +9,14 @@ const LoginNav = props => {
         <Navbar  color="faded" className="navBar" light> 
             <NavbarBrand href="/" className="mr-auto">eatAnywhere</NavbarBrand>
             <Nav navbar>
-                <NavItem>
-                    <Link to="/" className="navLink">Login</Link>
-                </NavItem>
-                <NavItem>
-                    <Link to="/register" className="navLink">Register</Link>
-                </NavItem>
+               <Row>
+                    <NavItem className="navLaptopItem">
+                        <Link to="/" className="navLink">Login</Link>
+                    </NavItem>
+                    <NavItem className="navLaptopItem">
+                        <Link to="/register" className="navLink">Register</Link>
+                    </NavItem>
+               </Row>
             </Nav>
         </Navbar>
     </div>
