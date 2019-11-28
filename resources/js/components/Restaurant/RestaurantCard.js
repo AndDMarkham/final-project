@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 
 const RestaurantCard = props => {
+    const { executeScroll } = props
     const [restaurants, setRestaurants] = useState();
     useEffect(()=> {
         const token = window.localStorage.getItem('token');
@@ -47,11 +48,23 @@ const RestaurantCard = props => {
                             </div>    
                                 <Button className="btnShowOnMap" onClick={() => {
                                     console.log(restaurant);
+                                    if (window.innerWidth < 767) {
+                                        const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                                        console.log(scrolltop)
+                                        console.log(document.querySelector('.mapRow').getBoundingClientRect().top)
+                                        console.log(document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop)
+                                        window.scrollTo({
+                                            top: document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop + 200, 
+                                            left: 0, 
+                                            behavior: 'smooth'
+                                        });
+                                    }
                                     props.handleRestCoords({
                                         lat: restaurant.latitude,
                                         lon: restaurant.longitude
                                     })
-                                }}>Show on the map</Button>
+                                    //executeScroll();
+                                }}>Show on the mappie</Button>
                         </div>
                         
                         <Dishes

@@ -63,7 +63,7 @@ const NewMap = (props) => {
   const [restaurantCoordsLat, setRestaurantCoordsLat] = useState();
   const [restaurantCoordsLng, setRestaurantCoordsLng] = useState();
   const [restaurantId, setRestaurantId] = useState();
- 
+  // const { mapRef } = props
 
   const handleMouseClick = async(lat, long) => {
     console.log('clicking')
@@ -90,7 +90,6 @@ const NewMap = (props) => {
       {
         props.restCoords !== null && (
           <Marker
-            
               onClick={() => {
                 setRestaurantCoordsLng(long)
                 setRestaurantCoordsLat(lat);
@@ -166,13 +165,15 @@ const MapWrapped = withScriptjs(withGoogleMap(NewMap));
 
 export default function App(props) {
   return (
-    <Row>
+    <Row className="mapRow">
       <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${googleKey}`}
         loadingElement={<Col sm="12"  />}
         containerElement={<Col sm="12" />}
         mapElement={<div className="mapElement" />}
         restCoords={props.restCoords}
+        // mapRef={props.mapRef}
+        
       />
     </Row>
   );

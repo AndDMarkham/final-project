@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import '../../sass/index.scss';
 import Home from './Home';
@@ -9,6 +9,12 @@ import Login from './Auth/Login';
 import Register from './Auth/Register';
 import LoginNav from './Nav/LoginNav';
 import Search from './Search/Search';
+import smoothscroll from 'smoothscroll-polyfill';
+ 
+// kick off the polyfill!
+smoothscroll.polyfill();
+
+const scrollToRef = (ref) => window.scrollTo(0, ref.current)
 
 const App = () =>  {
     const [ user, setUser ] = useState({
@@ -16,6 +22,9 @@ const App = () =>  {
         token: '',
         user: null
     });
+
+    const mapRef = useRef(null);
+    const executeScroll = () => scrollToRef(mapRef)
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
@@ -34,22 +43,24 @@ const App = () =>  {
         return (
             <>
             <HashRouter history={history}>
-                <div style={{width:'100vw', height: '100vh'}}>
+                <div style={{width:'100vw', minHeight: '100vh'}}>
                     <Navigation/>
                     <div> 
                     <Switch>
                         <Route
-                            
+                            exact={true}
                             path = '/'
                             render={() =>
                                 <Home
                                     setUser={setUser} 
                                     user={user}
+                                    mapRef={mapRef}
+                                    executeScroll={executeScroll}
                                 />
                             }
                         />
                         <Route
-                            exact={true}
+                            
                             path = '/search'
                             render={() => 
                                 <Search

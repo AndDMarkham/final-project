@@ -10,7 +10,7 @@ const DishCard = props => {
             
                 <div>
                     <CardTitle>{props.dish.name}</CardTitle>
-                    <div>{props.dish.description}
+                    <div className="dishDescription">{props.dish.description}
                         <p>{props.dish.diet_id}</p>
                     </div>
                 </div>

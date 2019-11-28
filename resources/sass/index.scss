@@ -4,7 +4,7 @@
 
 body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     background: rgb(255, 255, 255) url('/images/rsz_rsz_jakub-kapusnak-sdbj1dflfpu-unsplash.jpg') center repeat;
     background-size: cover;
@@ -30,9 +30,42 @@ body {
     background-color: rgba(255, 255, 255, 0.8);   
 }
 
+.mr-auto {
+    font-size: 1rem;
+    @media only screen and (min-width:768px){
+        font-size: 1.5rem;
+    }
+}
+    
+.navLaptopItem {
+    margin: 0 1rem 0 1rem;
+    
+}
+
 .navLink {
     color: darkgreen;
+    @media only screen and (min-width:768px){
+        font-size: 1.5rem;
+    }
 }
+
+.navMobile {
+    display: block;
+    @media only screen and (min-width:768px){
+        display: none;
+    }
+}
+
+.navLaptop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    @media only screen and (max-width:767px){
+        display: none;
+    }
+}
+
 
 //NewMap
 .mapElement {
@@ -203,6 +236,12 @@ body {
     margin:  0 2.5rem 0 2rem;
 }
 
+.dishDescription {
+    @media screen and (max-width: 768px) {
+        display:none;
+    }
+}
+
 //DishForm
 
 .dishForm {
@@ -221,10 +260,10 @@ body {
 }
 .dishPic {
     justify-content: center;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
-    margin-right: 0;
-    width: 100px;
+    // padding-left: 0.2rem;
+    // padding-right: 0.2rem;
+    // margin-right: 0;
+    width: 180px;
     @media screen and (min-width: 768px) {
         width: 150px;
         margin-right: 0;
@@ -239,7 +278,7 @@ body {
 }
 
 .slick-arrow.slick-prev {
-    left: -10px;
+    left: 10px;
     z-index: 500;   
 }
 
