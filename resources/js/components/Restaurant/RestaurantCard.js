@@ -64,7 +64,7 @@ const RestaurantCard = props => {
                                         lon: restaurant.longitude
                                     })
                                     //executeScroll();
-                                }}>Show on the mappie</Button>
+                                }}>Show on the map</Button>
                         </div>
                         
                         <Dishes
@@ -75,10 +75,26 @@ const RestaurantCard = props => {
                     </Card>
                 ))
             }
-            <Card body className="shadow p-3 mb-5 bg-white rounded">
+            <Card body className="shadow bg-white rounded newRestaurant">
                 <CardTitle className="restaurantName">Add New Restaurant</CardTitle>
-                <div className="restaurantInfo">
-                    <Button tag={Link} to="/restaurant/new" >+</Button>
+                <div style={{textAlign: 'center' ,fontSize:'2em'}}>
+                    <Button tag={Link} to="/restaurant/new" 
+                    onClick={()=> {
+                        if (window.innerWidth < 767) {
+                            setTimeout(() => {
+                              const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                              console.log(scrolltop)
+                              console.log(document.querySelector('.restaurantForm').getBoundingClientRect().top)
+                              console.log(document.querySelector('.restaurantForm').getBoundingClientRect().top + scrolltop)
+                              window.scrollTo({
+                                  top: document.querySelector('.restaurantForm').getBoundingClientRect().top + scrolltop, 
+                                  left: 0, 
+                                  behavior: 'smooth'
+                              });
+                            }, 50)
+                          }
+                    }}
+                    >+</Button>
                 </div>
             </Card>
         </div>

@@ -165,7 +165,7 @@ body {
 //RestaurantCard
 .restaurantCardsScroll {
     overflow-y: scroll;
-    height: 200px;
+    height: 430px;
     @media screen and (min-width: 768px) {
         height: 449px;
         
@@ -194,6 +194,12 @@ body {
         display: block;
         text-align: center;
       }
+}
+
+.newRestaurant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
 }
 
 .btnShowOnMap {
@@ -226,7 +232,7 @@ body {
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    padding: 15rem; 
+    //padding: 15rem; 
     padding-top: 5rem;
 }
 
@@ -234,12 +240,19 @@ body {
 .dishCard {
     background-color: grey;
     margin:  0 2.5rem 0 2rem;
+    .card-title {
+        margin-bottom: 0;
+    }
 }
 
 .dishDescription {
     @media screen and (max-width: 768px) {
         display:none;
     }
+}
+
+.addNewDishCard {
+    margin-left: 0;
 }
 
 //DishForm
@@ -263,7 +276,7 @@ body {
     // padding-left: 0.2rem;
     // padding-right: 0.2rem;
     // margin-right: 0;
-    width: 180px;
+    width: 160px;
     @media screen and (min-width: 768px) {
         width: 150px;
         margin-right: 0;
@@ -273,7 +286,7 @@ body {
 
 //Carousel style
 .slick-arrow.slick-prev:before {
-    color: black;
+    color: rgb(3, 93, 3);
     font-size: 25px;
 }
 
@@ -283,12 +296,19 @@ body {
 }
 
 .slick-arrow.slick-next:before {
-    color: black;
+    color: rgb(3, 93, 3);
     font-size: 25px;
 }
 
 .slick-arrow.slick-next {
-    right: 0;
+    right: 15px;
+    @media screen and (min-width: 768px) {
+        right: 15px;
+    }
+    @media screen and (min-width: 997px) {
+        right: 0;
+    }
+    
 }
 
 //searchbar

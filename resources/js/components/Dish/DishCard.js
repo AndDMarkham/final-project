@@ -9,7 +9,7 @@ const DishCard = props => {
         <Card key={props.key} className="dishCard shadow-sm p-3 mb-5 bg-white rounded">
             
                 <div>
-                    <CardTitle>{props.dish.name}</CardTitle>
+                    <CardTitle mb-0>{props.dish.name}</CardTitle>
                     <div className="dishDescription">{props.dish.description}
                         <p>{props.dish.diet_id}</p>
                     </div>
