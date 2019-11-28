@@ -54,9 +54,21 @@ if (loading === true) {
                 restaurants.map((restaurant, key) => (
                     <Card key={key} body  className="shadow p-1 mb-4 restaurantCard rounded">
                         <div className="restaurantCardMobile">
-                            <h4 >
-                                <Link className="restaurantName" to="/restaurant/" onClick={() => 
-                                    props.setRestaurantId(restaurant.id)}>
+                            <h4 className="restaurantName">
+                                <Link  to="/restaurant/" onClick={() => {
+                                    props.setRestaurantId(restaurant.id)
+                                    if (window.innerWidth < 767) {
+                                        setTimeout(() => {
+                                          const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                                          window.scrollTo({
+                                              top: document.querySelector('.restaurantDetail').getBoundingClientRect().top + scrolltop, 
+                                              left: 0, 
+                                              behavior: 'smooth'
+                                          });
+                                        }, 50)
+                                      }
+                                }
+                                    }>
                                         {restaurant.name}
                                 </Link>
                             </h4>
@@ -71,23 +83,30 @@ if (loading === true) {
                                 <Button className="btnShowOnMap" onClick={() => {
                                     console.log(restaurant);
                                     if (window.innerWidth < 767) {
-                                        const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
-                                        console.log(scrolltop)
-                                        console.log(document.querySelector('.mapRow').getBoundingClientRect().top)
-                                        console.log(document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop)
-                                        window.scrollTo({
-                                            top: document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop + 200, 
-                                            left: 0, 
-                                            behavior: 'smooth'
-                                        });
+                                        // const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                                        // console.log(scrolltop)
+                                        // console.log(document.querySelector('.mapRow').getBoundingClientRect().top)
+                                        // console.log(document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop)
+                                        // window.scrollTo({
+                                        //     top: document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop, 
+                                        //     left: 0, 
+                                        //     behavior: 'smooth'
+                                        // },100);
                                     }
                                     props.handleRestCoords({
                                         lat: restaurant.latitude,
                                         lon: restaurant.longitude
                                     })
+                                    console.log('SETTING SCROLLTO TO .mapRow');
+                                    if (document.querySelector('.mapRow')) {
+                                        console.log('ELEMENT EXISTS');
+                                    } else {
+                                        console.log('ELEMENT DOES NOT EXIST NOW');
+                                    }
+                                    props.setScrollTo('.mapRow');
                                     //executeScroll();
                                 }}
-                                tag={Link} to="/" >Show on the map</Button>
+                                tag={Link} to="/" >Map</Button>
                         </div>
                         
                         <Dishes

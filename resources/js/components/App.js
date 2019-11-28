@@ -14,7 +14,7 @@ import smoothscroll from 'smoothscroll-polyfill';
 // kick off the polyfill!
 smoothscroll.polyfill();
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current)
+//const scrollToRef = (ref) => window.scrollTo(0, ref.current)
 
 const App = () =>  {
     const [ user, setUser ] = useState({
@@ -22,6 +22,8 @@ const App = () =>  {
         token: '',
         user: {}
     });
+
+    const [ scrollTo, setScrollTo] = useState(null);
 
     const mapRef = useRef(null);
     const executeScroll = () => scrollToRef(mapRef)
@@ -37,6 +39,26 @@ const App = () =>  {
             })
         }
     }, []);
+
+    useEffect(() => {
+        if (scrollTo) {
+            console.log(scrollTo);
+            const scrollToElement = document.querySelector(scrollTo)
+            if (scrollToElement) {
+                const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                console.log('SCROLLING TO '+scrollTo);
+                // console.log(document.querySelector('.mapRow').getBoundingClientRect().top)
+                // console.log(document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop)
+                window.scrollTo({
+                    top: scrollToElement.getBoundingClientRect().top + scrolltop, 
+                    left: 0, 
+                    behavior: 'smooth'
+                });
+                setScrollTo(null);
+            }
+            
+        }
+    });
 
 
     if (user.loggedIn && user.token) {
@@ -58,6 +80,7 @@ const App = () =>  {
                                     user={user}
                                     mapRef={mapRef}
                                     executeScroll={executeScroll}
+                                    setScrollTo={setScrollTo}
                                 />
                             }
                         />
