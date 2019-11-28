@@ -33,7 +33,7 @@ const Dishes = props => {
         }
         <Card className="dishCard addNewDishCard shadow-sm bg-white rounded">
             <div>
-                <CardTitle>Add New Dish</CardTitle>
+                <CardTitle className="restaurantName">Add New Dish</CardTitle>
             </div>
             <div style={{textAlign: 'center' ,fontSize:'5em'}}>
                 <Button 

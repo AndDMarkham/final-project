@@ -41,7 +41,7 @@ return (
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            Dishes you uploaded
+            Your uploads
           </NavLink>
         </NavItem>
       </Nav>

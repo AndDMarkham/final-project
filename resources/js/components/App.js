@@ -59,7 +59,7 @@ const App = () =>  {
                             }
                         />
                         <Route
-                            
+                            exact={true}
                             path = '/search'
                             render={() => 
                                 <Search
