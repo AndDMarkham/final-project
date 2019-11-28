@@ -20,7 +20,7 @@ const App = () =>  {
     const [ user, setUser ] = useState({
         loggedIn: false,
         token: '',
-        user: null
+        user: {}
     });
 
     const mapRef = useRef(null);
@@ -44,7 +44,10 @@ const App = () =>  {
             <>
             <HashRouter history={history}>
                 <div style={{width:'100vw', minHeight: '100vh'}}>
-                    <Navigation/>
+                    <Navigation
+                        setUser={setUser} 
+                        user={user}
+                    />
                     <div> 
                     <Switch>
                         <Route

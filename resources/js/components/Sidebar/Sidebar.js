@@ -10,7 +10,7 @@ import classnames from 'classnames';
 
 const Sidebar = props => {
     
-  const { executeScroll } = props
+  const { executeScroll, user, setUser } = props
   const [activeTab, setActiveTab] = useState('0');
 
   const toggle = tab => {
@@ -52,7 +52,8 @@ return (
           <RestaurantCard {...props}
                                     handleRestCoords={props.setRestCoords}
                                     setRestaurantId={props.setRestaurantId}
-                                    user={props.user}
+                                    user={user}
+                                    setUser={setUser}
                                     executeScroll={executeScroll}
                                     />
                                 

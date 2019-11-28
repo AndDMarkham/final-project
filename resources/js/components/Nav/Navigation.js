@@ -6,8 +6,36 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Bu
 
 const Navigation = props => {
     const [collapsed, setCollapsed] = useState(true);
+    const { user, setUser } = props
     const toggleNavbar = () => setCollapsed(!collapsed);
 
+    const handleLogout = () => {
+        console.log('logout');
+        async function logout() {
+            const token = window.localStorage.getItem('token');
+            const response = await fetch('http://www.eatanywhere.test:8080/api/logout' , {
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'Authorization': 'Bearer ' + token,
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+            window.localStorage.removeItem('token');
+            window.localStorage.removeItem('user');
+            setUser({
+                loggedIn: false,
+                token: '',
+                user: {}
+            })
+            console.log('logged out');
+            window.location = '/';
+        }
+
+        logout();
+    }
 
     return (
         
@@ -24,7 +52,7 @@ const Navigation = props => {
                 <Link to="/search" className="navLink navLaptopItem">Search</Link>
             </NavItem>
             <NavItem>
-              <Button className="navLaptopItem">Logout</Button>
+              <Button onClick={handleLogout} className="navLaptopItem">Logout</Button>
             </NavItem>
         </Nav>
         <div className="navMobile">
@@ -38,7 +66,7 @@ const Navigation = props => {
                 <Link to="/search" className="navLink">Search</Link>
               </NavItem>
               <NavItem>
-                <Button>Logout</Button>
+                <Button onClick={handleLogout}>Logout</Button>
               </NavItem>
             </Nav>
           </Collapse>

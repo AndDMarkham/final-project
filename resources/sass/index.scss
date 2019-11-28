@@ -102,9 +102,19 @@ body {
 .login{
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 100vw;
+    height: 70vh;
     align-items: center;
     justify-content: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .sidebar {
