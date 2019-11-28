@@ -60,9 +60,7 @@ if (loading === true) {
                                         {restaurant.name}
                                 </Link>
                             </h4>
-                            <p className="clickRestName">Click me <img src="/images/icons8-up-100.png" alt="arrow" width="30px"/>
                             
-                            </p>
                             <div className="restaurantInfo">
                                 <Row>
                                     <Col xs="12" md="6" lg="4"> {restaurant.address} </Col>
