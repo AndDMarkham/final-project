@@ -17,6 +17,12 @@ const DishCard = props => {
                 <Reviews 
                     reviews={props.dish.reviews} 
                 />
+                <div style={{textAlign: 'center'}}>
+                    <h6>Add a review</h6>
+                    <Button tag={Link} to="/review/new">
+                        +  
+                    </Button>
+                </div>
         </Card>
         
     )
