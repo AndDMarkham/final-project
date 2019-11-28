@@ -31,10 +31,10 @@ const Dishes = props => {
             />
           ))
         }
-        <Card className="dishCard addNewDishCard shadow-sm bg-white rounded">
-            <div>
-                <CardTitle className="restaurantName">Add New Dish</CardTitle>
-            </div>
+        <div >
+            
+            <h5 className="restaurantName">Add New Dish</h5>
+            
             <div style={{textAlign: 'center' ,fontSize:'5em'}}>
                 <Button 
                 onClick={() => {
@@ -54,9 +54,10 @@ const Dishes = props => {
                   }
                   
                 }}
-                tag={Link} to="/dish/new" >+</Button>
+                tag={Link} to="/dish/new" >+
+              </Button>
             </div>
-      </Card>
+      </div>
       </Slider>
     </>
   );

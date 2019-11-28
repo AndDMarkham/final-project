@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 const DishCard = props => {
     return (
-        <Card key={props.key} className="dishCard shadow-sm p-3 mb-5 bg-white rounded">
+        <Card key={props.key} className="dishCard shadow-sm p-3 mb-3 bg-white rounded">
             
                 <div>
                     <CardTitle mb-0>{props.dish.name}</CardTitle>

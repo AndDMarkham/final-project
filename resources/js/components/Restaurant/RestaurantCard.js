@@ -36,14 +36,17 @@ const RestaurantCard = props => {
             {
                 restaurants && 
                 restaurants.map((restaurant, key) => (
-                    <Card key={key} body  className="shadow p-1 mb-5 bg-white rounded">
+                    <Card key={key} body  className="shadow p-1 mb-4 restaurantCard rounded">
                         <div className="restaurantCardMobile">
-                            <CardTitle className="restaurantName">
-                                <Link to="/restaurant/" onClick={() => 
+                            <h4 >
+                                <Link className="restaurantName" to="/restaurant/" onClick={() => 
                                     props.setRestaurantId(restaurant.id)}>
                                         {restaurant.name}
                                 </Link>
-                            </CardTitle>
+                            </h4>
+                            <p className="clickRestName">Click me <img src="/images/icons8-up-100.png" alt="arrow" width="30px"/>
+                            
+                            </p>
                             <div className="restaurantInfo">
                                 <Row>
                                     <Col xs="12" md="6" lg="4"> {restaurant.address} </Col>
@@ -69,7 +72,8 @@ const RestaurantCard = props => {
                                         lon: restaurant.longitude
                                     })
                                     //executeScroll();
-                                }}>Show on the map</Button>
+                                }}
+                                tag={Link} to="/" >Show on the map</Button>
                         </div>
                         
                         <Dishes
@@ -81,7 +85,7 @@ const RestaurantCard = props => {
                 ))
             }
             <Card body className="shadow bg-white rounded newRestaurant">
-                <CardTitle className="restaurantName">Add New Restaurant</CardTitle>
+                <h4 className="restaurantName">Add New Restaurant</h4>
                 <div style={{textAlign: 'center' ,fontSize:'2em'}}>
                     <Button tag={Link} to="/restaurant/new" 
                     onClick={()=> {
