@@ -24,7 +24,7 @@ class PrimaryController extends Controller
             $dishQ->whereHas('diets', function (Builder $dietQuery) use ($diets) {
                 $dietQuery->whereIn('diets.id', $diets);
             })->with('reviews.image');
-        }])->limit(20)->get();
+        }])->limit(30)->get();
     
 
         return $restaurants;

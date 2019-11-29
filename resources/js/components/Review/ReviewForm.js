@@ -92,7 +92,7 @@ const ReviewForm = props => {
                 onChange={onDrop}
                 withLabel={false}
                 singleImage={true}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif']}
                 maxFileSize={5242880}
             />
            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
