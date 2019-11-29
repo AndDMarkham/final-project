@@ -35,29 +35,29 @@ const getDietIds = (diets) => Object.keys(diets).reduce((acc, dietName) => {
 
 const DishForm = props => {
     const [formInputValues, setFormInputValues] = useState({name: '', description: '', diets:{
-        vegan: false,
-        vegetarian: false,
-        pescetarian: false,
-        keto: false,
-        halal: false,
-        kosher: false,
-        gluten: false,
-        milk: false,
-        soy: false,
-        eggs: false,
-        peanuts: false,
-        treenuts: false,
-        fish: false,
-        molluscs: false,
-        crustaceans: false,
-        mustard: false,
-        sesame: false,
-        celery: false,
-        lupin: false,
-        sulphites: false
+        vegan: true,
+        vegetarian: true,
+        pescetarian:true,
+        keto: true,
+        halal: true,
+        kosher: true,
+        gluten: true,
+        milk: true,
+        soy: true,
+        eggs: true,
+        peanuts: true,
+        treenuts: true,
+        fish: true,
+        molluscs: true,
+        crustaceans: true,
+        mustard: true,
+        sesame: true,
+        celery: true,
+        lupin: true,
+        sulphites: true
     }});
     const [formSubmitSuccess, setFormSubmitSuccess] = useState()
-    const formStyle = { margin: '.5rem' }
+    const formStyle = { margin: '.3rem' }
 
     console.log('rest.id', props.restaurantId);
 
@@ -141,11 +141,10 @@ const DishForm = props => {
                 onChange = {handleNameInputChange}
                 style={formStyle}
                />
-               <br/>
-               <h4>Diet & Allergy Restrictions</h4>
-               <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'0',marginBottom:'1rem', paddingBottom:'0', width:'60%'}}>
+               <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'0',margin:'0rem', padding:'0rem', width:'60%'}}>
                     <Col sm='12' md="6" >
-                    <label style={{width:'150px'}}>
+                    <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-vegan-symbol-512.png'></img>
                             <input 
                                 type="checkbox"
                                 id="vegan"
@@ -155,7 +154,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.vegan}
                                 /> Vegan
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/lettuce.png'></img>
                             <input 
                                 type="checkbox"
                                 id="vegetarian"
@@ -165,7 +165,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.vegetarian}
                                 /> Vegetarian
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/trout.png'></img>
                             <input 
                                 type="checkbox"
                                 id="pescetarian"
@@ -175,7 +176,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.pescetarian}
                                 /> Pescetarian
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/meat.png'></img>
                             <input 
                                 type="checkbox"
                                 id="keto"
@@ -185,7 +187,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.keto}
                                 /> Keto
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/halal.png'></img>
                             <input 
                                 type="checkbox"
                                 id="halal"
@@ -195,7 +198,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.halal}
                                 /> Halal
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/kosher.png'></img>
                             <input 
                                 type="checkbox"
                                 id="kosher"
@@ -205,7 +209,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.kosher}
                                 /> Kosher
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-gluten-96.png'></img>
                             <input 
                                 type="checkbox"
                                 id="gluten"
@@ -215,7 +220,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.gluten}
                                 /> Gluten
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-non-lactose-food-100.png'></img>
                             <input 
                                 type="checkbox"
                                 id="milk"
@@ -225,7 +231,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.milk}
                                 /> Milk
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-soy-512.png'></img>
                             <input 
                                 type="checkbox"
                                 id="soy"
@@ -235,7 +242,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.soy}
                                 /> Soy
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-eggs-128.png'></img>
                             <input 
                                 type="checkbox"
                                 id="eggs"
@@ -247,7 +255,8 @@ const DishForm = props => {
                         </label>
                         </Col>
                         <Col sm='12' md="6" >
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-peanut-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="peanuts"
@@ -257,7 +266,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.peanuts}
                                 /> Peanuts
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-nuts-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="treenuts"
@@ -267,7 +277,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.treenuts}
                                 /> Tree nuts
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-fish-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="fish"
@@ -277,7 +288,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.fish}
                                 /> Fish
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-shellfish-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="molluscs"
@@ -287,7 +299,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.molluscs}
                                 /> Molluscs
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-crustaceans-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="crustaceans"
@@ -297,7 +310,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.crustaceans}
                                 /> Crustaceans
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-mustard-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="mustard"
@@ -307,7 +321,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.mustard}
                                 /> Mustard
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-sesame-96.png'></img>
                             <input 
                                 type="checkbox"
                                 id="sesame"
@@ -318,6 +333,7 @@ const DishForm = props => {
                                 /> Sesame
                         </label>
                         <label style={{width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-celery-64.png'></img>
                             <input 
                                 type="checkbox"
                                 id="celery"
@@ -327,7 +343,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.celery}
                                 /> Celery
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-lupines-96.png'></img>
                             <input 
                                 type="checkbox"
                                 id="lupin"
@@ -337,7 +354,8 @@ const DishForm = props => {
                                 checked={formInputValues.diets.lupin}
                                 /> Lupin
                         </label>
-                        <label style={{width:'150px'}}>
+                        <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                            <img className="profileIcon" src='images/icons8-no-filling-80.png'></img>
                             <input 
                                 type="checkbox"
                                 id="sulphites"
