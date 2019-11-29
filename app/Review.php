@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     protected $fillable = [
-        'user_id','text'
+        'user_id', 'text', 'dish_id', 'rating', 'image_id'
     ];
 
     public function dish()

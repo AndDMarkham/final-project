@@ -14,32 +14,32 @@ const mapStyles = {
   height: '80vh'
 };
 
-const restaurantsPosition = [
-  {
-    name: "rest A",
-    latitude: 50.20,
-    longitude: 14.49,
+// const restaurantsPosition = [
+//   {
+//     name: "rest A",
+//     latitude: 50.20,
+//     longitude: 14.49,
     
-  },
-  {
-    name: "rest C",
-    latitude: 50.08,
-    longitude: 14.31,
+//   },
+//   {
+//     name: "rest C",
+//     latitude: 50.08,
+//     longitude: 14.31,
 
-  },
-  {
-    name: "rest B",
-    latitude: 50.09,
-    longitude: 14.72,
+//   },
+//   {
+//     name: "rest B",
+//     latitude: 50.09,
+//     longitude: 14.72,
 
-  },
-  {
-    name: "rest D",
-    latitude: 49.90,
-    longitude: 14.43,
+//   },
+//   {
+//     name: "rest D",
+//     latitude: 49.90,
+//     longitude: 14.43,
 
-  },
-]
+//   },
+// ]
 
 const InfoWindowWrapper = (props) => {
 
@@ -59,10 +59,12 @@ const InfoWindowWrapper = (props) => {
 }
 
 const NewMap = (props) => {
+  const { restaurantsPosition } = props;
   const [selectedRestaurant, setSelectedRestaurant] = useState(false);
   const [restaurantCoordsLat, setRestaurantCoordsLat] = useState();
   const [restaurantCoordsLng, setRestaurantCoordsLng] = useState();
   const [restaurantId, setRestaurantId] = useState();
+  const [ loading, setLoading ] = useState(true);
   // const { mapRef } = props
 
   const handleMouseClick = async(lat, long) => {
@@ -78,68 +80,73 @@ const NewMap = (props) => {
     console.log(" state coord long", restaurantCoordsLng)
   }
 
+  useEffect(() => {
+    console.log('restauant pos', restaurantsPosition)
+  }, [props.restaurantsPosition])
+
   console.log("displaying the state", restaurantCoordsLat)
 
   console.log(props);
-  return(
-    <GoogleMap
-      defaultZoom={10.5}
-      defaultCenter={{ lat: 50.072, lng: 14.49 }}
-      defaultOptions={{ styles: mapStyles }}
-    >
-      {
-        props.restCoords !== null && (
-          <Marker
-              onClick={() => {
-                setRestaurantCoordsLng(long)
-                setRestaurantCoordsLat(lat);
-                 setRestaurantId(key);
+  console.log('pos map', restaurantsPosition)
+  return (
+        <GoogleMap
+          defaultZoom={10.5}
+          defaultCenter={{ lat: 50.072, lng: 14.49 }}
+          defaultOptions={{ styles: mapStyles }}
+        >
+          {
+            props.restCoords !== null && (
+              <Marker
+                  onClick={() => {
+                    setRestaurantCoordsLng(long)
+                    setRestaurantCoordsLat(lat);
+                    setRestaurantId(key);
 
-                setSelectedRestaurant(!selectedRestaurant);
-                console.log('key', key)
+                    setSelectedRestaurant(!selectedRestaurant);
+                    console.log('key', key)
 
-                console.log('restaurantid', restaurantId)
-                console.log(restaurantsPosition[restaurantId])
-                console.log(restaurantsPosition[restaurantId].name)
+                    console.log('restaurantid', restaurantId)
+                    console.log(restaurantsPosition[restaurantId])
+                    console.log(restaurantsPosition[restaurantId].name)
 
-              }}
-              position={{
-                lat: props.restCoords.lat,
-                lng: props.restCoords.lon
-              }}
-            />
-        )
-      }
-      {props.restCoords === null && restaurantsPosition.map((rest, key) => {
-        console.log(rest.latitude)
-        const lat = rest.latitude;
-        const long = rest.longitude
-        console.log(lat, long)
-        return (
-         
-            <Marker
-              key={key}
-              
-              onClick={() => {
-                setRestaurantCoordsLng(long)
-                setRestaurantCoordsLat(lat);
-                 setRestaurantId(key);
+                  }}
+                  position={{
+                    lat: props.restCoords.lat,
+                    lng: props.restCoords.lon
+                  }}
+                />
+            )
+          }
+          {props.restCoords === null && restaurantsPosition.map((rest, key) => {
+            console.log(rest.latitude)
+            const lat = rest.latitude;
+            const long = rest.longitude
+            console.log(lat, long)
+            return (
+            
+                <Marker
+                  key={key}
+                  
+                  onClick={() => {
+                    setRestaurantCoordsLng(long)
+                    setRestaurantCoordsLat(lat);
+                    setRestaurantId(key);
 
-                setSelectedRestaurant(!selectedRestaurant);
-                console.log('key', key)
+                    setSelectedRestaurant(!selectedRestaurant);
+                    console.log('key', key)
 
-                console.log('restaurantid', restaurantId)
-                console.log(restaurantsPosition[restaurantId])
-                console.log(restaurantsPosition[restaurantId].name)
+                    console.log('restaurantid', restaurantId)
+                    console.log(restaurantsPosition[restaurantId])
+                    console.log(restaurantsPosition[restaurantId].name)
 
-              }}
-              position={{
-                lat: lat,
-                lng: long
-              }}
-            />
-        )
-      })}
+                  }}
+                  position={{
+                    lat: lat,
+                    lng: long
+                  }}
+                />
+            )
+          })}
 
 {selectedRestaurant && (
  
@@ -164,7 +171,14 @@ const NewMap = (props) => {
 const MapWrapped = withScriptjs(withGoogleMap(NewMap));
 
 export default function App(props) {
-  return (
+  const { restaurantsPosition } = props; 
+  if (!restaurantsPosition) {
+    return (
+      <div>
+          Loading...
+      </div>
+    )
+} return (
     <Row className="mapRow">
       <MapWrapped
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${googleKey}`}
@@ -172,6 +186,8 @@ export default function App(props) {
         containerElement={<Col sm="12" />}
         mapElement={<div className="mapElement" />}
         restCoords={props.restCoords}
+        restaurantsPosition={restaurantsPosition}
+        
         // mapRef={props.mapRef}
         
       />

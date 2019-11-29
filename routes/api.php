@@ -31,6 +31,7 @@ Route::group(['middleware' => ['json.response']], function () {
 
         //PrimaryApi:
         Route::post('/restaurants', 'Api\PrimaryController@index');
+        Route::post('/search', 'Api\PrimaryController@search');
 
         //RestaurantApis:
         Route::get('/restaurant/{id}', 'Api\RestaurantsController@show');

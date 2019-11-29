@@ -26,7 +26,6 @@ const App = () =>  {
     const [ scrollTo, setScrollTo] = useState(null);
 
     const mapRef = useRef(null);
-    const executeScroll = () => scrollToRef(mapRef)
 
     useEffect(() => {
         const token = window.localStorage.getItem('token');
@@ -75,13 +74,12 @@ const App = () =>  {
                     <div> 
                     <Switch>
                         <Route
+                            exact={true}
                             path = '/'
                             render={() =>
                                 <Home
                                     setUser={setUser} 
                                     user={user}
-                                    mapRef={mapRef}
-                                    executeScroll={executeScroll}
                                     setScrollTo={setScrollTo}
                                 />
                             }
@@ -91,8 +89,9 @@ const App = () =>  {
                             path = '/search'
                             render={() => 
                                 <Search
-                                setUser={setUser} 
-                                user={user}
+                                    setUser={setUser} 
+                                    user={user}
+                                    setScrollTo={setScrollTo}
                                 />
                             }
                         />

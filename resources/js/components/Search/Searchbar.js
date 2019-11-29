@@ -1,15 +1,50 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button} from 'reactstrap';
 
 const Searchbar = props => {
-    console.log('searchbar', props)
+    const { searchResults, setSearchResults } = props;
+    const [ name, setName ] = useState('');
+
+    const handleChange = e => {
+        setName(e.target.value);
+      };
+
+    const handleSubmit = e => {
+        async function fetchRestaurants() {
+            const token = window.localStorage.getItem('token')
+            const response = await fetch('http://www.eatanywhere.test:8080/api/search', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name
+                })
+            })
+            const data = await response.json();
+            setSearchResults(data)
+            console.log('data', data);
+        }
+
+        try {
+            fetchRestaurants()
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
     return (
         <div>
             <div className="searchbar">
-            <label>Find out if your favourite restaurant has some delicious food for you!</label>
-            <input type="text" name="restaurantSearch" placeholder="name of the restaurant"/>
+            <form>
+                <label htmlFor="restaurantSearch">Find out if your favourite restaurant has some delicious food for you!</label>
+                <input id="restaurantSearch" type="text" name="restaurantSearch" onChange={handleChange} value={name}/>
+            </form>
             </div>
-            <Button className="btnSearch">Search</Button>
+            <Button className="btnSearch" onClick={handleSubmit}>Search</Button>
         </div>
     )
 }

@@ -3,9 +3,10 @@ import ImageUploader from 'react-images-upload';
 import { Button } from 'reactstrap';
 
 const ReviewForm = props => {
+    console.log('review props', props)
     const { dishId } = props
     const [formInputValues, setFormInputValues] = useState({review: '', rating: ''});
-    const [ image, setImage ] = useState({});
+    const [ image, setImage ] = useState();
 
     const handleNameInputChange = e => {
         setFormInputValues({
@@ -15,21 +16,22 @@ const ReviewForm = props => {
     };
 
     
-    const onDrop = e => {
-        setImage(e.target.files[0]);
+    const onDrop = pic => {
+        setImage(pic);
     }
 
     let formData = new FormData();
 
     const handleSubmitButtonClick = (e) => {
         e.preventDefault()
+        console.log(dishId);
         const user = JSON.parse(window.localStorage.getItem('user'));
-
-        formData.append('image', image);
+        formData.append('image', image[0]);
         formData.append('user_id', user.id);
         formData.append('dish_id', dishId);
         formData.append('rating', formInputValues.rating);
         formData.append('review', formInputValues.review);
+        console.log(formData);
 
         console.log("clicked", formInputValues, image, dishId, user.id);
         async function postSubmit() {
@@ -41,8 +43,7 @@ const ReviewForm = props => {
             headers: {
                 'Accept': 'application/json',
                 'Authorization': 'Bearer ' + token,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/json'
+                'X-Requested-With': 'XMLHttpRequest'
             },
             responseType: 'json',
             body: formData

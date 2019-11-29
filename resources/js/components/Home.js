@@ -6,7 +6,7 @@ import DishForm from './Dish/DishForm';
 import ReviewForm from './Review/ReviewForm';
 import Sidebar from './Sidebar/Sidebar'
 import { Row, Col } from 'reactstrap';
-import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
+import {HashRouter, Router, Route, Switch, Redirect} from "react-router-dom";
 
 
 const Home = props => {
@@ -14,12 +14,13 @@ const Home = props => {
     const [ restCoords, setRestCoords ] = useState(null);
     const [ restaurantId, setRestaurantId ] = useState(null)
     const [ dishId, setDishId ] = useState(null)
-console.log(user)
-    
+    const [ restaurantsPosition, setRestaurantsPosition ] = useState([]);
+    console.log('home dishId', dishId);
+    // console.log('restaurantsPosition in Home: ', restaurantsPosition);
     // console.log(restCoords);
     return (
         <Row className="home">
-            <HashRouter>
+            <HashRouter history={history}>
                 <Col sm="12" md="6" className="pad pad-left">
                     <Sidebar 
                         setRestaurantId={setRestaurantId}
@@ -29,6 +30,7 @@ console.log(user)
                         setDishId={setDishId}
                         executeScroll={executeScroll}
                         setScrollTo={props.setScrollTo} 
+                        setRestaurantsPosition={setRestaurantsPosition}
                     />
                 </Col>
                 <Col sm="12" md="6" className="pad pad-right" >
@@ -39,6 +41,7 @@ console.log(user)
                             render = {()=>    
                                 <Map 
                                     restCoords={restCoords}
+                                    restaurantsPosition={restaurantsPosition}
                                     
                             />
                             }
