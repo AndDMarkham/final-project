@@ -58,14 +58,15 @@ if (loading === true) {
                                 <Link  to="/restaurant/" onClick={() => {
                                     props.setRestaurantId(restaurant.id)
                                     if (window.innerWidth < 767) {
-                                        setTimeout(() => {
-                                          const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
-                                          window.scrollTo({
-                                              top: document.querySelector('.restaurantDetail').getBoundingClientRect().top + scrolltop, 
-                                              left: 0, 
-                                              behavior: 'smooth'
-                                          });
-                                        }, 50)
+                                        // setTimeout(() => {
+                                        //   const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                                        //   window.scrollTo({
+                                        //       top: document.querySelector('.restaurantDetail').getBoundingClientRect().top + scrolltop + 200, 
+                                        //       left: 0, 
+                                        //       behavior: 'smooth'
+                                        //   });
+                                        // }, 50)
+                                        props.setScrollTo('.restaurantDetail');
                                       }
                                 }
                                     }>
@@ -118,7 +119,7 @@ if (loading === true) {
                 ))
             }
             <Card body className="shadow bg-white rounded newRestaurant">
-                <h4 className="restaurantName">Add New Restaurant</h4>
+                <h4 className="restaurantNewName">Add New Restaurant</h4>
                 <div style={{textAlign: 'center' ,fontSize:'2em'}}>
                     <Button tag={Link} to="/restaurant/new" 
                     onClick={()=> {

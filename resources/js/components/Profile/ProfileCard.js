@@ -35,7 +35,7 @@ const ProfileCard = props => {
                 <Row >
                 {
                     reviews.map((review, key) => (
-                        <Col className="shadow-sm bg-white rounded" lg="6" key={key} >
+                        <Col  xs-12 md-4 key={key} >
                             <div 
                             // style={{maxWidth:'50%', textAlign:'center'}}
                             >

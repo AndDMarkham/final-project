@@ -41,6 +41,7 @@ const App = () =>  {
     }, []);
 
     useEffect(() => {
+        console.log('SOMETHING HAPPENED')
         if (scrollTo) {
             console.log(scrollTo);
             const scrollToElement = document.querySelector(scrollTo)
@@ -54,8 +55,9 @@ const App = () =>  {
                     left: 0, 
                     behavior: 'smooth'
                 });
-                setScrollTo(null);
+                
             }
+            setScrollTo(null);
             
         }
     });
