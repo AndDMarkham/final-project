@@ -39,6 +39,11 @@ class ImagesSeeder extends Seeder
             ['path' => '/images/salmon_fillet.jpg'],
             ['path' => '/images/shio_ramen_no_noodles.jpg'],
             ['path' => '/images/veal_and_ribs.jpg'],
+            ['path' => '/images/chicken_with_camembert.jpg'],
+            ['path' => '/images/meatloaf1.jpg'],
+            ['path' => '/images/meatloaf2.jpg'],
+            ['path' => '/images/pork_spiz.jpg'],
+
             ]);
     }
 }

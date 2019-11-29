@@ -35,7 +35,7 @@ const Dishes = props => {
         }
         <div >
             
-            <h5 className="restaurantName">Add New Dish</h5>
+            <h5 className="restaurantNewName">Add New Dish</h5>
             
             <div style={{textAlign: 'center' ,fontSize:'5em'}}>
                 <Button 

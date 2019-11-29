@@ -19,7 +19,22 @@ const DishCard = props => {
                 />
                 <div style={{textAlign: 'center'}}>
                     <h6>Add a review</h6>
-                    <Button tag={Link} to="/review/new" onClick={props.setDishId(props.dish.id)}>
+                    <Button tag={Link} to="/review/new"
+                    onClick={() => {
+                        props.setDishId(props.dish.id)
+                        if (window.innerWidth < 767) {
+                          setTimeout(() => {
+                            const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
+                            window.scrollTo({
+                                top: document.querySelector('reviewForm').getBoundingClientRect().top + scrolltop, 
+                                left: 0, 
+                                behavior: 'smooth'
+                            });
+                          }, 50)
+                        }
+                        
+                      }}
+                    >
                         +  
                     </Button>
                 </div>

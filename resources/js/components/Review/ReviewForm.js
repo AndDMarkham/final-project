@@ -61,7 +61,7 @@ const ReviewForm = props => {
     } 
 
    return (
-       <form style={{display: 'flex', flexDirection: 'column', padding: '2rem'}} method="post" enctype="multipart/form-data">
+       <form className="reviewForm" style={{display: 'flex', flexDirection: 'column', padding: '2rem'}} method="post" enctype="multipart/form-data">
            <label htmlFor="rating">Rate the dish out of 5!</label>
            <input
             id="rating"
