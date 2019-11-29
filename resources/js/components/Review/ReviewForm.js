@@ -50,6 +50,7 @@ const ReviewForm = props => {
             const data = await response.json();
 
             console.log(data);
+            window.location = '/';
         }
 
         try {
@@ -58,6 +59,7 @@ const ReviewForm = props => {
         } catch (e) {
             console.log('errors', e)
         }
+
     } 
 
    return (

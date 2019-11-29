@@ -35,7 +35,7 @@ const ProfileCard = props => {
                 <Row >
                 {
                     reviews.map((review, key) => (
-                        <Col  className="uploadCard" xs-12 md-4 key={key} >
+                        <Col  className="uploadCard" xs="12" md="4" key={key} >
                             <div 
                             // style={{maxWidth:'50%', textAlign:'center'}}
                             >
