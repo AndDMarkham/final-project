@@ -23,7 +23,7 @@ class ReviewsSeeder extends Seeder
 
         foreach($dish_ids as $dish_id) {
 
-            for ($i = 0; $i < 3; $i++) {
+            for ($i = 0; $i < rand(1, 5); $i++) {
                 $review = new Review;
 
                 $review->dish_id = $dish_id;

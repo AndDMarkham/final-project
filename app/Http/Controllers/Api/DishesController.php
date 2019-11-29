@@ -12,6 +12,7 @@ class DishesController extends Controller
     public function show($id)
     {
         $dish = Dish::where('id', $id)
+            ->limit(10)
             ->with('reviews')
             ->with('reviews.image')
             ->get();

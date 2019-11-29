@@ -36,7 +36,7 @@ const ReviewForm = props => {
         console.log("clicked", formInputValues, image, dishId, user.id);
         async function postSubmit() {
             const token = window.localStorage.getItem('token');
-            const response = await fetch('http://www.eatanywhere.test:8080/api/review/new', {
+            const response = await fetch('/api/review/new', {
             method: 'POST',
             withCredentials: true,
             credentials: 'include',

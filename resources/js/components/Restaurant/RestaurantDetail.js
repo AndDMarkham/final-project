@@ -37,7 +37,7 @@ const RestaurantDetail = props => {
             const token = window.localStorage.getItem('token');
             const id = JSON.parse(window.localStorage.getItem('id'));
             async function fetchRestaurant(){
-                const response = await fetch(`http://www.eatanywhere.test:8080/api/restaurant/${props.restaurantId}`, {
+                const response = await fetch(`/api/restaurant/${props.restaurantId}`, {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',

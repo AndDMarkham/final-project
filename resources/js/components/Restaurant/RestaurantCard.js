@@ -15,7 +15,7 @@ const RestaurantCard = (props) => {
         async function fetchRestaurants(){
             console.log(props.user)
             setLoading(true);
-            const response = await fetch('http://www.eatanywhere.test:8080/api/restaurants', {
+            const response = await fetch('/api/restaurants', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + props.user.token,

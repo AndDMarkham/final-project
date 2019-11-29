@@ -27,12 +27,12 @@ class DishesSeeder extends Seeder
         $faker = Faker\Factory::create('en_US');
         Dish::truncate();
 
-        $restaurant_ids = Restaurant::limit(10)->pluck('id')->toArray();
+        $restaurant_ids = Restaurant::pluck('id')->toArray();
 
 
         foreach($restaurant_ids as $restaurant_id) {
 
-            for ($i = 0; $i < 6; $i++) {
+            for ($i = 0; $i < 20; $i++) {
                 $diets = $diets_rand();
 
                 $dish = new Dish;

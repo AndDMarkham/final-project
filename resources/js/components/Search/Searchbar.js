@@ -12,7 +12,7 @@ const Searchbar = props => {
     const handleSubmit = e => {
         async function fetchRestaurants() {
             const token = window.localStorage.getItem('token')
-            const response = await fetch('http://www.eatanywhere.test:8080/api/search', {
+            const response = await fetch('/api/search', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + token,

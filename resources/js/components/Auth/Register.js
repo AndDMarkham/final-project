@@ -104,7 +104,7 @@ const Register = props => {
     }
 
     async function postRegister(diets) {
-        const response = await fetch('http://www.eatanywhere.test:8080/api/register', {
+        const response = await fetch('/api/register', {
         method: 'POST',
         withCredentials: true,
         credentials: 'include',

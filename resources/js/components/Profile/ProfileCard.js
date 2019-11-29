@@ -10,7 +10,7 @@ const ProfileCard = props => {
         // console.log('user id', props.user.user.id)
         async function fetchReviews(){
             // console.log('user id inside', props.user.user.id)
-            const response = await fetch(`http://www.eatanywhere.test:8080/api/review/${props.user.user.id}`, {
+            const response = await fetch(`/api/review/${props.user.user.id}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

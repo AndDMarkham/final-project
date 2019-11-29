@@ -15,7 +15,7 @@ class RestaurantsSeeder extends Seeder
         $faker = Faker\Factory::create('cs_CZ');
         Restaurant::truncate();
         
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $restaurant = new Restaurant;
 
             $restaurant->insert([

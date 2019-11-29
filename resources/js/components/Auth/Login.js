@@ -26,7 +26,7 @@ const Login = props => {
         e.preventDefault();
         
         async function postLogin() {
-            const response = await fetch('http://www.eatanywhere.test:8080/api/login', {
+            const response = await fetch('/api/login', {
             method: 'POST',
             withCredentials: true,
             credentials: 'include',

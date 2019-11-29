@@ -89,7 +89,7 @@ const DishForm = props => {
         console.log("diets", diets)
         async function postSubmit() {
             const token = window.localStorage.getItem('token');
-            const response = await fetch('http://www.eatanywhere.test:8080/api/dish/new', {
+            const response = await fetch('/api/dish/new', {
             method: 'POST',
             withCredentials: true,
             credentials: 'include',

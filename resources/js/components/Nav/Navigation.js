@@ -13,7 +13,7 @@ const Navigation = props => {
         console.log('logout');
         async function logout() {
             const token = window.localStorage.getItem('token');
-            const response = await fetch('http://www.eatanywhere.test:8080/api/logout' , {
+            const response = await fetch('/api/logout' , {
                 method: 'GET',
                 headers: {
                   'Accept': 'application/json',
