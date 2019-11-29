@@ -197,24 +197,30 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    @media screen and (min-width: 768px) {
-        display: flex;
-        flex-direction: column; 
-        align-items: center;   
-    }
+    // @media screen and (min-width: 768px) {
+    //     display: flex;
+    //     flex-direction: column; 
+    //     align-items: center;   
+    // }
 }
 
-.restaurantName {
+a {
     text-align: center; 
+    text-decoration: none; 
+    color: darkgreen;   
     
-    text-decoration: underline; 
-    color:darkgreen;   
 }
-
-.restaurantName:hover {
+a:hover {
     color: rgb(2, 126, 2);
     
+    }
+
+.restaurantName {
+    margin-top: 1rem;
+    text-decoration: underline;
 }
+
+
 
 .restaurantInfo {
     display: none;
@@ -232,6 +238,7 @@ body {
 
 .btnShowOnMap {
     
+    text-decoration: none;
     @media screen and (min-width: 768px) {
         align-self: center; 
         text-align: center; 
@@ -253,10 +260,8 @@ body {
     height: 530px;
 }
 
-.restaurantDetailBackground {
-    //background-color: rgba(213, 218, 213, 0.7);
-    display: flex; 
-    flex-direction: row;
+.restaurantDetailBackground { 
+    text-align: center;
 }
 
 //restaurantForm
@@ -326,7 +331,7 @@ body {
     justify-content: center;
     // padding-left: 0.2rem;
     // padding-right: 0.2rem;
-    // margin-right: 0;
+    padding: auto;
     width: 160px;
     @media screen and (min-width: 768px) {
         width: 150px;

@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {HashRouter, Route, Switch, Link, Redirect} from "react-router-dom";
-import history from "../../history";
 import Profile from '../Profile/Profile';
 import ProfileCard from '../Profile/ProfileCard';
 import RestaurantCard from '../Restaurant/RestaurantCard';
@@ -50,19 +48,18 @@ return (
         <TabPane tabId="0">
           
           <RestaurantCard {...props}
-                                    handleRestCoords={props.setRestCoords}
-                                    setRestaurantId={props.setRestaurantId}
-                                    user={user}
-                                    setUser={setUser}
-                                    executeScroll={executeScroll}
-                                    setDishId={props.setDishId}
-                                    />
-                                
+              handleRestCoords={props.setRestCoords}
+              setRestaurantId={props.setRestaurantId}
+              user={user}
+              setUser={setUser}
+              setDishId={props.setDishId}
+              setScrollTo={props.setScrollTo}
+              />            
         </TabPane>
         <TabPane tabId="1">
-                <ProfileCard {...props}
-                                     user={props.user}
-                                />         
+              <ProfileCard {...props}
+                  user={props.user}
+                              />         
         </TabPane>                    
         </TabContent>                    
                             

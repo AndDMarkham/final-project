@@ -18,7 +18,7 @@ class ReviewsController extends Controller
         $dishes = Dish::whereHas('reviews', function (Builder $reviewQuery) use ($user_id) {
             $reviewQuery->where('user_id', $user_id);
         })->with(['reviews' => function ($reviewQ) use ($user_id) {
-            $reviewQ->where('user_id', $user_id);
+            $reviewQ->where('user_id', $user_id)->with('image');
         }])
             ->limit(20)
             ->get();
