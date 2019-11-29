@@ -26,7 +26,7 @@ const ProfileCard = props => {
             fetchReviews();
     }, []);
     
-    const profileDetailPageStyle = {textAlign: 'center', display: 'flex', flexDirection:'row', flexWrap:'wrap', overflowY: 'scroll', height: '85vh' };
+    const profileDetailPageStyle = { overflowY: 'scroll', height: '85vh' };
     if(reviews){
         // console.log('reviewstest', reviews);
     return (
@@ -35,7 +35,7 @@ const ProfileCard = props => {
                 <Row >
                 {
                     reviews.map((review, key) => (
-                        <Col  xs-12 md-4 key={key} >
+                        <Col  className="uploadCard" xs-12 md-4 key={key} >
                             <div 
                             // style={{maxWidth:'50%', textAlign:'center'}}
                             >

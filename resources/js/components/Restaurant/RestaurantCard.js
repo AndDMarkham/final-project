@@ -118,7 +118,7 @@ if (loading === true) {
                     </Card>
                 ))
             }
-            <Card body className="shadow bg-white rounded newRestaurant">
+            <Card body className="shadow rounded newRestaurant">
                 <h4 className="restaurantNewName">Add New Restaurant</h4>
                 <div style={{textAlign: 'center' ,fontSize:'2em'}}>
                     <Button tag={Link} to="/restaurant/new" 
