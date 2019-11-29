@@ -135,7 +135,7 @@ const Register = props => {
     }, [user])
 
     return (
-        <form style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '1rem', paddingTop: '2rem'}}>
+        <form style={{ display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '1rem', paddingTop: '2rem'}}>
            <h2>Register</h2>
             <h4>{ alert.error }</h4>
            <input
@@ -184,11 +184,11 @@ const Register = props => {
            />
            <br/>
            <h4>Diets & Allergies</h4>
-               <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'',marginBottom:'1rem', paddingBottom:'0', width:'60%'}}>
-                <Col md='12' style={{margin:'2rem', marginBottom:'0', textAlign:'center'}}>
+               <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'0',margin:'0rem', padding:'0rem', width:'50%'}}>
+                <Col sm='12' md="6" >
                     {
                         dietNames.map((diet, key) => (
-                            <label key={key} style={{width:'150px'}}>
+                            <label style={{margin:'0', padding:'0' ,width:'150px'}}>
                                 <input 
                                     type="checkbox"
                                     id={diet}
