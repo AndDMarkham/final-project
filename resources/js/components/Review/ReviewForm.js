@@ -3,9 +3,9 @@ import ImageUploader from 'react-images-upload';
 import { Button } from 'reactstrap';
 
 const ReviewForm = props => {
-    const [formInputValues, setFormInputValues] = useState({text: '', rating: ''});
-    const [formSubmitSuccess, setFormSubmitSuccess] = useState();
-    const [ picture, setPicture ] = useState([]);
+    const { dishId } = props
+    const [formInputValues, setFormInputValues] = useState({review: '', rating: ''});
+    const [ image, setImage ] = useState({});
 
     const handleNameInputChange = e => {
         setFormInputValues({
@@ -13,26 +13,55 @@ const ReviewForm = props => {
             [e.target.id]: e.target.value
         })
     };
-    
-    const onDrop = (picture) => {
 
+    
+    const onDrop = e => {
+        setImage(e.target.files[0]);
     }
+
+    let formData = new FormData();
 
     const handleSubmitButtonClick = (e) => {
         e.preventDefault()
+        const user = JSON.parse(window.localStorage.getItem('user'));
 
-        console.log("clicked", formInputValues)
-        // fetch('http://www.eatanywhere.test:8080/dishes')
-        // .then (() => {
-        //     setFormSubmitSuccess(true)
-        // })
-        // .catch((e) => {
-        //     setFormSubmitSuccess(false)
-        // })
+        formData.append('image', image);
+        formData.append('user_id', user.id);
+        formData.append('dish_id', dishId);
+        formData.append('rating', formInputValues.rating);
+        formData.append('review', formInputValues.review);
+
+        console.log("clicked", formInputValues, image, dishId, user.id);
+        async function postSubmit() {
+            const token = window.localStorage.getItem('token');
+            const response = await fetch('http://www.eatanywhere.test:8080/api/review/new', {
+            method: 'POST',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + token,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json'
+            },
+            responseType: 'json',
+            body: formData
+            })
+            const data = await response.json();
+
+            console.log(data);
+        }
+
+        try {
+            postSubmit();
+
+        } catch (e) {
+            console.log('errors', e)
+        }
     } 
 
    return (
-       <form style={{display: 'flex', flexDirection: 'column', padding: '2rem'}}>
+       <form style={{display: 'flex', flexDirection: 'column', padding: '2rem'}} method="post" enctype="multipart/form-data">
            <label htmlFor="rating">Rate the dish out of 5!</label>
            <input
             id="rating"
@@ -53,11 +82,13 @@ const ReviewForm = props => {
             style={{width: '250px', height: '100px', marginBottom: '1rem'}}
             onChange = {handleNameInputChange}
            />
-           <p style={{marginBottom: '0'}}>Upload an image of your meal:</p>
+           {/* <p style={{marginBottom: '0'}}>Upload an image of your meal:</p> */}
            <ImageUploader
                 withIcon={true}
-                buttonText='Choose an image!'
+                buttonText='Upload an image of your meal!'
                 onChange={onDrop}
+                withLabel={false}
+                singleImage={true}
                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                 maxFileSize={5242880}
             />

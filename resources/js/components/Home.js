@@ -13,6 +13,7 @@ const Home = props => {
     const { mapRef, executeScroll, user, setUser } = props;
     const [ restCoords, setRestCoords ] = useState(null);
     const [ restaurantId, setRestaurantId ] = useState(null)
+    const [ dishId, setDishId ] = useState(null)
 console.log(user)
     
     // console.log(restCoords);
@@ -25,7 +26,7 @@ console.log(user)
                         setRestCoords={setRestCoords}
                         user={user}
                         setUser={setUser}
-                        executeScroll={executeScroll} 
+                        setDishId={setDishId}
                     />
                 </Col>
                 <Col sm="12" md="6" className="pad pad-right" ref={mapRef}>
@@ -64,8 +65,13 @@ console.log(user)
                             }
                         />
                         <Route
+                            exact={true}
                             path = '/review/new'
-                            component ={ReviewForm}
+                            render = {()=>    
+                                <ReviewForm 
+                                    dishId={dishId}
+                            />
+                            }
                         />
                     </Switch>
                 </Col>

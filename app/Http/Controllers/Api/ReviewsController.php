@@ -25,4 +25,24 @@ class ReviewsController extends Controller
 
        return $dishes;
     }
+
+    public function store(Request $request) 
+    {
+        $extension = $file->getClientOriginalExtension(); // getting image extension
+        $filename = uniqid().'.'.$extension;
+        $file->move('images/user_images', $filename);
+        $image = Image::create([
+            'path' => "images/user_images" . $filename
+        ]);
+
+        $review = Review::create([
+            'dish_id' => $request->input('dish_id'),
+            'user_id' => $request->input('user_id'),
+            'review' => $request->input('review'),
+            'rating' => $request->input('rating'),
+            'image_id' => $request->input('image_id'),
+        ]);
+
+        return $review;
+    }
 }

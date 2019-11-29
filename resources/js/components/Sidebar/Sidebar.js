@@ -55,6 +55,7 @@ return (
                                     user={user}
                                     setUser={setUser}
                                     executeScroll={executeScroll}
+                                    setDishId={props.setDishId}
                                     />
                                 
         </TabPane>

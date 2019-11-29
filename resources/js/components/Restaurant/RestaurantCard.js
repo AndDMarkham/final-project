@@ -94,6 +94,8 @@ if (loading === true) {
                             dishes={restaurant.dishes}
                             restaurantId={restaurant.id}
                             setRestaurantId={props.setRestaurantId}
+                            setDishId={props.setDishId}
+                            user={props.user}
                         />
                     </Card>
                 ))

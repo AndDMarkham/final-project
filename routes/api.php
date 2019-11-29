@@ -42,6 +42,7 @@ Route::group(['middleware' => ['json.response']], function () {
 
         //ReviewApis:
         Route::get('/review/{id}', 'Api\ReviewsController@show');
+        Route::post('/review/new', 'Api\ReviewsController@store');
 
     });
 

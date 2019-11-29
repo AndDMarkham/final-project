@@ -28,6 +28,8 @@ const Dishes = props => {
             <DishCard 
               key={key}
               dish={dish}
+              setDishId={props.setDishId}
+              user={props.user}
             />
           ))
         }
