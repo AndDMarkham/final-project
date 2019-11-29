@@ -158,77 +158,79 @@ const Register = props => {
     }, [user])
 
     return (
-        <form style={{ display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '1rem', paddingTop: '2rem'}}>
-           <h2>Register</h2>
-            <h4>{ alert.error }</h4>
-           <input
-            id="firstName"
-            type="text"
-            placeholder = "First name"
-            value = {formInputValues.firstName}
-            onChange = {handleNameInputChange}
-            style={formStyle}
-           />
-           <br/>
-           <input
-            id="lastName"
-            type="text"
-            placeholder = "Last name"
-            value={formInputValues.lastName}
-            onChange = {handleNameInputChange}
-            style={formStyle}
-           />
-           <br/>
-           <input
-            id="email"
-            type="text"
-            placeholder = "E-mail"
-            value={formInputValues.email}
-            onChange = {handleNameInputChange}
-            style={formStyle}
-           />
-           <br/>
-           <input
-            id="password"
-            type="password"
-            placeholder = "Password"
-            value={formInputValues.password}
-            onChange = {handleNameInputChange}
-            style={formStyle}
-           />
-           <br/>
-           <input
-            id="dateOfBirth"
-            type="date"
-            placeholder = "Date of birth"
-            value={formInputValues.dateOfBirth}
-            onChange = {handleNameInputChange}
-            style={formStyle}
-           />
-           <br/>
-           <h4>Diets & Allergies</h4>
-               <Row style={{alignItems:'center', justifyContent: 'center', paddingTop:'0',margin:'0rem', padding:'0rem', width:'50%'}}>
-                <Col sm='12' md="6" >
-                    {
-                        dietNames.map((diet, key) => (
-                            <label style={{margin:'0', padding:'0' ,width:'150px'}}>
-                                                <img key={key} src={ `/images/${dietPicture[diet]}` } alt={ diet.name } className="profileIcon"></img>
-                                <input 
-                                    type="checkbox"
-                                    id={diet}
-                                    name={diet}
-                                    value={key + 1}
-                                    onChange={handleCheckboxInputChange}
-                                    checked={formInputValues.diets.diet}
-                                    /> {diet}
-                            </label>
-
-                        ))
-                    }
-                    </Col>
-            </Row>
-           <button onClick = {handleSubmitButtonClick} style={{border: '1px solid blue', margin:'5px'}}>Submit</button>
-       </form>
+        <div style={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
+            <form style={{ display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', padding: '2rem' }}>
+               <h2>Register</h2>
+                <h4>{ alert.error }</h4>
+               <input
+                id="firstName"
+                type="text"
+                placeholder = "First name"
+                value = {formInputValues.firstName}
+                onChange = {handleNameInputChange}
+                style={formStyle}
+               />
+               <br/>
+               <input
+                id="lastName"
+                type="text"
+                placeholder = "Last name"
+                value={formInputValues.lastName}
+                onChange = {handleNameInputChange}
+                style={formStyle}
+               />
+               <br/>
+               <input
+                id="email"
+                type="text"
+                placeholder = "E-mail"
+                value={formInputValues.email}
+                onChange = {handleNameInputChange}
+                style={formStyle}
+               />
+               <br/>
+               <input
+                id="password"
+                type="password"
+                placeholder = "Password"
+                value={formInputValues.password}
+                onChange = {handleNameInputChange}
+                style={formStyle}
+               />
+               <br/>
+               <input
+                id="dateOfBirth"
+                type="date"
+                placeholder = "Date of birth"
+                value={formInputValues.dateOfBirth}
+                onChange = {handleNameInputChange}
+                style={formStyle}
+               />
+               <br/>
+               <h4>Diets & Allergies</h4>
+                   <Row className="registerDiets" style={{alignItems:'center', justifyContent: 'center', margin:'0rem', paddingBottom: '0.5rem', width: '50vw'}}>
+                    <Col >
+                        {
+                            dietNames.map((diet, key) => (
+                                <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                                                    <img key={key} src={ `/images/${dietPicture[diet]}` } alt={ diet.name } className="profileIcon"></img>
+                                    <input 
+                                        type="checkbox"
+                                        id={diet}
+                                        name={diet}
+                                        value={key + 1}
+                                        onChange={handleCheckboxInputChange}
+                                        checked={formInputValues.diets.diet}
+                                        /> {diet}
+                                </label>
+    
+                            ))
+                        }
+                        </Col>
+                </Row>
+               <button onClick = {handleSubmitButtonClick} style={{border: '1px solid blue', margin:'5px'}}>Submit</button>
+           </form>
+        </div>
     )
 
 }
