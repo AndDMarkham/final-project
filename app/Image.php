@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    protected $fillable = [
+        'path',
+    ];
+
     public function restaurants()
     {
         return $this->hasMany('App\Restaurant');

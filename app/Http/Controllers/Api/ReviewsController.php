@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dish;
+use App\Image;
 use App\Review;
+
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -28,21 +30,29 @@ class ReviewsController extends Controller
 
     public function store(Request $request) 
     {
+        // dd([$request->dish_id, $request->user_id, $request->review, $request->rating, $request->file('image')]);
+        $file = $request->file('image');
         $extension = $file->getClientOriginalExtension(); // getting image extension
         $filename = uniqid().'.'.$extension;
-        $file->move('images/user_images', $filename);
+        $file->move('images/', $filename);
         $image = Image::create([
-            'path' => "images/user_images" . $filename
+            'path' => "images/" . $filename
         ]);
 
         $review = Review::create([
-            'dish_id' => $request->input('dish_id'),
-            'user_id' => $request->input('user_id'),
-            'review' => $request->input('review'),
-            'rating' => $request->input('rating'),
-            'image_id' => $request->input('image_id'),
+            'dish_id' => $request->dish_id,
+            'user_id' => $request->user_id,
+            'text' => $request->review,
+            'rating' => $request->rating,
+            'image_id' => $image->id,
         ]);
 
-        return $review;
+        $response = [
+            'message' => 'success',
+            'review' => $review,
+            'image_id' => $image->id
+        ];
+
+        return $response;
     }
 }

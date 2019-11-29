@@ -29,4 +29,16 @@ class PrimaryController extends Controller
 
         return $restaurants;
     }
+
+    public function search(Request $request)
+    {
+        $name = $request->name;
+
+        $restaurants = Restaurant::where('name', 'like', '%'.$name.'%')
+            ->with('dishes.reviews.image')
+            ->limit(20)
+            ->get();
+    
+        return $restaurants;
+    }
 }

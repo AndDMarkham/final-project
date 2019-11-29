@@ -54,6 +54,7 @@ return (
               setUser={setUser}
               setDishId={props.setDishId}
               setScrollTo={props.setScrollTo}
+              setRestaurantsPosition={props.setRestaurantsPosition}
               />            
         </TabPane>
         <TabPane tabId="1">

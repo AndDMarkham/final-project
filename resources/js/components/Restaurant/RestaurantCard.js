@@ -4,18 +4,14 @@ import Dishes from '../Dish/Dishes';
 import {Link} from "react-router-dom";
 
 
-const RestaurantCard = (
-    props
- ) => {
-    console.log(props)
+const RestaurantCard = (props) => {
+    // console.log(props)
     const [ loading, setLoading ] = useState();
     const [ restaurants, setRestaurants ] = useState([]);
-console.log('RestaurantCard', props.user)
-useEffect(()=> {
-    console.log('RestaurantCard useeffect 2')
-});
+// console.log('RestaurantCard', props.user)
+
     useEffect(()=> {
-        console.log('RestaurantCard useeffect 1');
+        // console.log('RestaurantCard useeffect 1');
         async function fetchRestaurants(){
             console.log(props.user)
             setLoading(true);
@@ -33,13 +29,27 @@ useEffect(()=> {
             const data = await response.json();
             setRestaurants(data);
             setLoading(false);
-            console.log('data', data);
+            // console.log('data', data);
         }
 
             fetchRestaurants();
     }, []);
 
-    console.log('restaurants', restaurants)
+    useEffect(() => {
+        const restaurantsPosition = [];
+        restaurants.map(restaurant => {
+            let restObj = {
+                name: restaurant.name,
+                latitude: restaurant.latitude,
+                longitude: restaurant.longitude,
+            }
+            restaurantsPosition.push(restObj);
+        })
+        console.log('pos', restaurantsPosition);
+        props.setRestaurantsPosition(restaurantsPosition);
+    }, [restaurants])
+
+    // console.log('restaurants', restaurants)
 
 if (loading === true) {
     return (
@@ -58,14 +68,6 @@ if (loading === true) {
                                 <Link  to="/restaurant/" onClick={() => {
                                     props.setRestaurantId(restaurant.id)
                                     if (window.innerWidth < 767) {
-                                        // setTimeout(() => {
-                                        //   const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
-                                        //   window.scrollTo({
-                                        //       top: document.querySelector('.restaurantDetail').getBoundingClientRect().top + scrolltop + 200, 
-                                        //       left: 0, 
-                                        //       behavior: 'smooth'
-                                        //   });
-                                        // }, 50)
                                         props.setScrollTo('.restaurantDetail');
                                       }
                                 }
@@ -82,27 +84,16 @@ if (loading === true) {
                                 </Row>
                             </div>    
                                 <Button className="btnShowOnMap" onClick={() => {
-                                    console.log(restaurant);
-                                    if (window.innerWidth < 767) {
-                                        // const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
-                                        // console.log(scrolltop)
-                                        // console.log(document.querySelector('.mapRow').getBoundingClientRect().top)
-                                        // console.log(document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop)
-                                        // window.scrollTo({
-                                        //     top: document.querySelector('.mapRow').getBoundingClientRect().top + scrolltop, 
-                                        //     left: 0, 
-                                        //     behavior: 'smooth'
-                                        // },100);
-                                    }
+                                    // console.log(restaurant);
                                     props.handleRestCoords({
                                         lat: restaurant.latitude,
                                         lon: restaurant.longitude
                                     })
                                     console.log('SETTING SCROLLTO TO .mapRow');
                                     if (document.querySelector('.mapRow')) {
-                                        console.log('ELEMENT EXISTS');
+                                        // console.log('ELEMENT EXISTS');
                                     } else {
-                                        console.log('ELEMENT DOES NOT EXIST NOW');
+                                        // console.log('ELEMENT DOES NOT EXIST NOW');
                                     }
                                     props.setScrollTo('.mapRow');
                                     //executeScroll();
@@ -128,9 +119,9 @@ if (loading === true) {
                         if (window.innerWidth < 767) {
                             setTimeout(() => {
                               const scrolltop = window.pageYOffset || document.documentElement.scrollTop;
-                              console.log(scrolltop)
-                              console.log(document.querySelector('.restaurantForm').getBoundingClientRect().top)
-                              console.log(document.querySelector('.restaurantForm').getBoundingClientRect().top + scrolltop)
+                            //   console.log(scrolltop)
+                            //   console.log(document.querySelector('.restaurantForm').getBoundingClientRect().top)
+                            //   console.log(document.querySelector('.restaurantForm').getBoundingClientRect().top + scrolltop)
                               window.scrollTo({
                                   top: document.querySelector('.restaurantForm').getBoundingClientRect().top + scrolltop, 
                                   left: 0, 
