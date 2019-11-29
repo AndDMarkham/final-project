@@ -47,7 +47,7 @@ if (loading === true) {
                     <Card key={key} body  className="shadow p-1 mb-4 restaurantCard rounded">
                         <div className="restaurantCardMobile">
                             <h4 className="restaurantName">
-                                <Link  to="/restaurant/" onClick={() => {
+                                <Link  to="/search/restaurant" onClick={() => {
                                     props.setRestaurantId(restaurant.id)
                                     if (window.innerWidth < 767) {
                                         props.setScrollTo('.restaurantDetail');
@@ -96,7 +96,7 @@ if (loading === true) {
             <Card body className="shadow bg-white rounded newRestaurant">
                 <h4 className="restaurantNewName">Add New Restaurant</h4>
                 <div style={{textAlign: 'center' ,fontSize:'2em'}}>
-                    <Button tag={Link} to="/restaurant/new" 
+                    <Button tag={Link} to="/search/restaurant/new" 
                     onClick={()=> {
                         if (window.innerWidth < 767) {
                             setTimeout(() => {

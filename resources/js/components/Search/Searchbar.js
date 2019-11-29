@@ -40,7 +40,7 @@ const Searchbar = props => {
         <div>
             <div className="searchbar">
             <form>
-                <label htmlFor="restaurantSearch">Find out if your favourite restaurant has some delicious food for you!</label>
+                <label htmlFor="restaurantSearch">Find out if your favourite restaurant has some delicious food for you!</label><br/>
                 <input id="restaurantSearch" type="text" name="restaurantSearch" onChange={handleChange} value={name}/>
             </form>
             </div>

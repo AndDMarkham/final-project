@@ -43,20 +43,9 @@ const Search = props => {
                 </Col>
                 <Col sm="12" md="6" className="pad pad-right">
                     <Switch>
-                        <Route 
-                            exact={true}
-                            path = '/search'
-                            render = {()=>    
-                                <Map 
-                                    restCoords={restCoords}
-                                    restaurantsPosition={restaurantsPosition}
-                                    
-                            />
-                            }
-                        />
                         <Route
                             exact={true}
-                            path = '/restaurant'
+                            path = '/search/restaurant'
                             render = {()=>    
                                 <RestaurantDetail
                                 restaurantId={restaurantId}
@@ -65,12 +54,12 @@ const Search = props => {
                         />
                         <Route
                             exact={true}
-                            path = '/restaurant/new'
+                            path = 'search/restaurant/new'
                             component ={RestaurantForm}
                         />
                         <Route
                             exact={true}
-                            path = '/dish/new'
+                            path = 'search/dish/new'
                             render = {()=>    
                                 <DishForm 
                                     restaurantId={restaurantId}
@@ -79,10 +68,20 @@ const Search = props => {
                         />
                         <Route
                             exact={true}
-                            path = '/review/new'
+                            path = 'search/review/new'
                             render = {()=>    
                                 <ReviewForm 
                                     dishId={dishId}
+                            />
+                            }
+                        />
+                        <Route 
+                            path = '/search'
+                            render = {()=>    
+                                <Map 
+                                    restCoords={restCoords}
+                                    restaurantsPosition={restaurantsPosition}
+                                    
                             />
                             }
                         />

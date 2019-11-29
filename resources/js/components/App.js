@@ -74,10 +74,9 @@ const App = () =>  {
                     <div> 
                     <Switch>
                         <Route
-                            exact={true}
-                            path = '/'
-                            render={() =>
-                                <Home
+                            path = '/search'
+                            render={() => 
+                                <Search
                                     setUser={setUser} 
                                     user={user}
                                     setScrollTo={setScrollTo}
@@ -85,10 +84,9 @@ const App = () =>  {
                             }
                         />
                         <Route
-                            exact={true}
-                            path = '/search'
-                            render={() => 
-                                <Search
+                            path = '/'
+                            render={() =>
+                                <Home
                                     setUser={setUser} 
                                     user={user}
                                     setScrollTo={setScrollTo}
