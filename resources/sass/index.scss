@@ -175,6 +175,10 @@ body {
 
 .uploadCard {
     height: 300px;
+    border: solid lightgrey 1px;
+    text-align: center;
+    padding: auto;
+    background-color: rgba(213, 218, 213, 0.7);
 }
 
 //RestaurantCard
@@ -240,7 +244,9 @@ a:hover {
 .newRestaurant {
     display: flex;
     flex-direction: column;
-    justify-content: center;    
+    justify-content: center;
+    background-color: rgba(213, 218, 213, 0.7); 
+       
 }
 
 .btnShowOnMap {
