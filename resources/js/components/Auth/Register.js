@@ -25,6 +25,29 @@ const dietMap = {
     sulphites: 20,
 }
 
+const dietPicture = {
+    vegan: 'icons8-vegan-symbol-512.png',
+    vegetarian: 'lettuce.png',
+    pescetarian: 'trout.png',
+    keto: 'meat.png',
+    halal: 'halal.png',
+    kosher: 'kosher.png',
+    gluten: 'icons8-no-gluten-96.png',
+    milk: 'icons8-non-lactose-food-100.png',
+    soy: 'icons8-no-soy-512.png',
+    eggs: 'icons8-no-eggs-128.png',
+    peanuts: 'icons8-peanut-80.png',
+    treenuts: 'icons8-no-nuts-80.png',
+    fish: 'icons8-no-fish-80.png',
+    molluscs: 'icons8-no-shellfish-80.png',
+    crustaceans: 'icons8-no-crustaceans-80.png',
+    mustard: 'icons8-no-mustard-80.png',
+    sesame: 'icons8-no-sesame-96.png',
+    celery: 'icons8-no-celery-64.png',
+    lupin: 'icons8-no-lupines-96.png',
+    sulphites: 'icons8-no-filling-80.png'
+}
+
 const dietNames = Object.keys(dietMap);
 
 const getDietIds = (diets) => Object.keys(diets).reduce((acc, dietName) => {
@@ -189,6 +212,7 @@ const Register = props => {
                     {
                         dietNames.map((diet, key) => (
                             <label style={{margin:'0', padding:'0' ,width:'150px'}}>
+                                                <img key={key} src={ `/images/${dietPicture[diet]}` } alt={ diet.name } className="profileIcon"></img>
                                 <input 
                                     type="checkbox"
                                     id={diet}
@@ -198,6 +222,7 @@ const Register = props => {
                                     checked={formInputValues.diets.diet}
                                     /> {diet}
                             </label>
+
                         ))
                     }
                     </Col>
